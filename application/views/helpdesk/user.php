@@ -152,9 +152,6 @@
     });
 
 
-    // Ajax Delete user
-    $(document).on('click','#btn_delete',function(){
-
     $('#add_user').on('click', function(){
       $('#modal_add').modal('show');
       $('#form_add')[0].reset();
@@ -292,6 +289,5 @@
         })
       }
     });
-  });
 });
 </script>
