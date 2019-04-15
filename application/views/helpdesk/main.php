@@ -1,355 +1,362 @@
+
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
+<html lang="en">
+
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/logo/logo1.png">
     <title>SIPPK | Helpdesk</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="<?= base_url() ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="<?= base_url() ?>assets/main/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="<?= base_url() ?>assets/main/css/colors/default-dark.css" id="theme" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url() ?>assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    style
+<![endif]-->
 
-    <!-- Bootstrap -->
-   <link href="<?= base_url().'assets/vendors/bootstrap/dist/css/bootstrap.min.css' ?>" rel="stylesheet">
-   <!-- Font Awesome -->
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-   <!-- Font Awesome -->
-   <link href="<?= base_url().'assets/vendors/font-awesome/css/font-awesome.min.css' ?>" rel="stylesheet">
-   <!-- NProgress -->
-   <link href="<?= base_url().'assets/vendors/nprogress/nprogress.css' ?>" rel="stylesheet">
-   <!-- Datatables -->
-   <link href="<?= base_url().'assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css' ?>" rel="stylesheet">
-
-   <!-- Custom Theme Style -->
-   <link href="<?= base_url().'assets/build/css/custom.min.css' ?>" rel="stylesheet">
-   <!-- jQuery -->
-   <script src="<?= base_url().'assets/vendors/jquery/dist/jquery.min.js' ?>"></script>
-   <script type="text/javascript">
-   function cek_auth(){
-     var session = localStorage.getItem('sippk');
-     var auth = JSON.parse(session);
-
-     if (!session) {
-       window.location.replace('<?= base_url().'auth' ?>')
-     }else{
-         if (auth.level !== 'helpdesk') {
-           window.location.replace('<?= base_url().'' ?>'+auth.level+'/')
-         }
-       }
-     };
-   cek_auth();
-   </script>
-
-   <style media="screen">
-   .swal2-popup{
-      font-size: 1.3rem !important;
-   }
-   </style>
-  </head>
-  <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="#/dashboard" class="site_title"><img src="<?= base_url().'assets/image/logo1.png' ?>" alt="image" style="width:50px; border-radius: 5px;"> <span style="font-size:17px; margin-left:10px;">HELPDESK</span></a>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="<?= base_url().'assets/image/user2.png' ?>" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Welcome,</span>
-                <h2 class="nama"></h2>
-              </div>
-              <div class="clearfix"></div>
-            </div>
-            <!-- /menu profile quick info -->
-
-            <br />
-
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>General</h3>
-                <ul class="nav side-menu">
-                  <li><a href="#/dashboard"><i class="fa fa-home"></i> Dashboard <span class="fa fa-chevron-right"></span></a>
-                  </li>
-                  <li><a><i class="fa fa-users"></i> User <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#/user">Data User</a></li>
-                      <li><a href="#/log_user">Log User</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- /sidebar menu -->
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small btn-group">
-              <button type="button" name="button" class="btn btn-success btn-md" id="btn_gpass" title="Change Password" style="width:50%;"> <i class="fas fa-exchange-alt"></i> </button>
-              <button type="button" name="button" class="btn btn-danger btn-md" id="btn_logout" title="Logout" style="width:50%;"> <i class="fas fa-power-off"></i> </button>
-            </div>
-            <!-- /menu footer buttons -->
-          </div>
-        </div>
-
-
-        <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
-
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?= base_url().'assets/image/user2.png' ?>" alt="" style="width:40px; height: 40px;">Info
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right ">
-                    <li><a href="#"> Profile</a> </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <!-- /top navigation -->
-
-        <!-- page content -->
-        <div class="right_col" id="content">
-          
-        </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            <span>Made with <i class="fa fa-heart"></i> by Hana Ayumi</span>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
-    </div>
-
-    <!-- Modal Change Password -->
-    <div class="modal fade bs-example-modal-sm" id="modal_cpass" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel2">Change Password</h4>
-          </div>
-          <form id="form_gpass">
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="password_lama">Old Password</label>
-                <input type="password" class="form-control" id="password_lama" name="password_lama">
-              </div>
-              <div class="form-group">
-                <label for="password_lama">New Password</label>
-                <input type="password" class="form-control" id="password_baru" name="password_baru">
-              </div>
-              <div class="form-group">
-                <label>Retype Password</label>
-                <input type="password" class="form-control" id="rtp_pass">
-              </div>
-              <div class="form-group">
-                <input type="checkbox" class="form-control show_pass" value="" style="width:18px; height:18px; float:right;">
-                <label style="float:right; margin-right:10px;">Show Password</label>
-              </div><br>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-bold btn-pure btn-danger" data-dismiss="modal" style="font-weight:bold;">Close</button>
-              <button type="submit" class="btn btn-bold btn-pure btn-success float-right" id="btn_savepass" style="font-weight:bold;">Save Change</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!-- Bootstrap -->
-    <script src="<?= base_url().'assets/vendors/bootstrap/dist/js/bootstrap.min.js' ?>"></script>
-    <!-- fastClick -->
-    <script src="<?= base_url().'assets/vendors/fastclick/lib/fastclick.js' ?>"></script>
-    <!-- NProgress -->
-    <script src="<?= base_url().'assets/vendors/nprogress/nprogress.js' ?>"></script>
-    <!-- Custom Theme Scripts -->
-    <script src="<?= base_url().'assets/build/js/custom.min.js' ?>"></script>
-    <script src="<?= base_url().'assets/vendors/sweetalert2/sweetalert2.js' ?>"></script>
-    <!-- Datatables -->
-    <script src="<?= base_url().'assets/vendors/datatables.net/js/jquery.dataTables.min.js' ?>"></script>
-    <script src="<?= base_url().'assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js' ?>"></script>
+    <style media="screen">
+      .user-profile .profile-text {
+          padding: 0px 0px;
+          position: relative;
+        }
+    </style>
 
     <script type="text/javascript">
+      var session = localStorage.getItem('sippk');
+      var auth = JSON.parse(session);
 
-    // Load Content
-    function load_content(link) {
-      $.get(`<?= base_url().'helpdesk/'?>${link}`,function(response){
+      if(!auth){
+        window.location.replace(`<?= base_url('auth') ?>`)
+      } else {
+        if(auth.level !== 'helpdesk'){
+          window.location.replace(`<?= base_url() ?>${auth.level}`);
+        }
+      }
+    </script>
+</head>
 
-        $('#content').html(response);
-      });
-    };
+<body class="fix-header card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
 
-      $(document).ready(function() {
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
+                        <b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="<?= base_url() ?>assets/logo/logo1.png" alt="homepage" class="dark-logo" style="width: 50px; height: 50px;" />
+                            <!-- Light Logo icon -->
+                            <img src="<?= base_url() ?>assets/logo/logo1.png" alt="homepage" class="light-logo"  style="width: 50px; height: 50px;" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span>
+                         <!-- dark Logo text -->
+                         <img src="<?= base_url() ?>assets/logo/logo-besar.jpg" alt="homepage" class="dark-logo" style="width: 100px; height: 50px;"/>
+                         <!-- Light Logo text -->
+                         <img src="<?= base_url() ?>assets/logo/logo-besar.jpg" class="light-logo" alt="homepage" style="width: 100px; height: 50px;" /></span> </a>
+                </div>
 
-        const Toast = Swal.mixin({
-                        toast: true,
-                        position:'bottom-end',
-                        showConfirmButton: false,
-                        timer: 2500
-                      });
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
 
-        var session = localStorage.getItem('sippk');
-        var auth = JSON.parse(session);
-        var token = auth.token
-        var link_cpass = '<?= base_url().'api/auth/password_user/' ?>'+token
-        var link_logout= '<?= base_url().'api/auth/logout_user/' ?>'+token;
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url() ?>assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right scale-up">
+                                <ul class="dropdown-user">
+                                    <li>
+                                        <div class="dw-user-box">
+                                            <div class="u-img"><img src="<?= base_url() ?>assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-text">
+                                                <h4 id="session_nama"></h4>
+                                                <p class="text-muted" id="session_level"></p><a class="btn btn-rounded btn-danger btn-sm"><i class="fa fa-image"></i> Change Picture</a></div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a id="session_id"><i class="ti-wallet"></i></a></li>
+                                    <li><a id="session_username"><i class="ti-user"></i></a></li>
+                                    <li><a id="session_tgl"><i class="ti-calendar"></i></a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="javascript:void(0)" id="change_pass"><i class="fa fa-lock"></i> Change Password</a></li>
+                                    <li><a href="javascript:void(0)" id="logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
-        $('.nama').text(auth.nama_user);
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- User profile -->
+                <div class="user-profile" style="background-color: navy;">
+                    <!-- User profile image -->
+                    <div class="profile-img"> <img src="<?= base_url() ?>assets/images/users/1.jpg" alt="user" /> </div>
+                    <!-- User profile text-->
+                    <div class="profile-text"> <a class="dropdown link u-dropdown" id="session_nav"></a></div>
+                </div>
+                <!-- End User profile text-->
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">MAIN MENU</li>
+                        <li>
+                            <a href="#/dashboard" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a class="has-arrow " href="#" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Users</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                              <li><a href="#/log">User Log</a></li>
+                              <li><a href="#/user">User Data</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid" id="content">
 
-        // Ajax Logout
-        $('#btn_logout').on('click',function(){
+            </div>
 
-          Swal.fire({
-            title: 'Are you sure to logout ?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes logout !'
-          }).then((result) => {
-            if (result.value) {
-              $.ajax({
-                url: link_logout,
-                type: 'GET',
-                dataType: 'JSON',
-                // data: {},
-                // beforeSend:function(){},
-                success:function(response){
-                  if (response.status === 200) {
-                    localStorage.clear();
-                    window.location.replace('<?= base_url().'auth' ?>')
-                  }else {
-                    Toast.fire({
-                      type: 'warning',
-                      title: response.message
-                    })
-                  }
-                },
-                error:function(){
-                  Swal.fire({
-                   type: 'warning',
-                   title: 'Unable to access the server ...',
-                   showConfirmButton: false,
-                   timer: 2000
-                  })
-                }
-              });
-            }
-          })
-        })
+            <div class="modal fade bs-example-modal-sm" id="modal_pass" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                      <form id="form_pass" class="form-material">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="mySmallModalLabel">Change Password</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label for="">Old Password</label>
+                            <input type="password" name="password_lama" id="password_lama" class="form-control form-control-line">
+                          </div>
+                          <div class="form-group">
+                            <label for="">New Password</label>
+                            <input type="password" name="password_baru" id="password_baru" class="form-control form-control-line">
+                          </div>
+                          <div class="form-group">
+                            <label for="">Retype Password</label>
+                            <input type="password" name="password_retype" id="password_retype" class="form-control form-control-line">
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" name="button">Cancel</button>
+                          <button type="submit" class="btn btn-sm btn-success" id="submit_pass" name="button">Save Change</button>
+                        </div>
+                      </form>
 
-        // Ajax Change Pass
-        $('#form_gpass').on('submit',function(e){
-          e.preventDefault();
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            
+            <footer class="footer">
+                © 2017 Material Pro Admin by wrappixel.com
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="<?= base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="<?= base_url() ?>assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="<?= base_url() ?>assets/main/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="<?= base_url() ?>assets/main/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="<?= base_url() ?>assets/main/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="<?= base_url() ?>assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/sparkline/jquery.sparkline.min.js"></script>
 
-          var pass_lama = $('#password_lama').val();
-          var pass_baru = $('#password_baru').val();
-          var rtp_pass = $('#rtp_pass').val();
+    <script src="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/toast-master/js/jquery.toast.js"></script>
+    <!--Custom JavaScript -->
+    <script src="<?= base_url() ?>assets/main/js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="<?= base_url() ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/chart.js/chart.min.js"></script>
 
-          // alert(pass_baru)
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+      function load_content(link){
+        $.get(`<?= base_url().'helpdesk/'?>${link}`,function(response){
 
-          if (pass_lama === '' || pass_baru === '' || rtp_pass === '') {
-            Toast.fire({
-              type: 'warning',
-              title: 'Password cannot be empty ...',
-            })
-          }else if (rtp_pass !== pass_baru) {
-            Toast.fire({
-              type: 'warning',
-              title: 'Password does not match ...',
-            })
-          }else{
-            $.ajax({
-              url: link_cpass,
-              type: 'POST',
-              dataType: 'JSON',
-              data: {
-                password_lama : pass_lama,
-                password_baru : pass_baru
-              },
-              beforeSend:function(){
-                $('#btn_savepass').addClass('disabled').attr('disabled','disabled').html('<span>Save Change <i class="fas fa-spinner fa-spin"></i></span>')
+          $('#content').html(response);
+        });
+      }
 
-              },
-              success:function(response){
+      function makeNotif(icon, heading, text, position){
+        $.toast({
+          heading: heading,
+          text: text,
+          position: position,
+          loaderBg:'#ff6849',
+          icon: icon,
+          hideAfter: 3500,
+          stack: 1
+        });
+      }
 
-                if (response.status === 200) {
-                  Toast.fire({
-                    type: 'success',
-                    title: response.message,
-                  })
-                  $('#modal_cpass').modal('hide');
-                }else {
-                  Toast.fire({
-                    type: 'warning',
-                    title: response.message,
-                  })
-                  $('#btn_savepass').removeClass('disabled').removeAttr('disabled','disabled').html('<span>Save Change</span>')
-                }
-              },
-              error:function(){
-                Swal.fire({
-                 type: 'warning',
-                 title: 'Unable to access the server ...',
-                 showConfirmButton: false,
-                 timer: 2000
-                })
-              }
-            });
-          }
-        })
-
+      $(document).ready(function(){
         var link;
 
-        // Load with URL
-        if (location.hash) {
+        $('#session_nav').text(auth.nama_user);
+        $('#session_nama').text(auth.nama_user);
+        $('#session_level').text(auth.level);
+        $('#session_id').append(` ${auth.id_user}`);
+        $('#session_username').append(` ${auth.username}`);
+        $('#session_tgl').append(` ${auth.tgl_registrasi}`);
+
+        if(!location.hash){
+          location.hash = '#/dashboard';
+        } else {
           link = location.hash.substr(2);
           load_content(link);
-        }else {
-          location.hash ='#/dashboard';
         }
 
-        // load with navigasi
-        $(window).on('hashchange',function(){
+        $(window).on('hashchange', function(){
           link = location.hash.substr(2);
           load_content(link);
         });
 
-        // Modal Gpass
-        $('#btn_gpass').on('click',function(){
-          $('#modal_cpass').modal('show');
-          $('#form_gpass')[0].reset();;
+        $('#change_pass').on('click', function(){
+          $('#form_pass')[0].reset();
+          $('#modal_pass').modal('show');
         })
 
-        // Show Password
-        $('.show_pass').click(function(){
-          if($(this).is(':checked')){
-            $('#password_baru,#password_lama,#rtp_pass').attr('type','text');
-          }else{
-            $('#password_baru,#password_lama,#rtp_pass').attr('type','password');
-          };
+        $('#logout').on('click', function(){
+          swal({
+            title: "Are you sure?",
+            text: "You will need to login again.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            closeOnConfirm: false,
+            closeOnCancel: true
+          }, function(isConfirm){
+              if (isConfirm) {
+                  $.ajax({
+                    url: `<?= base_url('api/auth/logout_user/') ?>${auth.token}`,
+                    type: 'GET',
+                    dataType: 'JSON',
+                    success: function(response){
+                      if(response.status === 200){
+                        localStorage.clear();
+                        window.location.replace(`<?= base_url('auth') ?>`);
+                      } else {
+                        makeNotif('error', 'Failed', response.message, 'bottom-right')
+                      }
+                    },
+                    error: function(){
+                      makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
+                    }
+                  })
+              }
+          });
+        });
+
+        $('#form_pass').on('submit', function(e){
+          e.preventDefault()
+          var password_lama = $('#password_lama').val();
+          var password_baru = $('#password_baru').val();
+          var password_retype = $('#password_retype').val();
+
+          if(password_lama === '' || password_baru === ''){
+            makeNotif('warning', 'Failed', 'Field is required', 'bottom-right')
+          } else if(password_baru !== password_retype){
+            makeNotif('warning', 'Failed', 'Password not match', 'bottom-right')
+          } else {
+            $.ajax({
+              url: `<?= base_url('api/auth/password_user/') ?>${auth.token}`,
+              type: 'POST',
+              dataType: 'JSON',
+              data: $(this).serialize(),
+              beforeSend: function(){
+                $('#submit_pass').addClass('disabled').html('<i class="fa fa-spinner fa-spin" style="font-size:20px;"></i>')
+              },
+              success: function(response){
+                if(response.status === 200){
+                  makeNotif('success', 'Success', response.message, 'bottom-right')
+                  $('#modal_pass').modal('hide')
+                } else {
+                  makeNotif('error', 'Failed', response.message, 'bottom-right')
+                }
+                $('#submit_pass').removeClass('disabled').html('Save Change');
+              },
+              error: function(){
+                makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
+                $('#submit_pass').removeClass('disabled').html('Save Change')
+              }
+            })
+          }
+
         });
       });
     </script>
-  </body>
+</body>
+
 </html>
