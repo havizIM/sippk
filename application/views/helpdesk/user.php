@@ -96,7 +96,7 @@
       order:[[5,'desc']]
     });
 
-    // Ajax Delete Maspel
+    // Ajax Delete user
     $(document).on('click','#btn_delete',function(){
 
       var id_user = $(this).attr('data-id');
