@@ -151,15 +151,15 @@
       order: [[4, 'desc']]
     });
 
-<<<<<<< HEAD
+
     // Ajax Delete user
     $(document).on('click','#btn_delete',function(){
-=======
+
     $('#add_user').on('click', function(){
       $('#modal_add').modal('show');
       $('#form_add')[0].reset();
     });
->>>>>>> a725f5473c54c81aee4b7e82e74f8d219d874d29
+
 
     $('#form_add').on('submit', function(e){
       e.preventDefault();
