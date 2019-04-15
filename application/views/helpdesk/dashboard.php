@@ -69,6 +69,8 @@ $(document).ready(function(){
         backgroundColor: [
           "#17a2b8",
           "#28a745",
+          'yellow',
+          'red'
         ]
       }],
     },
