@@ -15,16 +15,8 @@ class Helpdesk extends CI_Controller {
 	{
 		$this->load->view('helpdesk/user');
 	}
-	public function log_user()
+	public function log()
 	{
-		$this->load->view('helpdesk/log_user');
-	}
-	public function add_user()
-	{
-		$this->load->view('helpdesk/add_user');
-	}
-	public function edit_user($id)
-	{
-		$this->load->view('helpdesk/edit_user');
+		$this->load->view('helpdesk/log');
 	}
 }
