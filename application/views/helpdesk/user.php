@@ -164,7 +164,7 @@
       var level = $('#add_level').val();
 
       if(username === '' || nama_user === '' || level === ''){
-        makeNotif('warning', 'Silahkan lengkapi form', 'bottom-left');
+        makeNotif('warning', 'Warning', 'Silahkan lengkapi form', 'bottom-left');
       } else {
         $.ajax({
           url: `<?= base_url('api/user/add/') ?>`+auth.token,
