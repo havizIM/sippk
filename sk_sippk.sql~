@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 13, 2019 at 08:20 PM
+-- Generation Time: Apr 13, 2019 at 08:26 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -55,6 +55,13 @@ CREATE TABLE `user` (
   `status` enum('Aktif','Nonaktif','','') NOT NULL,
   `token` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `level`, `tgl_registrasi`, `foto`, `status`, `token`) VALUES
+('USR00000001', 'Helpdesk', 'helpdesk', 'helpdesk', 'Helpdesk', '2019-04-13 18:22:52', 'user.jpg', 'Aktif', '875a8f2f42c570f');
 
 --
 -- Indexes for dumped tables

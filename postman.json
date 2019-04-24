@@ -7,22 +7,46 @@
 	},
 	"item": [
 		{
-			"name": "Show Log",
+			"name": "Login User",
 			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "helpdesk",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "helpdesk",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "localhost/sippk/api/log/show/2fa535dfeca3f34",
+					"raw": "localhost/sippk/api/auth/login_user",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"sippk",
 						"api",
-						"log",
-						"show",
-						"2fa535dfeca3f34"
+						"auth",
+						"login_user"
 					]
 				}
 			},
@@ -87,6 +111,218 @@
 			"response": []
 		},
 		{
+			"name": "Show Log",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sippk/api/log/show/2fa535dfeca3f34",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"log",
+						"show",
+						"2fa535dfeca3f34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sippk/api/user/show/2fa535dfeca3f34",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"user",
+						"show",
+						"2fa535dfeca3f34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/sippk/api/client/show/c0e49cd9fa90328",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"client",
+						"show",
+						"c0e49cd9fa90328"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_user",
+							"value": "DIan Ratna Sari",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "dianrs15",
+							"type": "text"
+						},
+						{
+							"key": "level",
+							"value": "Admin",
+							"description": "Admin / Manager / Kepala Gudang / Sales",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sippk/api/user/add/2fa535dfeca3f34",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"user",
+						"add",
+						"2fa535dfeca3f34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_perusahaan",
+							"value": "PT. Maju Mundur Abadi",
+							"type": "text"
+						},
+						{
+							"key": "penanggung_jawab",
+							"value": "Dede Kurniawan",
+							"type": "text"
+						},
+						{
+							"key": "alamat_perusahaan",
+							"value": "Jakarta",
+							"type": "text"
+						},
+						{
+							"key": "kode_pos",
+							"value": "11210",
+							"type": "text"
+						},
+						{
+							"key": "telepon",
+							"value": "127392179312",
+							"type": "text"
+						},
+						{
+							"key": "fax",
+							"value": "123628146812",
+							"type": "text"
+						},
+						{
+							"key": "npwp",
+							"value": "127912740918431",
+							"type": "text"
+						},
+						{
+							"key": "mou",
+							"type": "file"
+						},
+						{
+							"key": "logo_perusahaan",
+							"type": "file"
+						},
+						{
+							"key": "website",
+							"value": "https://codemaniac.com",
+							"type": "text"
+						},
+						{
+							"key": "nama_pic",
+							"value": "Muhammad Rizal",
+							"type": "text"
+						},
+						{
+							"key": "email_pic",
+							"value": "rizal@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "telepon_pic",
+							"value": "1263812683712",
+							"type": "text"
+						},
+						{
+							"key": "email_perusahaan",
+							"value": "majumundur@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "MMA",
+							"type": "text"
+						},
+						{
+							"key": "expired_date",
+							"value": "2020-01-01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sippk/api/client/add/c0e49cd9fa90328",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"client",
+						"add",
+						"c0e49cd9fa90328"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Edit User",
 			"request": {
 				"method": "POST",
@@ -135,68 +371,110 @@
 			"response": []
 		},
 		{
-			"name": "Login User",
+			"name": "Edit Client",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "username",
-						"value": "",
-						"disabled": true
-					},
-					{
-						"key": "password",
-						"value": "",
-						"disabled": true
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "username",
-							"value": "helpdesk",
+							"key": "nama_perusahaan",
+							"value": "PT. CodeManiac",
 							"type": "text"
 						},
 						{
-							"key": "password",
-							"value": "helpdesk",
+							"key": "penanggung_jawab",
+							"value": "Haviz Indra Maulana",
+							"type": "text"
+						},
+						{
+							"key": "alamat_perusahaan",
+							"value": "Jakarta Pusat",
+							"type": "text"
+						},
+						{
+							"key": "kode_pos",
+							"value": "112100",
+							"type": "text"
+						},
+						{
+							"key": "telepon",
+							"value": "1273921793122",
+							"type": "text"
+						},
+						{
+							"key": "fax",
+							"value": "1236281468122",
+							"type": "text"
+						},
+						{
+							"key": "npwp",
+							"value": "1279127409184312",
+							"type": "text"
+						},
+						{
+							"key": "mou",
+							"type": "file"
+						},
+						{
+							"key": "logo_perusahaan",
+							"type": "file"
+						},
+						{
+							"key": "website",
+							"value": "https://codemaniac.co.id",
+							"type": "text"
+						},
+						{
+							"key": "nama_pic",
+							"value": "Yugi Setiawan",
+							"type": "text"
+						},
+						{
+							"key": "email_pic",
+							"value": "yugi@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "telepon_pic",
+							"value": "081246126418",
+							"type": "text"
+						},
+						{
+							"key": "email_perusahaan",
+							"value": "viz.ndinq@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "PCM",
+							"type": "text"
+						},
+						{
+							"key": "expired_date",
+							"value": "2020-01-02",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost/sippk/api/auth/login_user",
+					"raw": "localhost/sippk/api/client/edit/c0e49cd9fa90328?id_client=CL-00001",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"sippk",
 						"api",
-						"auth",
-						"login_user"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Show User",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "localhost/sippk/api/user/show/2fa535dfeca3f34",
-					"host": [
-						"localhost"
+						"client",
+						"edit",
+						"c0e49cd9fa90328"
 					],
-					"path": [
-						"sippk",
-						"api",
-						"user",
-						"show",
-						"2fa535dfeca3f34"
+					"query": [
+						{
+							"key": "id_client",
+							"value": "CL-00001"
+						}
 					]
 				}
 			},
@@ -239,42 +517,108 @@
 			"response": []
 		},
 		{
-			"name": "Add User",
+			"name": "Delete Client",
 			"request": {
-				"method": "POST",
-				"header": [],
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "nama_user",
-							"value": "DIan Ratna Sari",
-							"type": "text"
-						},
-						{
-							"key": "username",
-							"value": "dianrs15",
-							"type": "text"
-						},
-						{
-							"key": "level",
-							"value": "Admin",
-							"description": "Admin / Manager / Kepala Gudang / Sales",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
 				},
 				"url": {
-					"raw": "localhost/sippk/api/user/add/2fa535dfeca3f34",
+					"raw": "localhost/sippk/api/client/delete/c0e49cd9fa90328?id_client=CL-00001",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"sippk",
 						"api",
-						"user",
-						"add",
-						"2fa535dfeca3f34"
+						"client",
+						"delete",
+						"c0e49cd9fa90328"
+					],
+					"query": [
+						{
+							"key": "id_client",
+							"value": "CL-00001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aktif Client",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
+				},
+				"url": {
+					"raw": "localhost/sippk/api/client/aktif/c0e49cd9fa90328?id_client=CL-00001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"client",
+						"aktif",
+						"c0e49cd9fa90328"
+					],
+					"query": [
+						{
+							"key": "id_client",
+							"value": "CL-00001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Nonaktif Client",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
+				},
+				"url": {
+					"raw": "localhost/sippk/api/client/nonaktif/c0e49cd9fa90328?id_client=CL-00001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"client",
+						"nonaktif",
+						"c0e49cd9fa90328"
+					],
+					"query": [
+						{
+							"key": "id_client",
+							"value": "CL-00001"
+						}
 					]
 				}
 			},

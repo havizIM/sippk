@@ -47,7 +47,7 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <section id="wrapper" class="login-register login-sidebar"  style="background-image:url(<?= base_url() ?>assets/logo/port.jpg);">
+    <section id="wrapper" class="login-register login-sidebar"  style="background-image:url(<?= base_url() ?>assets/logo/wp1.jpg);">
   <div class="login-box card">
     <div class="card-body">
       <form class="form-horizontal form-material" id="form_login">
