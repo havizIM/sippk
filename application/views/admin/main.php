@@ -15,6 +15,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link href="<?= base_url() ?>assets/main/css/style-wizard.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/main/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="<?= base_url() ?>assets/main/css/colors/default-dark.css" id="theme" rel="stylesheet">
@@ -78,9 +79,9 @@
                         <!-- Logo text -->
                         <span>
                          <!-- dark Logo text -->
-                         <img src="<?= base_url() ?>assets/logo/logo-besar.jpg" alt="homepage" class="dark-logo" style="width: 100px; height: 50px;"/>
+                         <img src="<?= base_url() ?>assets/logo/TITANGroup.png" alt="homepage" class="dark-logo" style="width: 140px; height: 30px;"/>
                          <!-- Light Logo text -->
-                         <img src="<?= base_url() ?>assets/logo/logo-besar.jpg" class="light-logo" alt="homepage" style="width: 100px; height: 50px;" /></span> </a>
+                         <img src="<?= base_url() ?>assets/logo/TITANGroup.png" class="light-logo" alt="homepage" style="width: 140px; height: 30px;" /></span> </a>
                 </div>
 
                 <div class="navbar-collapse">
@@ -134,6 +135,9 @@
                         <li class="nav-small-cap">MAIN MENU</li>
                         <li>
                             <a href="#/dashboard" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a href="#/client" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Client</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -334,7 +338,8 @@
             confirmButtonText: "Yes",
             cancelButtonText: "No",
             closeOnConfirm: false,
-            closeOnCancel: true
+            closeOnCancel: true,
+            showLoaderOnConfirm: true
           }, function(isConfirm){
               if (isConfirm) {
                   $.ajax({

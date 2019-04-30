@@ -11,7 +11,7 @@ class AuthModel extends CI_Model {
 
     function cekAuth($token)
     {
-      return $this->db->select('id_user, username, level, password')->from('user')->where('token', $token)->get();
+      return $this->db->select('id_user, nama_user, username, level, password')->from('user')->where('token', $token)->get();
     }
 
     function gantiPass($param, $data, $log)
