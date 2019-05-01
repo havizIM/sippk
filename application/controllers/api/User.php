@@ -135,7 +135,7 @@ class User extends CI_Controller {
     }
   }
 
-  public function edit($token = null){
+  function edit($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method != 'POST') {
@@ -207,7 +207,7 @@ class User extends CI_Controller {
     }
   }
 
-  public function delete($token = null){
+  function delete($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method != 'GET') {

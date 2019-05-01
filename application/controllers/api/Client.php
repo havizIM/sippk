@@ -11,6 +11,7 @@ class Client extends CI_Controller {
 		$this->load->model('ClientModel');
   }
 
+  /* ------------------------------ Show Client ----------------------------- */
   function show($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
@@ -28,6 +29,7 @@ class Client extends CI_Controller {
         } else {
 
           $otorisasi        = $auth->row();
+
           $id_client  		  = $this->input->get('id_client');
     			$nama_perusahaan	= $this->input->get('nama_perusahaan');
 
@@ -66,6 +68,7 @@ class Client extends CI_Controller {
     }
   }
 
+  /* ------------------------------ Add Client ----------------------------- */
   function add($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
@@ -172,31 +175,8 @@ class Client extends CI_Controller {
     }
   }
 
-  function upload_file($name, $id)
-  {
-    if(isset($_FILES[$name]) && $_FILES[$name]['name'] != ""){
-      $config['upload_path']   = './doc/'.$name.'/';
-      $config['allowed_types'] = 'jpg|jpeg|png|pdf|doc|docx';
-      $config['overwrite']     = TRUE;
-			$config['max_size']      = '3048';
-			$config['remove_space']  = TRUE;
-			$config['file_name']     = $id;
-
-      $this->load->library('upload', $config);
-      $this->upload->initialize($config);
-
-      if(!$this->upload->do_upload($name)){
-        return null;
-      } else {
-        $file = $this->upload->data();
-        return $file['file_name'];
-      }
-    } else {
-      return null;
-    }
-  }
-
-  public function edit($token = null){
+  /* ------------------------------ Edit Client ----------------------------- */
+  function edit($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method != 'POST') {
@@ -303,7 +283,8 @@ class Client extends CI_Controller {
     }
   }
 
-  public function delete($token = null){
+  /* ------------------------------ Delete Client ----------------------------- */
+  function delete($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method != 'GET') {
@@ -328,6 +309,10 @@ class Client extends CI_Controller {
             if($id_client == null){
               json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'ID Client tidak ditemukan'));
             } else {
+
+              $this->delete_file('logo_perusahaan', $id_client);
+              $this->delete_file('mou', $id_client);
+
               $log = array(
                 'user'        => $otorisasi->id_user,
                 'id_ref'      => $id_client,
@@ -362,6 +347,7 @@ class Client extends CI_Controller {
     }
   }
 
+  /* ------------------------------ Aktivasi Client ----------------------------- */
   function aktif($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
@@ -477,6 +463,7 @@ class Client extends CI_Controller {
     }
   }
 
+  /* ------------------------------ Nonaktifkan Client ----------------------------- */
   function nonaktif($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
@@ -537,6 +524,44 @@ class Client extends CI_Controller {
           }
         }
       }
+    }
+  }
+
+  /* ------------------------------ Upload File ----------------------------- */
+  function upload_file($name, $id)
+  {
+    if(isset($_FILES[$name]) && $_FILES[$name]['name'] != ""){
+      $files = glob('doc/'.$name.'/'.$id.'.*');
+      foreach ($files as $key) {
+        unlink($key);
+      }
+
+      $config['upload_path']   = './doc/'.$name.'/';
+      $config['allowed_types'] = 'jpg|jpeg|png|pdf|doc|docx';
+      $config['overwrite']     = TRUE;
+			$config['max_size']      = '3048';
+			$config['remove_space']  = TRUE;
+			$config['file_name']     = $id;
+
+      $this->load->library('upload', $config);
+      $this->upload->initialize($config);
+
+      if(!$this->upload->do_upload($name)){
+        return null;
+      } else {
+        $file = $this->upload->data();
+        return $file['file_name'];
+      }
+    } else {
+      return null;
+    }
+  }
+
+  /* ------------------------------ Delete File ----------------------------- */
+  function delete_file($name, $id){
+    $files = glob('doc/'.$name.'/'.$id.'.*');
+    foreach ($files as $key) {
+      unlink($key);
     }
   }
 

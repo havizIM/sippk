@@ -48,7 +48,8 @@
 						"auth",
 						"login_user"
 					]
-				}
+				},
+				"description": "Link : \n- localhost/sippk/api/auth/login_user\n\n\nMethod :\n- POST\n\n\nData : \n- username\n- password\n\n\nHak Akses :\n- Helpdesk\n- Admin\n- Agent\n- Accounting\n- Manager\n\n\nNote : \n- Response berupa data user\n- Didalam response terdapat token yang digunakan untuk akses API lainnya\n- Masukan response ke session localStorage"
 			},
 			"response": []
 		},
@@ -59,7 +60,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "localhost/sippk/api/auth/logout_user/2fa535dfeca3f34",
+					"raw": "localhost/sippk/api/auth/logout_user/875a8f2f42c570f",
 					"host": [
 						"localhost"
 					],
@@ -68,9 +69,10 @@
 						"api",
 						"auth",
 						"logout_user",
-						"2fa535dfeca3f34"
+						"875a8f2f42c570f"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/auth/logout_user/--token--\n\n\nMethod :\n- GET\n\n\nHak Akses :\n- Helpdesk\n- Admin\n- Agent\n- Accounting\n- Manager\n\n\nNote : \n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -84,7 +86,7 @@
 					"formdata": [
 						{
 							"key": "password_lama",
-							"value": "h3lpd35k",
+							"value": "helpdesk",
 							"type": "text"
 						},
 						{
@@ -95,7 +97,7 @@
 					]
 				},
 				"url": {
-					"raw": "localhost/sippk/api/auth/password_user/2fa535dfeca3f34",
+					"raw": "localhost/sippk/api/auth/password_user/875a8f2f42c570f",
 					"host": [
 						"localhost"
 					],
@@ -104,9 +106,10 @@
 						"api",
 						"auth",
 						"password_user",
-						"2fa535dfeca3f34"
+						"875a8f2f42c570f"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/auth/password_user/--token--\n\nMethod :\n- POST\n\nData :\n- password_lama\n- password_baru\n\nHak Akses : \n- Helpdesk\n- Admin\n- Agent\n- Accounting\n- Manager\n\nNote :\n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -128,7 +131,8 @@
 						"show",
 						"2fa535dfeca3f34"
 					]
-				}
+				},
+				"description": "Link: \n- localhost/sippk/api/log/show/--token--\n\nMethod : \n- GET\n\nHak Akses :\n- Helpdesk\n\nNote :\n- Token bisa didapatkan dari localStorage\n\nPusher :\n- channel : sippk\n- event : log"
 			},
 			"response": []
 		},
@@ -150,7 +154,8 @@
 						"show",
 						"2fa535dfeca3f34"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/user/show/--token--\n\nMethod :\n- GET\n\nParams : \n- id_user\n- nama_user\n\nHak Akses : \n- Helpdesk\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik\n\nPusher : \n- channel : sippk\n- event : user"
 			},
 			"response": []
 		},
@@ -172,7 +177,8 @@
 						"show",
 						"c0e49cd9fa90328"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/client/show/--token--\n\nMethod :\n- GET\n\nParams : \n- id_client\n- nama_perusahaan\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat optional, bertujuan untuk mendapatkan data yang spesifik\n\nPusher : \n- channel : sippk\n- event : client"
 			},
 			"response": []
 		},
@@ -191,7 +197,7 @@
 						},
 						{
 							"key": "username",
-							"value": "dianrs15",
+							"value": "dianrs1544",
 							"type": "text"
 						},
 						{
@@ -203,7 +209,7 @@
 					]
 				},
 				"url": {
-					"raw": "localhost/sippk/api/user/add/2fa535dfeca3f34",
+					"raw": "localhost/sippk/api/user/add/875a8f2f42c570f",
 					"host": [
 						"localhost"
 					],
@@ -212,9 +218,10 @@
 						"api",
 						"user",
 						"add",
-						"2fa535dfeca3f34"
+						"875a8f2f42c570f"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/user/add/--token--\n\nMethod :\n- POST\n\nData : \n- nama_user\n- username\n- level (Admin / Agent / Accounting / Manager)\n\nHak Akses : \n- Helpdesk\n\nNote :\n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -263,10 +270,12 @@
 						},
 						{
 							"key": "mou",
+							"value": "",
 							"type": "file"
 						},
 						{
 							"key": "logo_perusahaan",
+							"value": "",
 							"type": "file"
 						},
 						{
@@ -291,12 +300,12 @@
 						},
 						{
 							"key": "email_perusahaan",
-							"value": "majumundur@gmail.com",
+							"value": "haviz_im@outook.com",
 							"type": "text"
 						},
 						{
 							"key": "username",
-							"value": "MMA",
+							"value": "HIH",
 							"type": "text"
 						},
 						{
@@ -318,7 +327,8 @@
 						"add",
 						"c0e49cd9fa90328"
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/client/add/--token--\n\nMethod :\n- POST\n\nData : \n- nama_perusahaan\n- penanggung_jawab\n- alamat_perusahaan\n- kode_pos\n- telepon\n- fax\n- npwp\n- mou (.doc / .docx / .pdf)\n- logo_perusahaan (.jpg / .jpeg / .png)\n- website\n- nama_pic\n- email_pic\n- telepon_pic\n- email_perusahaan\n- username\n- expired_date\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -332,12 +342,12 @@
 					"formdata": [
 						{
 							"key": "nama_user",
-							"value": "Devan Dirgantara Putra",
+							"value": "Devan Dirgantara Putraa",
 							"type": "text"
 						},
 						{
 							"key": "username",
-							"value": "advanceDP",
+							"value": "advanceDP12",
 							"type": "text"
 						},
 						{
@@ -349,7 +359,7 @@
 					]
 				},
 				"url": {
-					"raw": "localhost/sippk/api/user/edit/2fa535dfeca3f34?id_user=USR00000006",
+					"raw": "localhost/sippk/api/user/edit/875a8f2f42c570f?id_user=USR00000007",
 					"host": [
 						"localhost"
 					],
@@ -358,15 +368,16 @@
 						"api",
 						"user",
 						"edit",
-						"2fa535dfeca3f34"
+						"875a8f2f42c570f"
 					],
 					"query": [
 						{
 							"key": "id_user",
-							"value": "USR00000006"
+							"value": "USR00000007"
 						}
 					]
-				}
+				},
+				"description": "Link:\n- localhost/sippk/api/user/edit/--token--\n\nMethod :\n- POST\n\nParams :\n- id_user\n\nData : \n- nama_user\n- username\n- status (Aktif / Nonaktif)\n\nHak Akses :\n- Helpdesk\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib\n- Lihat dokumentasi di postman"
 			},
 			"response": []
 		},
@@ -448,7 +459,7 @@
 						},
 						{
 							"key": "username",
-							"value": "PCM",
+							"value": "PCMA",
 							"type": "text"
 						},
 						{
@@ -476,7 +487,8 @@
 							"value": "CL-00001"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/client/edit/--token--\n\nMethod :\n- POST\n\nParam :\n- id_client\n\nData : \n- nama_perusahaan\n- penanggung_jawab\n- alamat_perusahaan\n- kode_pos\n- telepon\n- fax\n- npwp\n- mou (.doc / .docx / .pdf)\n- logo_perusahaan (.jpg / .jpeg / .png)\n- website\n- nama_pic\n- email_pic\n- telepon_pic\n- email_perusahaan\n- username\n- expired_date\n\nHak Akses : \n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage"
 			},
 			"response": []
 		},
@@ -495,7 +507,7 @@
 					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
 				},
 				"url": {
-					"raw": "localhost/sippk/api/user/delete/2fa535dfeca3f34?id_user=USR00000006",
+					"raw": "localhost/sippk/api/user/delete/875a8f2f42c570f?id_user=USR00000007",
 					"host": [
 						"localhost"
 					],
@@ -504,15 +516,16 @@
 						"api",
 						"user",
 						"delete",
-						"2fa535dfeca3f34"
+						"875a8f2f42c570f"
 					],
 					"query": [
 						{
 							"key": "id_user",
-							"value": "USR00000006"
+							"value": "USR00000007"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/user/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- id_user\n\nHak Akses :\n- Helpdesk\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
 			},
 			"response": []
 		},
@@ -531,7 +544,7 @@
 					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
 				},
 				"url": {
-					"raw": "localhost/sippk/api/client/delete/c0e49cd9fa90328?id_client=CL-00001",
+					"raw": "localhost/sippk/api/client/delete/c0e49cd9fa90328?id_client=CL-00002",
 					"host": [
 						"localhost"
 					],
@@ -545,10 +558,11 @@
 					"query": [
 						{
 							"key": "id_client",
-							"value": "CL-00001"
+							"value": "CL-00002"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/client/delete/--token--\n\nMethod :\n- GET\n\nParams :\n- id_client\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dihapus"
 			},
 			"response": []
 		},
@@ -584,7 +598,8 @@
 							"value": "CL-00001"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/client/aktif/--token--\n\nMethod :\n- GET\n\nParams :\n- id_client\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dieksekusi"
 			},
 			"response": []
 		},
@@ -620,7 +635,8 @@
 							"value": "CL-00001"
 						}
 					]
-				}
+				},
+				"description": "Link :\n- localhost/sippk/api/client/nonaktif/--token--\n\nMethod :\n- GET\n\nParams :\n- id_client\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dieksekusi"
 			},
 			"response": []
 		}
