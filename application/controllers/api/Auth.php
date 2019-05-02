@@ -9,6 +9,19 @@ class Auth extends CI_Controller {
   {
     parent::__construct();
 
+    $this->options = array(
+      'cluster' => 'ap1',
+      'useTLS' => true
+    );
+
+    $this->pusher = new Pusher\Pusher(
+      '73148b9e44433055599c',
+      '375df20a410d95d53ba4',
+      '761632',
+      $this->options
+    );
+
+
 		$this->load->model('AuthModel');
   }
 
@@ -69,18 +82,7 @@ class Auth extends CI_Controller {
               if(!$add){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal melakukan login' ));
               } else {
-                $options = array(
-                  'cluster' => 'ap1',
-                  'useTLS' => true
-                );
-                $pusher = new Pusher\Pusher(
-                  '73148b9e44433055599c',
-                  '375df20a410d95d53ba4',
-                  '761632',
-                  $options
-                );
-
-                $pusher->trigger('sippk', 'log', $log);
+                $this->pusher->trigger('sippk', 'log', $log);
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil melakukan login', 'data' => $session ));
               }
             }
@@ -122,18 +124,7 @@ class Auth extends CI_Controller {
           if(!$add){
             json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
           } else {
-            $options = array(
-              'cluster' => 'ap1',
-              'useTLS' => true
-            );
-            $pusher = new Pusher\Pusher(
-              '73148b9e44433055599c',
-              '375df20a410d95d53ba4',
-              '761632',
-              $options
-            );
-
-            $pusher->trigger('sippk', 'log', $log);
+            $this->pusher->trigger('sippk', 'log', $log);
             json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil logout'));
           }
         }
@@ -186,18 +177,7 @@ class Auth extends CI_Controller {
               if(!$pass){
                 json_output(500, array('status' => 500, 'description' => 'Gagal', 'message' => 'Gagal mengganti password'));
               } else {
-                $options = array(
-                  'cluster' => 'ap1',
-                  'useTLS' => true
-                );
-                $pusher = new Pusher\Pusher(
-                  '73148b9e44433055599c',
-                  '375df20a410d95d53ba4',
-                  '761632',
-                  $options
-                );
-
-                $pusher->trigger('sippk', 'log', $log);
+                $this->pusher->trigger('sippk', 'log', $log);
                 json_output(200, array('status' => 200, 'description' => 'Gagal', 'message' => 'Berhasil mengganti password'));
               }
             }

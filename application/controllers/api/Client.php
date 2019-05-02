@@ -8,6 +8,19 @@ class Client extends CI_Controller {
   function __construct(){
     parent::__construct();
 
+    $this->options = array(
+      'cluster' => 'ap1',
+      'useTLS' => true
+    );
+
+    $this->pusher = new Pusher\Pusher(
+      '73148b9e44433055599c',
+      '375df20a410d95d53ba4',
+      '761632',
+      $this->options
+    );
+
+
 		$this->load->model('ClientModel');
   }
 
@@ -153,18 +166,7 @@ class Client extends CI_Controller {
                 if(!$add){
                   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menambah data client'));
                 } else {
-                  $options = array(
-                    'cluster' => 'ap1',
-                    'useTLS' => true
-                  );
-                  $pusher = new Pusher\Pusher(
-                    '73148b9e44433055599c',
-                    '375df20a410d95d53ba4',
-                    '761632',
-                    $options
-                  );
-
-                  $pusher->trigger('sippk', 'client', $log);
+                  $this->pusher->trigger('sippk', 'client', $log);
                   json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menambah data client'));
                 }
               }
@@ -261,18 +263,7 @@ class Client extends CI_Controller {
                 if(!$edit){
                   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal mengedit client'));
                 } else {
-                  $options = array(
-                    'cluster' => 'ap1',
-                    'useTLS' => true
-                  );
-                  $pusher = new Pusher\Pusher(
-                    '73148b9e44433055599c',
-                    '375df20a410d95d53ba4',
-                    '761632',
-                    $options
-                  );
-
-                  $pusher->trigger('sippk', 'client', $log);
+                  $this->pusher->trigger('sippk', 'client', $log);
                   json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil mengedit client'));
                 }
               }
@@ -326,18 +317,7 @@ class Client extends CI_Controller {
               if(!$delete){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menghapus client'));
               } else {
-                $options = array(
-                  'cluster' => 'ap1',
-                  'useTLS' => true
-                );
-                $pusher = new Pusher\Pusher(
-                  '73148b9e44433055599c',
-                  '375df20a410d95d53ba4',
-                  '761632',
-                  $options
-                );
-
-                $pusher->trigger('sippk', 'client', $log);
+                $this->pusher->trigger('sippk', 'client', $log);
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menghapus client'));
               }
             }
@@ -440,18 +420,7 @@ class Client extends CI_Controller {
                   if(!$update){
                     json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal mangaktivasi client'));
                   } else {
-                    $options = array(
-                      'cluster' => 'ap1',
-                      'useTLS' => true
-                    );
-                    $pusher = new Pusher\Pusher(
-                      '73148b9e44433055599c',
-                      '375df20a410d95d53ba4',
-                      '761632',
-                      $options
-                    );
-
-                    $pusher->trigger('sippk', 'client', $log);
+                    $this->pusher->trigger('sippk', 'client', $log);
                     json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil mengaktivasi client'));
                   }
                 }
@@ -506,18 +475,7 @@ class Client extends CI_Controller {
               if(!$update){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menonaktifkan client'));
               } else {
-                $options = array(
-                  'cluster' => 'ap1',
-                  'useTLS' => true
-                );
-                $pusher = new Pusher\Pusher(
-                  '73148b9e44433055599c',
-                  '375df20a410d95d53ba4',
-                  '761632',
-                  $options
-                );
-
-                $pusher->trigger('sippk', 'client', $log);
+                $this->pusher->trigger('sippk', 'client', $log);
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menonaktifkan client'));
               }
             }
