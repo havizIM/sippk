@@ -30,6 +30,16 @@ class AuthModel extends CI_Model {
       }
     }
 
+    function cekAuthClient($param)
+    {
+      return $this->db->select('*')->from('client')->where($param)->get();
+    }
+
+    function updateClient($param, $data)
+    {
+      return $this->db->where($param)->update('client', $data);
+    }
+
 
 
 }
