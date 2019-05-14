@@ -12,4 +12,9 @@ class Agent extends CI_Controller {
 		$this->load->view('agent/dashboard');
 	}
 
+	public function client()
+	{
+		$this->load->view('agent/client');
+	}
+
 }

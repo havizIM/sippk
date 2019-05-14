@@ -14,12 +14,10 @@
     <title>SIPPK - Login</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="<?= base_url() ?>assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<?= base_url() ?>assets/main/css/style.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/internal/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="<?= base_url() ?>assets/main/css/colors/default-dark.css" id="theme" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/internal/css/colors/blue.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -27,64 +25,74 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-    <script type="text/javascript">
-      var session = localStorage.getItem('sippk');
+<script>
+ var session = localStorage.getItem('sippk');
       var auth = JSON.parse(session);
 
       if(auth){
         window.location.replace(`<?= base_url() ?>${auth.level}/`)
       }
-    </script>
+</script>
 </head>
 
 <body>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <!-- <div class="preloader">
-        <h1>Loading....</h1>
-    </div> -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <section id="wrapper" class="login-register login-sidebar"  style="background-image:url(<?= base_url() ?>assets/logo/wp1.jpg);">
-  <div class="login-box card">
-    <div class="card-body">
-      <form class="form-horizontal form-material" id="form_login">
-        <a href="javascript:void(0)" class="text-center db"><img src="<?= base_url() ?>assets/logo/logo.png" alt="Home" /><br/><h4>PT. Servo Lintas Raya</h4></a>
+    <section id="wrapper">
+        <div class="login-register" style="background-image:url(<?= base_url() ?>assets/logo/port.jpg);">        
+          <div class="login-box card">
+            <div class="card-body">
 
-        <div class="form-group m-t-40">
-          <div class="col-xs-12">
-            <input class="form-control" type="text" id="username" name="username" placeholder="Username">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-xs-12">
-            <input class="form-control" type="password" id="password" name="password" placeholder="Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-md-12">
-            <div class="checkbox checkbox-primary pull-left p-t-0">
-              <input id="checkbox-signup" class="show_pass" type="checkbox">
-              <label for="checkbox-signup"> Show Password </label>
+                <form class="form-horizontal form-material" id="form_login">
+                  <a href="javascript:void(0)" class="text-center db"><img src="<?= base_url() ?>assets/logo/logo.png" alt="Home" /><br/><h4>PT. Servo Lintas Raya</h4></a>
+                    <h3 class="box-title m-b-20">Sign In</h3>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="text"  placeholder="Username" id="username" name="username"> 
+                       </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="password"  placeholder="Password" id="password" name="password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <div class="checkbox checkbox-primary pull-left p-t-0">
+                          <input id="checkbox-signup" class="show_pass" type="checkbox">
+                          <label for="checkbox-signup"> Show Password </label>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div class="form-group text-center m-t-20">
+                      <div class="col-xs-12">
+                        <button class="btn btn-info btn-lg btn-block waves-effect waves-light" type="submit" id="submit_login">Log In</button>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group m-b-0">
+                      <div class="col-sm-12 text-center" style="font-size: 20px;">
+                        Sistem Informasi Penjadwalan Pemuatan Kapal
+                      </div>
+                    </div>
+                </form>
+                
             </div>
           </div>
         </div>
-        <div class="form-group text-center m-t-20">
-          <div class="col-xs-12">
-            <button class="btn btn-info btn-lg btn-block waves-effect waves-light" type="submit" id="submit_login">Log In</button>
-          </div>
-        </div>
-        <div class="form-group m-b-0">
-          <div class="col-sm-12 text-center" style="font-size: 20px;">
-            Sistem Informasi Penjadwalan Pemuatan Kapal
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
+        
+    </section>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -96,24 +104,27 @@
     <script src="<?= base_url() ?>assets/plugins/bootstrap/js/popper.min.js"></script>
     <script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="<?= base_url() ?>assets/main/js/jquery.slimscroll.js"></script>
+    <script src="<?= base_url() ?>assets/internal/js/jquery.slimscroll.js"></script>
     <!--Wave Effects -->
-    <script src="<?= base_url() ?>assets/main/js/waves.js"></script>
+    <script src="<?= base_url() ?>assets/internal/js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="<?= base_url() ?>assets/main/js/sidebarmenu.js"></script>
+    <script src="<?= base_url() ?>assets/internal/js/sidebarmenu.js"></script>
     <!--stickey kit -->
     <script src="<?= base_url() ?>assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <script src="<?= base_url() ?>assets/plugins/sparkline/jquery.sparkline.min.js"></script>
     <script src="<?= base_url() ?>assets/plugins/toast-master/js/jquery.toast.js"></script>
     <!--Custom JavaScript -->
-    <script src="<?= base_url() ?>assets/main/js/custom.min.js"></script>
+    <script src="<?= base_url() ?>assets/internal/js/custom.min.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?= base_url() ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-    <script type="text/javascript">
+</body>
 
-      $(document).ready(function() {
+</html>
+<script>
+  
+  $(document).ready(function() {
         function makeNotif(icon, heading, text, position){
           $.toast({
             heading: heading,
@@ -176,7 +187,4 @@
           };
         });
       });
-    </script>
-</body>
-
-</html>
+</script>

@@ -15,9 +15,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<?= base_url() ?>assets/main/css/style.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/internal/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="<?= base_url() ?>assets/main/css/colors/default-dark.css" id="theme" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/internal/css/colors/default-dark.css" id="theme" rel="stylesheet">
     <link href="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <link href="<?= base_url() ?>assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -134,6 +134,9 @@
                         <li class="nav-small-cap">MAIN MENU</li>
                         <li>
                             <a href="#/dashboard" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Dashboard</span></a>
+                        </li> 
+                         <li>
+                            <a href="#/client" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Client</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -208,11 +211,11 @@
     <script src="<?= base_url() ?>assets/plugins/bootstrap/js/popper.min.js"></script>
     <script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="<?= base_url() ?>assets/main/js/jquery.slimscroll.js"></script>
+    <script src="<?= base_url() ?>assets/internal/js/jquery.slimscroll.js"></script>
     <!--Wave Effects -->
-    <script src="<?= base_url() ?>assets/main/js/waves.js"></script>
+    <script src="<?= base_url() ?>assets/internal/js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="<?= base_url() ?>assets/main/js/sidebarmenu.js"></script>
+    <script src="<?= base_url() ?>assets/internal/js/sidebarmenu.js"></script>
     <!--stickey kit -->
     <script src="<?= base_url() ?>assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <script src="<?= base_url() ?>assets/plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -220,7 +223,7 @@
     <script src="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="<?= base_url() ?>assets/plugins/toast-master/js/jquery.toast.js"></script>
     <!--Custom JavaScript -->
-    <script src="<?= base_url() ?>assets/main/js/custom.min.js"></script>
+    <script src="<?= base_url() ?>assets/internal/js/custom.min.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
@@ -288,7 +291,8 @@
             confirmButtonText: "Yes",
             cancelButtonText: "No",
             closeOnConfirm: false,
-            closeOnCancel: true
+            closeOnCancel: true,
+            showLoaderOnConfirm: true
           }, function(isConfirm){
               if (isConfirm) {
                   $.ajax({
