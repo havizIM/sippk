@@ -55,7 +55,7 @@
 
         <div class="form-group m-t-40">
           <div class="col-xs-12">
-            <input class="form-control" type="text" id="username" name="username" placeholder="Username">
+            <input autofocus class="form-control" type="text" id="username" name="username" placeholder="Username">
           </div>
         </div>
         <div class="form-group">
@@ -69,6 +69,7 @@
               <input id="checkbox-signup" class="show_pass" type="checkbox">
               <label for="checkbox-signup"> Show Password </label>
             </div>
+            <a class="text-dark pull-right" id="forgot_password" style="cursor: pointer;"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
           </div>
         </div>
         <div class="form-group text-center m-t-20">
@@ -81,7 +82,24 @@
             Sistem Informasi Penjadwalan Pemuatan Kapal
           </div>
         </div>
+
+
       </form>
+
+      <form id="form_forgot_pass" class="form-horizontal form-material" style="display:none">
+         <div class="form-group m-t-40">
+          <div class="col-xs-12">
+            <input class="form-control" type="email" id="email_perusahaan" name="email_perusahaan" placeholder="Email Perusahaan">
+          </div>
+        </div>
+
+        <div class="form-group m-t-40">
+          <div class="col-xs-12">
+            <button class="btn btn-info float-right" type="submit" id="btn_forgot_pass" name="btn_forgot_pass">Send</button>
+            <button class="btn btn-danger float-right m-r-10" type="button" id="btn_cancel" name="btn_cancel">Cancel</button>
+          </div>
+        </div>
+      </form>  
     </div>
   </div>
 </section>
@@ -133,7 +151,7 @@
           var password = $('#password').val();
 
           if (username === '' || password === '') {
-            makeNotif('warning', 'Warning', 'All field is required', 'bottom-left');
+            makeNotif('warning', 'Warning', 'All field is required', 'bottom-right');
           }else {
             $.ajax({
               url: '<?= base_url().'api/auth/login_client/' ?>',
@@ -162,11 +180,50 @@
           }
         })
 
+        $('#forgot_password').on('click', function(){
+          $('#form_forgot_pass').show('slow', function(){
+            $('#email_perusahaan').focus()
+          });
+        });
 
+        $('#btn_cancel').on('click', function(){
+          $('#form_forgot_pass').hide('slow');
+        });
 
+        $('#form_forgot_pass').on('submit', function(e){
+          e.preventDefault();
 
+          var email_perusahaan = $('#email_perusahaan').val();
+
+          if (email_perusahaan === '') {
+            makeNotif('warning', 'Warning', 'All field is required', 'bottom-right');
+          } else {
+            $.ajax({
+              url: '<?= base_url().'api/auth/lupa_password/' ?>',
+              type: 'POST',
+              dataType: 'JSON',
+              data: $('#form_forgot_pass').serialize(),
+              beforeSend:function(){
+                $('#btn_forgot_pass').addClass('disabled').html('<i class="fa fa-spinner fa-spin" style="font-size:20px;"></i>')
+              },
+              success:function(response){
+                if (response.status === 200) {
+                  makeNotif('success', 'Succes', response.message, 'bottom-right');
+                }else {
+                  makeNotif('error', 'Failed', response.message, 'bottom-right');
+                  $('#btn_forgot_pass').removeClass('disabled').html('Log In')
+                }
+              },
+              error:function(){
+                makeNotif('error', 'Failed', 'Tidak dapat mengakses server', 'bottom-right');
+                $('#btn_forgot_pass').removeClass('disabled').html('Log In')
+              }
+            });
+          }
+        });
+        
         // Show Password
-        $('.show_pass').click(function(){
+        $('show_pass').click(function(){
           if($(this).is(':checked')){
             $('#password').attr('type','text');
           }else{

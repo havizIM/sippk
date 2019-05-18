@@ -11,10 +11,11 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/images/logo/logo1.png">
-    <title>Material Pro Admin Template - The Most Complete & Trusted Bootstrap 4 Admin Template</title>
+    <title>SIPPK | Client</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url() ?>assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
    
     <!-- <link href="<?= base_url() ?>assets/plugins/css-chart/css-chart.css" rel="stylesheet"> -->
     <!--This page css - Morris CSS -->
@@ -39,6 +40,11 @@
         window.location.replace(`<?= base_url('auth/ext_login') ?>`)
       } 
 </script>
+<style>
+    /* .flex-20 {
+        flex: 0 0 20%;
+    } */
+</style>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border logo-center">
@@ -61,24 +67,7 @@
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
-                        <!-- Logo icon -->
-                        <b>
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <img src="<?= base_url() ?>assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                            <!-- Light Logo icon -->
-                            <img src="<?= base_url() ?>assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span>
-                         <!-- dark Logo text -->
-                         <img src="<?= base_url() ?>assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                         <!-- Light Logo text -->    
-                         <img src="<?= base_url() ?>assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
-                </div>
+                
                 <!-- ============================================================== -->
                 <!-- End Logo -->
                 <!-- ============================================================== -->
@@ -87,159 +76,132 @@
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav mr-auto mt-md-0">
-                        <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item hidden-sm-down search-box">
-                            <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- Messages -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-view-grid"></i></a>
-                            <div class="dropdown-menu scale-up-left">
-                                <ul class="mega-dropdown-menu row">
-                                    <li class="col-lg-3 col-xlg-2 m-b-30">
-                                        <h4 class="m-b-20">CAROUSEL</h4>
-                                        <!-- CAROUSEL -->
-                                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                            <div class="carousel-inner" role="listbox">
-                                                <div class="carousel-item active">
-                                                    <div class="container"> <img class="d-block img-fluid" src="<?= base_url() ?>assets/images/big/img1.jpg" alt="First slide"></div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <div class="container"><img class="d-block img-fluid" src="<?= base_url() ?>assets/images/big/img2.jpg" alt="Second slide"></div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <div class="container"><img class="d-block img-fluid" src="<?= base_url() ?>assets/images/big/img3.jpg" alt="Third slide"></div>
-                                                </div>
-                                            </div>
-                                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
-                                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
-                                        </div>
-                                        <!-- End CAROUSEL -->
-                                    </li>
-                                    <li class="col-lg-3 m-b-30">
-                                        <h4 class="m-b-20">ACCORDION</h4>
-                                        <!-- Accordian -->
-                                        <div id="accordion" class="nav-accordion" role="tablist" aria-multiselectable="true">
-                                            <div class="card">
-                                                <div class="card-header" role="tab" id="headingOne">
-                                                    <h5 class="mb-0">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                  Collapsible Group Item #1
-                                                </a>
-                                              </h5> </div>
-                                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-                                                    <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high. </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-header" role="tab" id="headingTwo">
-                                                    <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                  Collapsible Group Item #2
-                                                </a>
-                                              </h5> </div>
-                                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                                    <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-header" role="tab" id="headingThree">
-                                                    <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                  Collapsible Group Item #3
-                                                </a>
-                                              </h5> </div>
-                                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                                                    <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-lg-3  m-b-30">
-                                        <h4 class="m-b-20">CONTACT US</h4>
-                                        <!-- Contact -->
-                                        <form>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter Name"> </div>
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="Enter email"> </div>
-                                            <div class="form-group">
-                                                <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Message"></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-info">Submit</button>
-                                        </form>
-                                    </li>
-                                    <li class="col-lg-3 col-xlg-4 m-b-30">
-                                        <h4 class="m-b-20">List style</h4>
-                                        <!-- List style -->
-                                        <ul class="list-style-none">
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> You can give link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Give link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Another Give link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Forth link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Another fifth link</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
-                        <!-- ============================================================== -->
+
+                         <b>
+                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                        <img src="<?= base_url() ?>assets/logo/logo.png" alt="homepage" class="light-logo" />
+                        </b>
+
+                        <span>
+                         <!-- Light Logo text -->    
+                         <img src="<?= base_url() ?>assets/logo/TITANGroup.png" class="light-logo" alt="homepage" /></span> </a>
+
                     </ul>
+
+                    
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav my-lg-0">
-                        <!-- ============================================================== -->
-                        <!-- Comment -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-message"></i>
-                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox scale-up" id="notif">
-                               
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- End Comment -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                       
-                        <!-- ============================================================== -->
-                        <!-- Profile -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url() ?>assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
-                            <div class="dropdown-menu dropdown-menu-right scale-up">
-                                <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box">
-                                            <div class="u-img"><img src="<?= base_url() ?>assets/images/users/1.jpg" alt="user"></div>
-                                            <div class="u-text">
-                                                <h4>Steave Jobs</h4>
-                                                <p class="text-muted">varun@gmail.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-settings"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right scale-up">
+                            <ul class="dropdown-user">
+                                <li><a href="javascript:void(0)" id="change_pass"><i class="ti-settings"></i> Account Setting</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a id="logout_client"><i class="fa fa-power-off"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url() ?>assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu scale-up">
+                                <ul class="mega-dropdown-menu row">
+                                    <li class="col-lg-4 flex-20 m-b-30">
+                                        <h4 class="m-b-20">ACCOUNT</h4>
+                                        <!-- CAROUSEL -->
+                                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                            <div class="carousel-inner" role="listbox">
+                                                <div class="carousel-item active">
+                                                    <div class="container text-center m-b-20"><a target="__blank" id="logo_perusahaan"><img class="d-block img-fluid" id="logo_perusahaan_img" alt="First slide" style="width: 100%;"></a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End CAROUSEL -->
+                                        <div class="card-body" style="border: 1px solid rgba(0,0,0,.125); box-shadow: 0 0 27px rgba(0,0,0,.2), 0 2px 9px -2px rgba(0,0,0,.2);"> 
+                                            <small class="text-muted">ID Client </small>
+                                            <h6 id="id_client"></h6> 
+
+                                            <small class="text-muted p-t-10 db">Username</small>
+                                            <h6 id="username"></h6> 
+
+                                            <small class="text-muted p-t-10 db">Regristration Date</small>
+                                            <h6 id="tgl_registrasi"></h6> 
+
+                                            <small class="text-muted p-t-10 db">Expired Date</small>
+                                            <h6 id="expired_date"></h6>
+
+                                            <small class="text-muted p-t-10 db">Status</small>
+                                            <h6 id="status"></h6> 
                                         </div>
                                     </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a id="logout_client"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li class="col-lg-4 flex-20 m-b-30">
+                                        <h4 class="m-b-20">COMPANY</h4>
+                                        <!-- Accordian -->
+                                        <div id="accordion" class="nav-accordion" role="tablist" aria-multiselectable="true">
+                                            
+                                            <div class="card-body" style="border: 1px solid rgba(0,0,0,.125); box-shadow: 0 0 27px rgba(0,0,0,.2), 0 2px 9px -2px rgba(0,0,0,.2);"> 
+                                                <small class="text-muted">Nama Perusahaan </small>
+                                                <h6 id="nama_perusahaan"></h6> 
+
+                                                <small class="text-muted p-t-10 db">Penanggung Jawab</small>
+                                                <h6 id="penanggung_jawab"></h6>
+
+
+                                                <small class="text-muted p-t-10 db">Alamat Perusahaan</small>
+                                                <h6 id="alamat_perusahaan"></h6> 
+
+                                                <small class="text-muted p-t-10 db">NPWP</small>
+                                                <h6 id="npwp"></h6>
+
+                                                <small class="text-muted p-t-10 db">Kode Pos</small>
+                                                <h6 id="kode_pos"></h6> 
+
+                                                <small class="text-muted p-t-10 db">Mou</small>
+                                                <a target="__blank" id="mou"><h6>Download</h6></a>
+
+                                                <small class="text-muted p-t-10 db">Logo Perusahaan</small>
+                                                
+
+                                                <small class="text-muted p-t-10 db">Telepon</small>
+                                                <h6 id="telepon"></h6> 
+
+                                                <small class="text-muted p-t-10 db">Fax</small>
+                                                <h6 id="fax"></h6>
+
+                                                <small class="text-muted p-t-10 db">Email Perusahaan</small>
+                                                <h6 id="email_perusahaan"></h6> 
+
+                                                <small class="text-muted p-t-10 db">Website</small>
+                                                <a target="__blank" id="website"><h6 id="text_website"></h6></a>  
+                                                
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="col-lg-4 flex-20  m-b-30">
+                                        <h4 class="m-b-20">PIC</h4>
+
+                                       <div class="card-body" style="border: 1px solid rgba(0,0,0,.125); box-shadow: 0 0 27px rgba(0,0,0,.2), 0 2px 9px -2px rgba(0,0,0,.2);">
+
+                                                <small class="text-muted p-t-10 db">Nama PIC</small>
+                                                <h6 id="nama_pic"></h6> 
+
+                                                <small class="text-muted p-t-10 db">Email</small>
+                                                <h6 id="email_pic"></h6>
+
+                                                <small class="text-muted p-t-10 db">Telepon</small>
+                                                <h6 id="telepon_pic"></h6>
+                                       </div>
+
                                 </ul>
                             </div>
-                        </li>
+                      </li>
+                                <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+                       
+                        
+                        
                     </ul>
                 </div>
             </nav>
@@ -296,6 +258,10 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
+                
+                <div class="">
+                    <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                </div>
                 
                 <div class="right-sidebar">
                     <div class="slimscrollright">
@@ -358,7 +324,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © 2017 Material Pro Admin by wrappixel.com
+                
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -367,6 +333,45 @@
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
+
+        <!-- sample modal content -->
+        <div class="modal fade" id="modal_pass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Change Password</h4>
+                    </div>
+                    <form id="form_pass">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Old Password:</label>
+                                <input type="password" class="form-control" id="password_lama" name="password_lama">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">New Password:</label>
+                                <input type="password"  class="form-control" id="password_baru" name="password_baru">
+                            </div>
+                            <div class="form-group">
+                            <div>
+                                <div>
+                                    <div class="checkbox checkbox-primary p-t-0">
+                                        <input id="checkbox-signup" class="show_pass" type="checkbox">
+                                        <label for="checkbox-signup"> Show Password </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                            <button type="submit" id="submit_pass" class="btn btn-danger waves-effect waves-light">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal -->
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
@@ -420,6 +425,116 @@
 
 <script>
     $(document).ready(function(){
+        function makeNotif(icon, heading, text, position){
+          $.toast({
+            heading: heading,
+            text: text,
+            position: position,
+            loaderBg:'#ff6849',
+            icon: icon,
+            hideAfter: 3500,
+            stack: 1
+          });
+        }
+
+        //GET VARIABLE\\
+        $.ajax({
+            url: `<?= base_url().'api/auth/profile_client/' ?>${auth.token}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(response){
+                $.each(response.data, function(k, v){
+                    //ACCOUNT\\
+                    $('#telepon').text(v.telepon);
+                    $('#id_client').text(v.id_client);
+                    $('#username').text(v.username);
+                    $('#tgl_registrasi').text(v.tgl_registrasi);
+                    $('#expired_date').text(v.expired_date);
+                    $('#status').text(v.status);
+                    
+                    //COMPANY\\
+                    $('#nama_perusahaan').text(v.nama_perusahaan);
+                    $('#penanggung_jawab').text(v.penanggung_jawab);
+                    $('#npwp').text(v.npwp);
+                    $('#website').attr('href', `${v.website}`);
+                    $('#text_website').text(v.website);
+                    $('#mou').attr('href', `<?= base_url().'doc/mou/' ?>${v.mou}`);
+                    $('#logo_perusahaan_img').attr('src', `<?= base_url().'doc/logo_perusahaan/' ?>${v.logo_perusahaan}`);
+                    $('#logo_perusahaan').attr('href', `<?= base_url().'doc/logo_perusahaan/' ?>${v.logo_perusahaan}`);
+                    $('#alamat_perusahaan').text(v.alamat_perusahaan);
+                    $('#kode_pos').text(v.kode_pos);
+                    $('#telepon').text(v.telepon);
+                    $('#email_perusahaan').text(v.email_perusahaan);
+                    $('#fax').text(v.fax);
+                    
+                    //PIC\\
+                    $('#nama_pic').text(v.nama_pic);
+                    $('#telepon_pic').text(v.telepon_pic);
+                    $('#email_pic').text(v.email_pic);
+                });
+            },
+
+            error: function(){
+               makeNotif('error', 'Tidak dapat mengakses server', 'bottomRight')
+             },
+        });
+        
+       
+
+        //CHANGE PASSWORD PART\\
+
+        //Modal Change Pass
+        $('#change_pass').on('click', function(){
+            $('#form_pass')[0].reset();
+            $('#modal_pass').modal('show');
+        });
+
+        // Show Password
+        $('.show_pass').click(function(){
+          if($(this).is(':checked')){
+            $('#password_baru').attr('type','text');
+            $('#password_lama').attr('type','text');
+          }else{
+            $('#password_baru').attr('type','password');
+            $('#password_lama').attr('type','password');
+          };
+        });
+
+        //Form Pass Valid Ajax
+        $('#form_pass').on('submit', function(e){
+            e.preventDefault();
+
+            var passwrod_lama = $('#password_lama').val();
+            var password_baru = $('#password_baru').val();
+
+            if(password_lama === '' || password_baru === ''){
+                makeNotif('warning', 'Warning', 'All field is required', 'top-right');
+            } else {
+                $.ajax({
+              url: `<?= base_url('api/auth/password_client/') ?>${auth.token}`,
+              type: 'POST',
+              dataType: 'JSON',
+              data: $(this).serialize(),
+              beforeSend: function(){
+                $('#submit_pass').addClass('disabled').html('<i class="fa fa-spinner fa-spin" style="font-size:20px;"></i>')
+              },
+              success: function(response){
+                if(response.status === 200){
+                  makeNotif('success', 'Success', response.message, 'bottom-right')
+                  $('#modal_pass').modal('hide')
+                } else {
+                  makeNotif('error', 'Failed', response.message, 'bottom-right')
+                }
+                $('#submit_pass').removeClass('disabled').html('Save Change');
+              },
+              error: function(){
+                makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
+                $('#submit_pass').removeClass('disabled').html('Save Change')
+              }
+            })
+            }
+        });
+        //CHANGE PASSWORD PART\\
 
         $('#logout_client').on('click', function(){
           swal({
@@ -454,5 +569,6 @@
               }
           });
         });
+
     });
 </script>
