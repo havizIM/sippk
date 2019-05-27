@@ -262,24 +262,26 @@ class Auth extends CI_Controller {
           $template = $this->load->view('email/lupa_password', $data_email, TRUE);
 
           $config = array(
-            'useragent' => 'CodeIgniter',
+            // 'useragent' => 'CodeIgniter',
             'protocol'  => 'smtp',
-            'mailpath'  => '/usr/sbin/sendmail',
+            // 'mailpath'  => '/usr/sbin/sendmail',
             'smtp_host' => 'ssl://smtp.gmail.com',
             'smtp_user' => 'viz.ndinq@gmail.com',
             'smtp_pass' => 'haviz06142',
             'smtp_port' => 465,
-            'smtp_keepalive' => TRUE,
-            'smtp_crypto' => 'SSL',
-            'wordwrap'  => TRUE,
+            // 'smtp_keepalive' => TRUE,
+            // 'smtp_crypto' => 'SSL',
+            // 'wordwrap'  => TRUE,
             'mailtype'  => 'html',
-            'charset'   => 'utf-8',
-            'validate'  => TRUE,
-            'crlf'      => "\r\n",
-            'newline'   => "\r\n"
+            'charset'   => 'utf-8'
+            // 'validate'  => TRUE,
+            // 'crlf'      => "\r\n",
+            // 'newline'   => "\r\n"
           );
 
           $this->email->initialize($config);
+          $this->email->set_mailtype("html");
+          $this->email->set_newline("\r\n");
           $this->email->from('viz.ndinq@gmail.com', 'Admin SIPPK');
           $this->email->to($email_perusahaan);
           $this->email->subject('Reset Password Akun SIPPK');
