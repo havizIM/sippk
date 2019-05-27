@@ -280,7 +280,7 @@ class Auth extends CI_Controller {
           $this->email->subject('Reset Password Akun SIPPK');
           $this->email->message('Berhasil');
 
-          $this->email->send();
+          $this->email->send(); 
 
           // if (!$send) {
           //   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
