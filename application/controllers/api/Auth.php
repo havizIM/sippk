@@ -287,21 +287,23 @@ class Auth extends CI_Controller {
 
           $send = $this->email->send();
 
-          if (!$send) {
-            json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
-          } else {
-            $data = array(
-              'password' => $new_password
-            );
+          echo $this->email->print_debugger();
 
-            $update = $this->AuthModel->updateClient($param, $data);
+          // if (!$send) {
+          //   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
+          // } else {
+          //   $data = array(
+          //     'password' => $new_password
+          //   );
 
-            if(!$update){
-							json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Gagal melakukan reset password' ));
-						} else {
-							json_output(200, array('status' => 200, 'description' => 'Success', 'message' => 'Berhasil melakukan reset password. Silahkan cek email anda untuk mendapatkan password baru'));
-						}
-          }
+          //   $update = $this->AuthModel->updateClient($param, $data);
+
+          //   if(!$update){
+					// 		json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Gagal melakukan reset password' ));
+					// 	} else {
+					// 		json_output(200, array('status' => 200, 'description' => 'Success', 'message' => 'Berhasil melakukan reset password. Silahkan cek email anda untuk mendapatkan password baru'));
+					// 	}
+          // }
         }
       }
     }
