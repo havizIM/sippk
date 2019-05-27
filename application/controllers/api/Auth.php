@@ -232,7 +232,7 @@ class Auth extends CI_Controller {
   }
 
   function lupa_password(){
-    echo "Berhasil"
+    echo "Berhasil";
     // $method = $_SERVER['REQUEST_METHOD'];
 
     // if($method != 'POST') {
