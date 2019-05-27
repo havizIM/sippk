@@ -259,30 +259,30 @@ class Auth extends CI_Controller {
             'password'        => $new_password
           );
 
-          echo "berhasil";
+          // echo "berhasil";
 
-          // $template = $this->load->view('email/lupa_password', $data_email, true);
+          $template = $this->load->view('email/lupa_password', $data_email, true);
 
-          // $config = array(
-          //   'charset'   => 'utf-8',
-          //   'wordwrap'  => TRUE,
-          //   'mailtype'  => 'html',
-          //   'protocol'  => 'smtp',
-          //   'smtp_host' => 'ssl://smtp.gmail.com',
-          //   'smtp_user' => 'viz.ndinq@gmail.com',
-          //   'smtp_pass' => 'haviz06142',
-          //   'smtp_port' => 465,
-          //   'crlf'      => "\r\n",
-          //   'newline'   => "\r\n"
-          // );
+          $config = array(
+            'charset'   => 'utf-8',
+            'wordwrap'  => TRUE,
+            'mailtype'  => 'html',
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_user' => 'viz.ndinq@gmail.com',
+            'smtp_pass' => 'haviz06142',
+            'smtp_port' => 465,
+            'crlf'      => "\r\n",
+            'newline'   => "\r\n"
+          );
 
-          // $this->email->initialize($config);
-          // $this->email->from('viz.ndinq@gmail.com', 'Admin SIPPK');
-          // $this->email->to($email_perusahaan);
-          // $this->email->subject('Reset Password Akun SIPPK');
-          // $this->email->message('Berhasil');
+          $this->email->initialize($config);
+          $this->email->from('viz.ndinq@gmail.com', 'Admin SIPPK');
+          $this->email->to($email_perusahaan);
+          $this->email->subject('Reset Password Akun SIPPK');
+          $this->email->message('Berhasil');
 
-          // $send = $this->email->send();
+          $send = $this->email->send();
 
           // if (!$send) {
           //   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
