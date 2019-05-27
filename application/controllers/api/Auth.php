@@ -262,7 +262,6 @@ class Auth extends CI_Controller {
           $template = $this->load->view('email/lupa_password', $data_email, TRUE);
 
           $config = array(
-            'useragent' => 'CodeIgniter',
             'protocol'  => 'smtp',
             'mailpath'  => '/usr/sbin/sendmail',
             'smtp_host' => 'ssl://smtp.gmail.com',
@@ -270,8 +269,8 @@ class Auth extends CI_Controller {
             'smtp_pass' => 'haviz06142',
             'smtp_port' => 465,
             'smtp_timeout' => 20,
-            'smtp_keepalive' => TRUE,
-            'smtp_crypto' => 'SSL',
+            // 'smtp_keepalive' => TRUE,
+            // 'smtp_crypto' => 'SSL',
             'wordwrap'  => TRUE,
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
