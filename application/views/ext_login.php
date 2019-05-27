@@ -207,12 +207,13 @@
                 $('#btn_forgot_pass').addClass('disabled').html('<i class="fa fa-spinner fa-spin" style="font-size:20px;"></i>')
               },
               success:function(response){
-                if (response.status === 200) {
-                  makeNotif('success', 'Succes', response.message, 'bottom-right');
-                }else {
-                  makeNotif('error', 'Failed', response.message, 'bottom-right');
-                  $('#btn_forgot_pass').removeClass('disabled').html('Log In')
-                }
+                // if (response.status === 200) {
+                //   makeNotif('success', 'Succes', response.message, 'bottom-right');
+                // }else {
+                //   makeNotif('error', 'Failed', response.message, 'bottom-right');
+                //   $('#btn_forgot_pass').removeClass('disabled').html('Log In')
+                // }
+                console.log(response);
               },
               error:function(){
                 makeNotif('error', 'Failed', 'Tidak dapat mengakses server', 'bottom-right');
