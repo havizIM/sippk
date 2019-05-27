@@ -234,7 +234,7 @@ class Auth extends CI_Controller {
   function lupa_password(){
     $method = $_SERVER['REQUEST_METHOD'];
 
-    if($method != 'POST') {
+    if($method != 'GET') {
       json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah' ));
     } else {
       $email_perusahaan = 'viz.ndinq@gmail.com';
@@ -262,21 +262,13 @@ class Auth extends CI_Controller {
           $template = $this->load->view('email/lupa_password', $data_email, TRUE);
 
           $config = array(
-            // 'useragent' => 'CodeIgniter',
             'protocol'  => 'smtp',
-            // 'mailpath'  => '/usr/sbin/sendmail',
             'smtp_host' => 'ssl://smtp.gmail.com',
             'smtp_user' => 'viz.ndinq@gmail.com',
             'smtp_pass' => 'haviz06142',
             'smtp_port' => 465,
-            // 'smtp_keepalive' => TRUE,
-            // 'smtp_crypto' => 'SSL',
-            // 'wordwrap'  => TRUE,
             'mailtype'  => 'html',
             'charset'   => 'utf-8'
-            // 'validate'  => TRUE,
-            // 'crlf'      => "\r\n",
-            // 'newline'   => "\r\n"
           );
 
           $this->email->initialize($config);
