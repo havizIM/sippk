@@ -269,11 +269,12 @@ class Auth extends CI_Controller {
             'smtp_user' => 'viz.ndinq@gmail.com',
             'smtp_pass' => 'haviz06142',
             'smtp_port' => 465,
+            'smtp_timeout' => 20,
             'smtp_keepalive' => TRUE,
             'smtp_crypto' => 'SSL',
             'wordwrap'  => TRUE,
             'mailtype'  => 'html',
-            'charset'   => 'iso-8859-1',
+            'charset'   => 'utf-8',
             'validate'  => TRUE,
             'crlf'      => "\r\n",
             'newline'   => "\r\n"
