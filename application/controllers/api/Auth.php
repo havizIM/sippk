@@ -232,80 +232,79 @@ class Auth extends CI_Controller {
   }
 
   function lupa_password(){
-    echo "Berhasil";
-    // $method = $_SERVER['REQUEST_METHOD'];
+    $method = $_SERVER['REQUEST_METHOD'];
 
-    // if($method != 'POST') {
-    //   json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah' ));
-    // } else {
-    //   $email_perusahaan = $this->input->post('email_perusahaan');
-		// 	$new_password      = substr(str_shuffle("01234567890abcdefghijklmnopqestuvwxyz"), 0, 5);
+    if($method != 'POST') {
+      json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah' ));
+    } else {
+      $email_perusahaan = 'viz.ndinq@gmail.com';
+			$new_password      = substr(str_shuffle("01234567890abcdefghijklmnopqestuvwxyz"), 0, 5);
 
-    //   if($email_perusahaan == null){
-    //     json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Email tidak boleh kosong' ));
-    //   } else {
-    //     $param    = array('email_perusahaan' => $email_perusahaan);
-    //     $client = $this->AuthModel->cekAuthClient($param);
+      if($email_perusahaan == null){
+        json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Email tidak boleh kosong' ));
+      } else {
+        $param    = array('email_perusahaan' => $email_perusahaan);
+        $client = $this->AuthModel->cekAuthClient($param);
 
-    //     if($client->num_rows() != 1){
-  	// 			json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Email tidak ditemukan' ));
-  	// 		} else {
+        if($client->num_rows() != 1){
+  				json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Email tidak ditemukan' ));
+  			} else {
 
-    //       $this->load->library('email');
-    //       $otorisasi = $client->row();
+          $this->load->library('email');
+          $otorisasi = $client->row();
 
-    //       $data_email = array(
-    //         'nama_perusahaan' => $otorisasi->nama_perusahaan,
-    //         'nama_pic'        => $otorisasi->nama_pic,
-    //         'password'        => $new_password
-    //       );
+          $data_email = array(
+            'nama_perusahaan' => $otorisasi->nama_perusahaan,
+            'nama_pic'        => $otorisasi->nama_pic,
+            'password'        => $new_password
+          );
 
-    //       $template = $this->load->view('email/lupa_password', $data_email, TRUE);
+          $template = $this->load->view('email/lupa_password', $data_email, TRUE);
 
-    //       $config = array(
-    //         'useragent' => 'CodeIgniter',
-    //         'protocol'  => 'smtp',
-    //         'mailpath'  => '/usr/sbin/sendmail',
-    //         'smtp_host' => 'ssl://smtp.gmail.com',
-    //         'smtp_user' => '#########',
-    //         'smtp_pass' => '#########',
-    //         'smtp_port' => 465,
-    //         'smtp_keepalive' => TRUE,
-    //         'smtp_crypto' => 'SSL',
-    //         'wordwrap'  => TRUE,
-    //         'mailtype'  => 'html',
-    //         'charset'   => 'utf-8',
-    //         'validate'  => TRUE,
-    //         'crlf'      => "\r\n",
-    //         'newline'   => "\r\n"
-    //       );
+          $config = array(
+            'useragent' => 'CodeIgniter',
+            'protocol'  => 'smtp',
+            'mailpath'  => '/usr/sbin/sendmail',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_user' => '#########',
+            'smtp_pass' => '#########',
+            'smtp_port' => 465,
+            'smtp_keepalive' => TRUE,
+            'smtp_crypto' => 'SSL',
+            'wordwrap'  => TRUE,
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'validate'  => TRUE,
+            'crlf'      => "\r\n",
+            'newline'   => "\r\n"
+          );
 
-    //       $this->email->initialize($config);
-    //       $this->email->from('viz.ndinq@gmail.com', 'Admin SIPPK');
-    //       $this->email->to($email_perusahaan);
-    //       $this->email->subject('Reset Password Akun SIPPK');
-    //       $this->email->message($template);
+          $this->email->initialize($config);
+          $this->email->from('viz.ndinq@gmail.com', 'Admin SIPPK');
+          $this->email->to($email_perusahaan);
+          $this->email->subject('Reset Password Akun SIPPK');
+          $this->email->message($template);
 
-    //       $send = $this->email->send();
+          $send = $this->email->send();
 
-    //       if (!$send) {
-    //         json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
-    //       } else {
-    //         $data = array(
-    //           'password' => $new_password
-    //         );
+          if (!$send) {
+            json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
+          } else {
+            $data = array(
+              'password' => $new_password
+            );
 
-    //         $update = $this->AuthModel->updateClient($param, $data);
+            $update = $this->AuthModel->updateClient($param, $data);
 
-    //         if(!$update){
-		// 					json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Gagal melakukan reset password' ));
-		// 				} else {
-		// 					json_output(200, array('status' => 200, 'description' => 'Success', 'message' => 'Berhasil melakukan reset password. Silahkan cek email anda untuk mendapatkan password baru'));
-		// 				}
-    //       }
-    //     }
-    //   }
-    // }
+            if(!$update){
+							json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Gagal melakukan reset password' ));
+						} else {
+							json_output(200, array('status' => 200, 'description' => 'Success', 'message' => 'Berhasil melakukan reset password. Silahkan cek email anda untuk mendapatkan password baru'));
+						}
+          }
+        }
+      }
+    }
   }
 
   function password_client($token = null)
