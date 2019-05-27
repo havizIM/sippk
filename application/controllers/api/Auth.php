@@ -283,7 +283,7 @@ class Auth extends CI_Controller {
           $this->email->from('viz.ndinq@gmail.com', 'Admin SIPPK');
           $this->email->to($email_perusahaan);
           $this->email->subject('Reset Password Akun SIPPK');
-          $this->email->message('Berhasil');
+          $this->email->message($template);
 
           $send = $this->email->send();
 
