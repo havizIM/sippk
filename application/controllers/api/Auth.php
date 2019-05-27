@@ -259,30 +259,30 @@ class Auth extends CI_Controller {
             'password'        => $new_password
           );
 
-          $template = $this->load->view('email/lupa_password', $data_email, true);
+          echo "berhasil";
 
-          $config = array(
-            'charset'   => 'utf-8',
-            'wordwrap'  => TRUE,
-            'mailtype'  => 'html',
-            'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.gmail.com',
-            'smtp_user' => 'viz.ndinq@gmail.com',
-            'smtp_pass' => 'haviz06142',
-            'smtp_port' => 465,
-            'crlf'      => "\r\n",
-            'newline'   => "\r\n"
-          );
+          // $template = $this->load->view('email/lupa_password', $data_email, true);
 
-          $this->email->initialize($config);
-          $this->email->from('viz.ndinq@gmail.com', 'Admin SIPPK');
-          $this->email->to($email_perusahaan);
-          $this->email->subject('Reset Password Akun SIPPK');
-          $this->email->message('Berhasil');
+          // $config = array(
+          //   'charset'   => 'utf-8',
+          //   'wordwrap'  => TRUE,
+          //   'mailtype'  => 'html',
+          //   'protocol'  => 'smtp',
+          //   'smtp_host' => 'ssl://smtp.gmail.com',
+          //   'smtp_user' => 'viz.ndinq@gmail.com',
+          //   'smtp_pass' => 'haviz06142',
+          //   'smtp_port' => 465,
+          //   'crlf'      => "\r\n",
+          //   'newline'   => "\r\n"
+          // );
 
-          $send = $this->email->send();
+          // $this->email->initialize($config);
+          // $this->email->from('viz.ndinq@gmail.com', 'Admin SIPPK');
+          // $this->email->to($email_perusahaan);
+          // $this->email->subject('Reset Password Akun SIPPK');
+          // $this->email->message('Berhasil');
 
-          echo $send;
+          // $send = $this->email->send();
 
           // if (!$send) {
           //   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
