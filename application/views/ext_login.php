@@ -201,7 +201,7 @@
             $.ajax({
               url: '<?= base_url().'api/auth/lupa_password/' ?>',
               type: 'POST',
-              dataType: 'HTML',
+              // dataType: 'HTML',
               data: $('#form_forgot_pass').serialize(),
               beforeSend:function(){
                 $('#btn_forgot_pass').addClass('disabled').html('<i class="fa fa-spinner fa-spin" style="font-size:20px;"></i>')
