@@ -259,14 +259,14 @@ class Auth extends CI_Controller {
             'password'        => $new_password
           );
 
-          $template = $this->load->view('email/lupa_password', $data_email, TRUE);
+          $template = $this->load->view('email/lupa_password', $data_email, true);
 
           $config = array(
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_port' => 465,
             'smtp_user' => 'viz.ndinq@gmail.com',
             'smtp_pass' => 'haviz06142',
-            'smtp_port' => 465,
             'mailtype'  => 'html',
             'charset'   => 'utf-8'
           );
@@ -277,7 +277,7 @@ class Auth extends CI_Controller {
           $this->email->from('viz.ndinq@gmail.com', 'Admin SIPPK');
           $this->email->to($email_perusahaan);
           $this->email->subject('Reset Password Akun SIPPK');
-          $this->email->message($template);
+          $this->email->message('Cobacoba aja...');
 
           $send = $this->email->send();
 
