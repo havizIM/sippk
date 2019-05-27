@@ -259,7 +259,7 @@ class Auth extends CI_Controller {
             'password'        => $new_password
           );
 
-          $template = $this->load->view('email/lupa_password', $data_email, true);
+          $template = $this->load->view('email/lupa_password', $data_email, TRUE);
 
           $config = array(
             'useragent' => 'CodeIgniter',
@@ -285,23 +285,23 @@ class Auth extends CI_Controller {
           $this->email->subject('Reset Password Akun SIPPK');
           $this->email->message($template);
 
-          echo $this->email->send();
+          $send = $this->email->send();
 
-          // if (!$send) {
-          //   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
-          // } else {
-          //   $data = array(
-          //     'password' => $new_password
-          //   );
+          if (!$send) {
+            json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
+          } else {
+            $data = array(
+              'password' => $new_password
+            );
 
-          //   $update = $this->AuthModel->updateClient($param, $data);
+            $update = $this->AuthModel->updateClient($param, $data);
 
-          //   if(!$update){
-					// 		json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Gagal melakukan reset password' ));
-					// 	} else {
-					// 		json_output(200, array('status' => 200, 'description' => 'Success', 'message' => 'Berhasil melakukan reset password. Silahkan cek email anda untuk mendapatkan password baru'));
-					// 	}
-          // }
+            if(!$update){
+							json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Gagal melakukan reset password' ));
+						} else {
+							json_output(200, array('status' => 200, 'description' => 'Success', 'message' => 'Berhasil melakukan reset password. Silahkan cek email anda untuk mendapatkan password baru'));
+						}
+          }
         }
       }
     }
