@@ -215,9 +215,10 @@
                 // }
                 console.log(response);
               },
-              error:function(){
-                makeNotif('error', 'Failed', 'Tidak dapat mengakses server', 'bottom-right');
-                $('#btn_forgot_pass').removeClass('disabled').html('Log In')
+              error:function(err){
+                // makeNotif('error', 'Failed', 'Tidak dapat mengakses server', 'bottom-right');
+                // $('#btn_forgot_pass').removeClass('disabled').html('Log In')
+                console.log(err);
               }
             });
           }
