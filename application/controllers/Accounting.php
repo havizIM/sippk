@@ -7,9 +7,16 @@ class Accounting extends CI_Controller {
 	{
 		$this->load->view('accounting/main');
 	}
+	
 	public function dashboard()
 	{
 		$this->load->view('accounting/dashboard');
 	}
+
+	public function client()
+	{
+		$this->load->view('accounting/client');
+	}
+
 
 }
