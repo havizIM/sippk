@@ -202,7 +202,7 @@
             $.ajax({
               url: '<?= base_url().'api/auth/lupa_password/' ?>',
               type: 'POST',
-              dataType: 'JSON',
+              // dataType: 'JSON',
               data: $('#form_forgot_pass').serialize(),
               beforeSend:function(){
                 $('#btn_forgot_pass').addClass('disabled').html('<i class="fa fa-spinner fa-spin" style="font-size:20px;"></i>')
@@ -214,7 +214,7 @@
                 //   makeNotif('error', 'Failed', response.message, 'bottom-right');
                 //   $('#btn_forgot_pass').removeClass('disabled').html('Log In')
                 // }
-                $('#error').html(err.responseText);
+                $('#error').html(response);
                 // console.log(response);
               },
               error:function(err){
