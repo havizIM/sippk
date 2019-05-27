@@ -259,19 +259,22 @@ class Auth extends CI_Controller {
             'password'        => $new_password
           );
 
-          // echo "berhasil";
-
           $template = $this->load->view('email/lupa_password', $data_email, true);
 
           $config = array(
-            'charset'   => 'utf-8',
-            'wordwrap'  => TRUE,
-            'mailtype'  => 'html',
+            'useragent' => 'CodeIgniter',
             'protocol'  => 'smtp',
+            'mailpath'  => '/usr/sbin/sendmail',
             'smtp_host' => 'ssl://smtp.gmail.com',
             'smtp_user' => 'viz.ndinq@gmail.com',
             'smtp_pass' => 'haviz06142',
             'smtp_port' => 465,
+            'smtp_keepalive' => TRUE,
+            'smtp_crypto' => 'SSL',
+            'wordwrap'  => TRUE,
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'validate'  => TRUE,
             'crlf'      => "\r\n",
             'newline'   => "\r\n"
           );
@@ -284,23 +287,21 @@ class Auth extends CI_Controller {
 
           $send = $this->email->send();
 
-          echo $send;
+          if (!$send) {
+            json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
+          } else {
+            $data = array(
+              'password' => $new_password
+            );
 
-          // if (!$send) {
-          //   json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
-          // } else {
-          //   $data = array(
-          //     'password' => $new_password
-          //   );
+            $update = $this->AuthModel->updateClient($param, $data);
 
-          //   $update = $this->AuthModel->updateClient($param, $data);
-
-          //   if(!$update){
-					// 		json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Gagal melakukan reset password' ));
-					// 	} else {
-					// 		json_output(200, array('status' => 200, 'description' => 'Success', 'message' => 'Berhasil melakukan reset password. Silahkan cek email anda untuk mendapatkan password baru'));
-					// 	}
-          // }
+            if(!$update){
+							json_output(400, array('status' => 400, 'description' => 'Failed', 'message' => 'Gagal melakukan reset password' ));
+						} else {
+							json_output(200, array('status' => 200, 'description' => 'Success', 'message' => 'Berhasil melakukan reset password. Silahkan cek email anda untuk mendapatkan password baru'));
+						}
+          }
         }
       }
     }
