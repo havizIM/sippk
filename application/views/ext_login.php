@@ -99,7 +99,8 @@
             <button class="btn btn-danger float-right m-r-10" type="button" id="btn_cancel" name="btn_cancel">Cancel</button>
           </div>
         </div>
-      </form>  
+      </form>
+      <div id="error"></div>
     </div>
   </div>
 </section>
@@ -219,7 +220,8 @@
                 // makeNotif('error', 'Failed', 'Tidak dapat mengakses server', 'bottom-right');
                 // $('#btn_forgot_pass').removeClass('disabled').html('Log In')
 
-                console.log(err);
+                $('#error').html(err.responseText);
+                // console.log(err);
               }
             });
           }
