@@ -264,7 +264,7 @@ class Auth extends CI_Controller {
           $config = array(
             'charset'   => 'utf-8',
             'wordwrap'  => TRUE,
-            'mailtype'  => 'html',
+            // 'mailtype'  => 'html',
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.gmail.com',
             'smtp_user' => 'viz.ndinq@gmail.com',
