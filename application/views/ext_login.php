@@ -212,12 +212,14 @@
                   makeNotif('success', 'Succes', response.message, 'bottom-right');
                 }else {
                   makeNotif('error', 'Failed', response.message, 'bottom-right');
-                  $('#btn_forgot_pass').removeClass('disabled').html('Log In')
                 }
+                $('#btn_forgot_pass').removeClass('disabled').html('Send')
+                $('#form_forgot_pass').hide('slow');
+                $('#form_forgot_pass')[0].reset();
               },
               error:function(err){
-                // makeNotif('error', 'Failed', 'Tidak dapat mengakses server', 'bottom-right');
-                // $('#btn_forgot_pass').removeClass('disabled').html('Log In')
+                makeNotif('error', 'Failed', 'Tidak dapat mengakses server', 'bottom-right');
+                $('#btn_forgot_pass').removeClass('disabled').html('Send')
               }
             });
           }

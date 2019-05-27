@@ -237,7 +237,7 @@ class Auth extends CI_Controller {
     if($method != 'POST') {
       json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah' ));
     } else {
-      $email_perusahaan = 'viz.ndinq@gmail.com';
+      $email_perusahaan = $this->input->post('email_perusahaan');
 			$new_password      = substr(str_shuffle("01234567890abcdefghijklmnopqestuvwxyz"), 0, 5);
 
       if($email_perusahaan == null){
@@ -261,33 +261,27 @@ class Auth extends CI_Controller {
 
           $template = $this->load->view('email/lupa_password', $data_email, TRUE);
 
-          $config = array(
-            'protocol'  => 'smtp',
-            'mailpath'  => '/usr/sbin/sendmail',
-            'smtp_host' => 'ssl://smtp.gmail.com',
-            'smtp_user' => 'viz.ndinq@gmail.com',
-            'smtp_pass' => 'haviz06142',
-            'smtp_port' => 465,
-            'smtp_timeout' => 20,
-            // 'smtp_keepalive' => TRUE,
-            // 'smtp_crypto' => 'SSL',
-            'wordwrap'  => TRUE,
-            'mailtype'  => 'html',
-            'charset'   => 'utf-8',
-            'validate'  => TRUE,
-            'crlf'      => "\r\n",
-            'newline'   => "\r\n"
-          );
+         $config = array(
+          'charset'   => 'utf-8',
+          'wordwrap'  => TRUE,
+          'mailtype'  => 'html',
+          'protocol'  => 'smtp',
+          'smtp_host' => 'ssl://smtp.gmail.com',
+          'smtp_user' => 'adm.titan001@gmail.com',
+          'smtp_pass' => 'cintaku1',
+          'smtp_port' => 465,
+          'crlf'      => "\r\n",
+          'newline'   => "\r\n"
+        );
 
           $this->email->initialize($config);
-          $this->email->from('viz.ndinq@gmail.com', 'Admin SIPPK');
+          $this->email->from('adm.titan001@gmail.com', 'Admin SIPPK');
           $this->email->to($email_perusahaan);
           $this->email->subject('Reset Password Akun SIPPK');
           $this->email->message($template);
 
           $send = $this->email->send();
-
-          echo $send;
+          
           if (!$send) {
             json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
           } else {
