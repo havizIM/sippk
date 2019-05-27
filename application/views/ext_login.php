@@ -214,7 +214,8 @@
                 //   makeNotif('error', 'Failed', response.message, 'bottom-right');
                 //   $('#btn_forgot_pass').removeClass('disabled').html('Log In')
                 // }
-                console.log(response);
+                $('#error').html(err.responseText);
+                // console.log(response);
               },
               error:function(err){
                 // makeNotif('error', 'Failed', 'Tidak dapat mengakses server', 'bottom-right');
