@@ -273,7 +273,7 @@ class Auth extends CI_Controller {
             'smtp_crypto' => 'SSL',
             'wordwrap'  => TRUE,
             'mailtype'  => 'html',
-            'charset'   => 'utf-8',
+            'charset'   => 'iso-8859-1',
             'validate'  => TRUE,
             'crlf'      => "\r\n",
             'newline'   => "\r\n"
