@@ -258,8 +258,6 @@ class Auth extends CI_Controller {
             'password'        => $new_password
           );
 
-          $template = $this->load->view('email/lupa_password', $data_email, TRUE);
-
           /* ---------- Setting Email Offline ------------- */
           // $config = array(
           //   'charset'   => 'utf-8',
@@ -299,13 +297,12 @@ class Auth extends CI_Controller {
           $this->email->set_mailtype("html");
           $this->email->set_newline("\r\n");
 
-          $htmlContent = '<h1>Sending email via SMTP server</h1>';
-          $htmlContent .= '<p>This email has sent via SMTP server from CodeIgniter application.</p>';
+          $template = $this->load->view('email/lupa_password', $data_email, TRUE);
 
           $this->email->to($email_perusahaan);
           $this->email->from('adm.titan001@gmail.com','Admin Titan Group');
-          $this->email->subject('How to send email via SMTP server in CodeIgniter');
-          $this->email->message($htmlContent);
+          $this->email->subject('Reset Password Akun SIPPK');
+          $this->email->message($template);
           /* ---------------- Setting Email Online ------------------- */
 
           /* ----------------- New Setting ------------------------ */
