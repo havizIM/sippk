@@ -261,26 +261,26 @@ class Auth extends CI_Controller {
           $template = $this->load->view('email/lupa_password', $data_email, TRUE);
 
           /* ---------- Setting Email Offline ------------- */
-          $config = array(
-            'charset'   => 'utf-8',
-            'wordwrap'  => TRUE,
-            'mailtype'  => 'html',
-            'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.gmail.com',
-            'smtp_user' => 'adm.titan001@gmail.com',
-            'smtp_pass' => 'cintaku1',
-            'smtp_port' => 465,
-            'crlf'      => "\r\n",
-            'newline'   => "\r\n"
-          );
+          // $config = array(
+          //   'charset'   => 'utf-8',
+          //   'wordwrap'  => TRUE,
+          //   'mailtype'  => 'html',
+          //   'protocol'  => 'smtp',
+          //   'smtp_host' => 'ssl://smtp.gmail.com',
+          //   'smtp_user' => 'adm.titan001@gmail.com',
+          //   'smtp_pass' => 'cintaku1',
+          //   'smtp_port' => 465,
+          //   'crlf'      => "\r\n",
+          //   'newline'   => "\r\n"
+          // );
 
-          $this->load->library('email');
+          // $this->load->library('email');
 
-          $this->email->initialize($config);
-          $this->email->from('adm.titan001@gmail.com', 'Admin SIPPK');
-          $this->email->to($email_perusahaan);
-          $this->email->subject('Reset Password Akun SIPPK');
-          $this->email->message($template);
+          // $this->email->initialize($config);
+          // $this->email->from('adm.titan001@gmail.com', 'Admin SIPPK');
+          // $this->email->to($email_perusahaan);
+          // $this->email->subject('Reset Password Akun SIPPK');
+          // $this->email->message($template);
           /* -------------- Setting Email Offline --------------- */
 
           /* ----------------- Setting Email Online ---------------------- */
@@ -301,6 +301,32 @@ class Auth extends CI_Controller {
           // $this->email->subject('Reset Password Akun SIPPK');
           // $this->email->message('Coba yaaaa....');
           /* ---------------- Setting Email Online ------------------- */
+
+          /* ----------------- New Setting ------------------------ */
+          $this->load->library('email');
+
+          $this->email->set_newline("\r\n");
+
+          $config['protocol'] = 'smtp';
+          $config['smtp_host'] = 'ssl://smtp.gmail.com';
+          $config['smtp_port'] = '465';
+          $config['smtp_user'] = 'viz.ndinq@gmail.com';
+          $config['smtp_from_name'] = 'Admin Titan Group';
+          $config['smtp_pass'] = 'haviz06142';
+          $config['wordwrap'] = TRUE;
+          $config['newline'] = "\r\n";
+          $config['mailtype'] = 'html';                       
+
+          $this->email->initialize($config);
+
+          $this->email->from('adm.titan001@gmail.com', 'Admin SIPPK');
+          $this->email->to($email_perusahaan);
+          $this->email->subject('Reset Password Akun SIPPK');
+          $this->email->message($template);
+
+          $this->email->message($template);
+
+        /* ----------------- New Setting ------------------------ */
 
           $send = $this->email->send();
           
