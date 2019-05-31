@@ -329,7 +329,8 @@ class Auth extends CI_Controller {
           $send = $this->email->send();
           
           if (!$send) {
-            json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
+            show_error($this->email->print_debugger());
+            // json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Tidak dapat mengirim email'));
           } else {
             $data = array(
               'password' => $new_password
