@@ -261,45 +261,45 @@ class Auth extends CI_Controller {
           $template = $this->load->view('email/lupa_password', $data_email, TRUE);
 
           /* ---------- Setting Email Offline ------------- */
-          // $config = array(
-          //   'charset'   => 'utf-8',
-          //   'wordwrap'  => TRUE,
-          //   'mailtype'  => 'html',
-          //   'protocol'  => 'smtp',
-          //   'smtp_host' => 'ssl://smtp.gmail.com',
-          //   'smtp_user' => 'adm.titan001@gmail.com',
-          //   'smtp_pass' => 'cintaku1',
-          //   'smtp_port' => 465,
-          //   'crlf'      => "\r\n",
-          //   'newline'   => "\r\n"
-          // );
-
-          // $this->load->library('email');
-
-          // $this->email->initialize($config);
-          // $this->email->from('adm.titan001@gmail.com', 'Admin SIPPK');
-          // $this->email->to($email_perusahaan);
-          // $this->email->subject('Reset Password Akun SIPPK');
-          // $this->email->message($template);
-          /* -------------- Setting Email Offline --------------- */
-
-          /* ----------------- Setting Email Online ---------------------- */
           $config = array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'mail.sippk.codemaniacid.com',
-            'smtp_port' => 587,
-            'smtp_user' => 'admin@sippk.codemaniacid.com',
-            'smtp_pass' => 'phpmyadmin123'
+            'charset'   => 'utf-8',
+            'wordwrap'  => TRUE,
+            'mailtype'  => 'html',
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_user' => 'adm.titan001@gmail.com',
+            'smtp_pass' => 'cintaku1',
+            'smtp_port' => 465,
+            'crlf'      => "\r\n",
+            'newline'   => "\r\n"
           );
 
-          $this->load->library('email', $config);
-          $this->email->set_newline("\r\n");
+          $this->load->library('email');
 
-
-          $this->email->from('admin@sippk.codemaniacid.com', 'Admin SIPPK');
+          $this->email->initialize($config);
+          $this->email->from('adm.titan001@gmail.com', 'Admin SIPPK');
           $this->email->to($email_perusahaan);
           $this->email->subject('Reset Password Akun SIPPK');
           $this->email->message($template);
+          /* -------------- Setting Email Offline --------------- */
+
+          /* ----------------- Setting Email Online ---------------------- */
+          // $config = array(
+          //   'protocol' => 'smtp',
+          //   'smtp_host' => 'sippk.codemaniacid.com',
+          //   'smtp_port' => 465,
+          //   'smtp_user' => 'admin@sippk.codemaniacid.com',
+          //   'smtp_pass' => 'phpmyadmin123'
+          // );
+
+          // $this->load->library('email', $config);
+          // $this->email->set_newline("\r\n");
+
+
+          // $this->email->from('admin@sippk.codemaniacid.com', 'Admin SIPPK');
+          // $this->email->to($email_perusahaan);
+          // $this->email->subject('Reset Password Akun SIPPK');
+          // $this->email->message('Coba yaaaa....');
           /* ---------------- Setting Email Online ------------------- */
 
           $send = $this->email->send();
