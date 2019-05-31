@@ -286,9 +286,9 @@ class Auth extends CI_Controller {
           /* ----------------- Setting Email Online ---------------------- */
           $config = array(
             'protocol' => 'smtp',
-            'smtp_host' => 'mail.alfarisilab.com',
+            'smtp_host' => 'mail.sippk.codemaniacid.com',
             'smtp_port' => 587,
-            'smtp_user' => 'mail.sippk.codemaniacid.com',
+            'smtp_user' => 'admin@sippk.codemaniacid.com',
             'smtp_pass' => 'phpmyadmin123'
           );
 
@@ -296,7 +296,7 @@ class Auth extends CI_Controller {
           $this->email->set_newline("\r\n");
 
 
-          $this->email->from('mail.sippk.codemaniacid.com', 'Admin SIPPK');
+          $this->email->from('admin@sippk.codemaniacid.com', 'Admin SIPPK');
           $this->email->to($email_perusahaan);
           $this->email->subject('Reset Password Akun SIPPK');
           $this->email->message($template);
