@@ -310,9 +310,9 @@ class Auth extends CI_Controller {
           $config['protocol'] = 'smtp';
           $config['smtp_host'] = 'ssl://smtp.gmail.com';
           $config['smtp_port'] = '465';
-          $config['smtp_user'] = 'viz.ndinq@gmail.com';
+          $config['smtp_user'] = 'adm.titan001@gmail.com';
           $config['smtp_from_name'] = 'Admin Titan Group';
-          $config['smtp_pass'] = 'haviz06142';
+          $config['smtp_pass'] = 'cintaku1';
           $config['wordwrap'] = TRUE;
           $config['newline'] = "\r\n";
           $config['mailtype'] = 'html';                       
@@ -322,8 +322,6 @@ class Auth extends CI_Controller {
           $this->email->from('adm.titan001@gmail.com', 'Admin SIPPK');
           $this->email->to($email_perusahaan);
           $this->email->subject('Reset Password Akun SIPPK');
-          $this->email->message($template);
-
           $this->email->message($template);
 
         /* ----------------- New Setting ------------------------ */
