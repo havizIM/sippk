@@ -308,8 +308,8 @@ class Auth extends CI_Controller {
           $this->email->set_newline("\r\n");
 
           $config['protocol'] = 'smtp';
-          $config['smtp_host'] = 'ssl://smtp.gmail.com';
-          $config['smtp_port'] = '465';
+          $config['smtp_host'] = 'smtp.gmail.com';
+          $config['smtp_port'] = '587';
           $config['smtp_user'] = 'adm.titan001@gmail.com';
           $config['smtp_from_name'] = 'Admin Titan Group';
           $config['smtp_pass'] = 'cintaku1';
