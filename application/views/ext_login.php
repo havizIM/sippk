@@ -35,6 +35,23 @@
         window.location.replace(`<?= base_url() ?>main/`)
       }
     </script>
+    <style>
+      .bg-login{
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 100%;
+        width: 100%;
+        padding: 10% 0;
+        position: fixed;
+        background-image:url(<?= base_url() ?>assets/logo/wp1.jpg);
+        opacity: 0.9;
+      }
+
+      .card.transparent {
+        /* background-color: rgba(255, 255, 255, 0.82) !important; */
+      }
+    </style>
 </head>
 
 <body>
@@ -47,8 +64,9 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <section id="wrapper" class="login-register login-sidebar"  style="background-image:url(<?= base_url() ?>assets/logo/wp1.jpg);">
-  <div class="login-box card">
+  <section id="wrapper" class="login-register login-sidebar"  style="background:#000000">
+  <div class="bg-login"></div> 
+  <div class="login-box card transparent">
     <div class="card-body">
       <form class="form-horizontal form-material" id="form_login">
         <a href="javascript:void(0)" class="text-center db"><img src="<?= base_url() ?>assets/logo/logo.png" alt="Home" /><br/><h4>PT. Servo Lintas Raya</h4></a>
@@ -69,7 +87,7 @@
               <input id="checkbox-signup" class="show_pass" type="checkbox">
               <label for="checkbox-signup"> Show Password </label>
             </div>
-            <a class="text-dark pull-right" id="forgot_password" style="cursor: pointer;"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
+            <a class="text-dark pull-right" id="forgot_password" style="cursor: pointer;"><i class="fa fa-lock m-r-5"></i> Forgot Password?</a>
           </div>
         </div>
         <div class="form-group text-center m-t-20">

@@ -84,7 +84,7 @@
 
                         <span>
                          <!-- Light Logo text -->    
-                         <img src="<?= base_url() ?>assets/logo/TITANGroup.png" class="light-logo" alt="homepage" /></span> </a>
+                         <img src="<?= base_url() ?>assets/logo/titan-small2.png" class="light-logo" alt="homepage" style="position: relative; top:50%;" /></span> </a>
 
                     </ul>
 
@@ -99,7 +99,7 @@
                             <ul class="dropdown-user">
                                 <li><a href="javascript:void(0)" id="change_pass"><i class="ti-settings"></i> Account Setting</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a id="logout_client"><i class="fa fa-power-off"></i> Logout</a></li>
+                                <li style="cursor:pointer;"><a id="logout_client"><i class="fa fa-power-off"></i> Logout</a></li>
                             </ul>
                         </div>
                     </li>

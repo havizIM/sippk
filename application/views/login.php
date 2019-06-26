@@ -14,6 +14,8 @@
     <title>SIPPK - Login</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Notify -->
+    <link href="<?= base_url() ?>assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?= base_url() ?>assets/internal/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -33,6 +35,24 @@
         window.location.replace(`<?= base_url() ?>${auth.level}/`)
       }
 </script>
+<style>
+  .bg-login{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0;
+    position: fixed;
+    background-image:url(<?= base_url() ?>assets/logo/port.jpg);
+  }
+
+  .card.transparent {
+    background-color: rgba(255, 255, 255, 0.82) !important;
+    webkit-box-shadow: 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12), 0 11px 15px -7px rgba(0,0,0,.2);
+    box-shadow: 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12), 0 11px 15px -7px rgba(0,0,0,.2);
+  }
+</style>
 </head>
 
 <body>
@@ -47,8 +67,9 @@
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <section id="wrapper">
-        <div class="login-register" style="background-image:url(<?= base_url() ?>assets/logo/port.jpg);">        
-          <div class="login-box card">
+      <div class="bg-login"></div>   
+        <div class="login-register" style="background:rgba(0, 0, 0, 0.3)">     
+          <div class="login-box card transparent">
             <div class="card-body">
 
                 <form class="form-horizontal form-material" id="form_login">
@@ -125,7 +146,7 @@
 <script>
   
   $(document).ready(function() {
-        function makeNotif(icon, heading, text, position){
+       function makeNotif(icon, heading, text, position){
           $.toast({
             heading: heading,
             text: text,
@@ -144,7 +165,7 @@
           var password = $('#password').val();
 
           if (username === '' || password === '') {
-            makeNotif('warning', 'Warning', 'All field is required', 'bottom-left');
+            makeNotif('warning', 'Warning', 'All field is required', 'top-right');
           }else {
             $.ajax({
               url: '<?= base_url().'api/auth/login_user/' ?>',
@@ -160,7 +181,7 @@
                   localStorage.setItem("sippk",JSON.stringify(response.data));
                   window.location.replace(link)
                 }else {
-                  makeNotif('error', 'Failed', response.message, 'bottom-left');
+                  makeNotif('error', 'Failed', response.message, 'top-right');
                   $('#submit_login').removeClass('disabled').html('Log In')
                 }
 

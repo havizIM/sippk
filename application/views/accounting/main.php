@@ -207,34 +207,34 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="<?= base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="<?= base_url() ?>assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="<?= base_url() ?>assets/internal/js/jquery.slimscroll.js"></script>
-    <!--Wave Effects -->
-    <script src="<?= base_url() ?>assets/internal/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="<?= base_url() ?>assets/internal/js/sidebarmenu.js"></script>
-    <!--stickey kit -->
-    <script src="<?= base_url() ?>assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
-    <script src="<?= base_url() ?>assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="<?= base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="<?= base_url() ?>assets/plugins/bootstrap/js/popper.min.js"></script>
+<script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="<?= base_url() ?>assets/internal/js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="<?= base_url() ?>assets/internal/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="<?= base_url() ?>assets/internal/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="<?= base_url() ?>assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<script src="<?= base_url() ?>assets/plugins/sparkline/jquery.sparkline.min.js"></script>
 
-    <script src="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.min.js"></script>
-    <script src="<?= base_url() ?>assets/plugins/toast-master/js/jquery.toast.js"></script>
-    <!--Custom JavaScript -->
-    <script src="<?= base_url() ?>assets/internal/js/custom.min.js"></script>
-    <!-- ============================================================== -->
-    <!-- Style switcher -->
-    <!-- ============================================================== -->
-    <script src="<?= base_url() ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-    <script src="<?= base_url() ?>assets/plugins/chart.js/chart.min.js"></script>
+<script src="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="<?= base_url() ?>assets/plugins/toast-master/js/jquery.toast.js"></script>
+<!--Custom JavaScript -->
+<script src="<?= base_url() ?>assets/internal/js/custom.min.js"></script>
+<!-- ============================================================== -->
+<!-- Style switcher -->
+<!-- ============================================================== -->
+<script src="<?= base_url() ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+<script src="<?= base_url() ?>assets/plugins/chart.js/chart.min.js"></script>
 
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
     <script type="text/javascript">
       function load_content(link){
         $.get(`<?= base_url().'accounting/'?>${link}`,function(response){
