@@ -44,6 +44,38 @@
     /* .flex-20 {
         flex: 0 0 20%;
     } */
+
+    .lg-pos {
+        display: inline-grid;
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+
+    .text-white h6 {
+        color:#fff;
+    }
+
+    .dropdown-menu.bg-ig {
+        background: linear-gradient(180deg,#009efb,#5f2bff)!important;
+    }
+    
+    .modal-header.stlye {
+        background: #1e88e5;
+        /* color: #fff; */
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+    
+    .modal-content.bradius{
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    .close.style2 {
+        color: #fff;
+        text-shadow: 1px 2px 2px #000;
+        opacity: .8;
+    }
 </style>
 </head>
 
@@ -75,14 +107,14 @@
                     <!-- ============================================================== -->
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav mr-auto mt-md-0">
+                    <ul class="navbar-nav m-auto">
 
                          <b>
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <img src="<?= base_url() ?>assets/logo/logo.png" alt="homepage" class="light-logo" />
                         </b>
 
-                        <span>
+                        <span class="lg-pos">
                          <!-- Light Logo text -->    
                          <img src="<?= base_url() ?>assets/logo/titan-small2.png" class="light-logo" alt="homepage" style="position: relative; top:50%;" /></span> </a>
 
@@ -105,10 +137,10 @@
                     </li>
 
                     <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url() ?>assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
-                            <div class="dropdown-menu scale-up">
+                            <div class="dropdown-menu bg-ig scale-up">
                                 <ul class="mega-dropdown-menu row">
                                     <li class="col-lg-4 flex-20 m-b-30">
-                                        <h4 class="m-b-20">ACCOUNT</h4>
+                                        <h4 class="m-b-20 text-white">ACCOUNT</h4>
                                         <!-- CAROUSEL -->
                                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                             <div class="carousel-inner" role="listbox">
@@ -118,7 +150,7 @@
                                             </div>
                                         </div>
                                         <!-- End CAROUSEL -->
-                                        <div class="card-body" style="border: 1px solid rgba(0,0,0,.125); box-shadow: 0 0 27px rgba(0,0,0,.2), 0 2px 9px -2px rgba(0,0,0,.2);"> 
+                                        <div class="card-body text-white" style="border: 1px solid rgba(0,0,0,.125); box-shadow: 0 0 27px rgba(0,0,0,.2), 0 2px 9px -2px rgba(0,0,0,.2);"> 
                                             <small class="text-muted">ID Client </small>
                                             <h6 id="id_client"></h6> 
 
@@ -136,9 +168,9 @@
                                         </div>
                                     </li>
                                     <li class="col-lg-4 flex-20 m-b-30">
-                                        <h4 class="m-b-20">COMPANY</h4>
+                                        <h4 class="m-b-20 text-white">COMPANY</h4>
                                         <!-- Accordian -->
-                                        <div id="accordion" class="nav-accordion" role="tablist" aria-multiselectable="true">
+                                        <div id="accordion" class="nav-accordion text-white" role="tablist" aria-multiselectable="true">
                                             
                                             <div class="card-body" style="border: 1px solid rgba(0,0,0,.125); box-shadow: 0 0 27px rgba(0,0,0,.2), 0 2px 9px -2px rgba(0,0,0,.2);"> 
                                                 <small class="text-muted">Nama Perusahaan </small>
@@ -178,8 +210,8 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="col-lg-4 flex-20  m-b-30">
-                                        <h4 class="m-b-20">PIC</h4>
+                                    <li class="col-lg-4 flex-20  m-b-30 text-white">
+                                        <h4 class="m-b-20 text-white">PIC</h4>
 
                                        <div class="card-body" style="border: 1px solid rgba(0,0,0,.125); box-shadow: 0 0 27px rgba(0,0,0,.2), 0 2px 9px -2px rgba(0,0,0,.2);">
 
@@ -337,10 +369,10 @@
         <!-- sample modal content -->
         <div class="modal fade" id="modal_pass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">Change Password</h4>
+                <div class="modal-content bradius">
+                    <div class="modal-header stlye">
+                        <button type="button" class="close style2" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title text-white">Change Password</h4>
                     </div>
                     <form id="form_pass">
                         <div class="modal-body">

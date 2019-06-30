@@ -244,8 +244,9 @@
         });
         
         // Show Password
-        $('show_pass').click(function(){
+        $('.show_pass').click(function(){
           if($(this).is(':checked')){
+            // alert('oke')
             $('#password').attr('type','text');
           }else{
             $('#password').attr('type','password');

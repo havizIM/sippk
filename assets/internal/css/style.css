@@ -6769,7 +6769,13 @@ File: scss
     flex-wrap: wrap !important;
     -webkit-flex-wrap: wrap !important; }
   .chat-list li .chat-content {
-    width: calc(100% - 80px); } }
+    width: calc(100% - 80px); } 
+  
+  .dark-logo {
+    display :inline-block !important;
+  }
+  
+  }
 
 /*
 Template Name: Material Pro Admin

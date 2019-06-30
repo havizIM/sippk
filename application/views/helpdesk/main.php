@@ -36,6 +36,36 @@
           padding: 0px 0px;
           position: relative;
         }
+
+        .user-profile .profile-img {
+          margin: auto;
+        }
+
+        .scroll-sidebar {
+         background-image: linear-gradient(to bottom, #272c33, #272c33,#272c33e0,#272c33e6, #272c33e3, #272c33)!important;
+        }
+
+        .position img {
+          width: 120%;
+          height: 23px;
+          margin-right: 0px;
+          position: relative;
+          right: 30px;
+        }
+
+        .topbar .top-navbar .navbar-nav > .nav-item > .nav-link {
+          text-shadow: -3px 2px 5px #02396a;
+          opacity: .8;
+        }
+
+        .sidebar-nav.trans {
+          background: transparent;
+        }
+
+        .card-no-border .left-sidebar {
+          background-image: url("<?= base_url() ?>assets/images/background/sidebar.png");
+          background-size: cover;
+        }
     </style>
 
     <script type="text/javascript">
@@ -62,7 +92,7 @@
     </div>
 
     <div id="main-wrapper">
-        <header class="topbar">
+        <header class="topbar" style="background:linear-gradient(-135deg,#00ff78,#2bffa0, #078dff,#0069ff)!important;">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.html">
@@ -70,23 +100,23 @@
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="<?= base_url() ?>assets/logo/logo1.png" alt="homepage" class="dark-logo" style="width: 50px; height: 50px;" />
+                            <img src="<?= base_url() ?>assets/logo/logo.png" alt="homepage" class="dark-logo" style="width: 50px; height: 50px; display:none;" />
                             <!-- Light Logo icon -->
-                            <img src="<?= base_url() ?>assets/logo/logo1.png" alt="homepage" class="light-logo"  style="width: 50px; height: 50px;" />
+                            <img src="<?= base_url() ?>assets/logo/logo.png" alt="homepage" class="light-logo"  style="width: 50px; height: 50px; display:none;" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span>
+                        <span class="position">
                          <!-- dark Logo text -->
-                         <img src="<?= base_url() ?>assets/logo/logo-besar.jpg" alt="homepage" class="dark-logo" style="width: 100px; height: 50px;"/>
+                         <img src="<?= base_url() ?>assets/logo/titan-small2.png" alt="homepage" class="dark-logo showon"/>
                          <!-- Light Logo text -->
-                         <img src="<?= base_url() ?>assets/logo/logo-besar.jpg" class="light-logo" alt="homepage" style="width: 100px; height: 50px;" /></span> </a>
+                         <img src="<?= base_url() ?>assets/logo/titan-small2.png" class="light-logo" alt="homepage" /></span> </a>
                 </div>
 
                 <div class="navbar-collapse">
                     <ul class="navbar-nav mr-auto mt-md-0">
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-white waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-white waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                     </ul>
 
                     <ul class="navbar-nav my-lg-0">
@@ -121,7 +151,7 @@
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- User profile -->
-                <div class="user-profile" style="background-color: navy;">
+                <div class="user-profile" style="background: linear-gradient(180deg,#44e2e175,#1f252d)!important;">
                     <!-- User profile image -->
                     <div class="profile-img"> <img src="<?= base_url() ?>assets/images/users/1.jpg" alt="user" /> </div>
                     <!-- User profile text-->
@@ -129,7 +159,7 @@
                 </div>
                 <!-- End User profile text-->
                 <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
+                <nav class="sidebar-nav trans">
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">MAIN MENU</li>
                         <li>
@@ -193,13 +223,12 @@
                 </div>
                 <!-- /.modal-dialog -->
             </div>
-            
+
+
+
             <footer class="footer">
                 © 2017 Material Pro Admin by wrappixel.com
             </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
@@ -356,8 +385,14 @@
           }
 
         });
+
+        $('.sidebartoggler').on('click', function(){
+          $('.dark-logo').toggle('show');
+        });
       });
     </script>
 </body>
 
 </html>
+
+ 

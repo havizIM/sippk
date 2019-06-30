@@ -38,7 +38,6 @@
                         <th>Logo</th>
                         <th>MOU</th>
                         <th>Website</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
