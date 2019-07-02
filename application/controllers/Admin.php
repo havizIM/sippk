@@ -13,9 +13,13 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/dashboard');
 	}
 
-	public function client()
-	{
-		$this->load->view('admin/client');
+	public function client($id = null)
+	{	
+		if($id == null){
+			$this->load->view('admin/client');
+		} else {
+			$this->load->view('admin/detail_client');
+		}
 	}
 
 	public function add_client()
@@ -26,6 +30,11 @@ class Admin extends CI_Controller {
 	public function edit_client($id)
 	{
 		$this->load->view('admin/edit_client');
+	}
+
+	public function schedule()
+	{	
+		$this->load->view('admin/schedule');
 	}
 
 

@@ -14,268 +14,307 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="card card-outline-info">
+    <div class="card card-outline-success">
       <div class="card-header">
-        <h4 class="m-b-0 text-white">Form Pendaftaran Client</h4>
+        <h4 class="m-b-0 text-white">Form Edit Client</h4>
       </div>
       <div class="card-body wizard-content">
-        <form id="edit_client" class="form-control-line" enctype="multipart/form-data">
+            <form class="validation-wizard wizard-circle" id="form_client"  enctype="multipart/form-data">
+                <!-- Step 1 -->
+                <h6>Data Perusahaan</h6>
+                <section>
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="nama_perusahaan">Nama Perusahaan</label>
+                            <input type="text" class="form-control" name="nama_perusahaan" id="nama_perusahaan">
+                            <div class="form-control-feedback" id="invalid_nama_perusahaan"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="penanggung_jawab">Penanggung Jawab</label>
+                            <input type="text" class="form-control" name="penanggung_jawab" id="penanggung_jawab">
+                            <div class="form-control-feedback" id="invalid_penanggung_jawab"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="alamat_perusahaan">Alamat Perusahaan</label>
+                            <textarea class="form-control" name="alamat_perusahaan" id="alamat_perusahaan" rows="6"></textarea>
+                            <div class="form-control-feedback" id="invalid_alamat_perusahaan"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="kode_pos">Kode Pos</label>
+                            <input type="number" class="form-control" name="kode_pos" id="kode_pos">
+                            <div class="form-control-feedback" id="invalid_kode_pos"></div>
+                        </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="telepon">Telepon</label>
+                            <input type="number" class="form-control" name="telepon" id="telepon">
+                            <div class="form-control-feedback" id="invalid_telepon"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="telepon">Fax</label>
+                            <input type="number" class="form-control" name="fax" id="fax">
+                            <div class="form-control-feedback" id="invalid_fax"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="npwp">NPWP</label>
+                            <input type="number" class="form-control" name="npwp" id="npwp">
+                            <div class="form-control-feedback" id="invalid_npwp"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="mou">MOU <small><i>.doc / .docx / .pdf</i></small></label>
+                            <input type="file" class="form-control" name="mou" id="mou">
+                            <div class="form-control-feedback" id="invalid_mou"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="logo_perusahaan">Logo Perusahaan <small><i>.jpg / .jpeg / .png</i></small></label>
+                            <input type="file" class="form-control" name="logo_perusahaan" id="logo_perusahaan">
+                            <div class="form-control-feedback" id="invalid_logo_perusahaan"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="website">Website</label>
+                            <input type="text" class="form-control" name="website" id="website">
+                            <div class="form-control-feedback" id="invalid_website"></div>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Step 2 -->
+                <h6>PIC</h6>
+                <section>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="nama_pic">Nama PIC</label>
+                                <input type="text" class="form-control" name="nama_pic" id="nama_pic">
+                                <div class="form-control-feedback" id="invalid_nama_pic"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="email_pic">Email PIC</label>
+                                <input type="email" class="form-control" name="email_pic" id="email_pic">
+                                <div class="form-control-feedback" id="invalid_email_pic"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="telepon_pic">Telepon PIC</label>
+                                <input type="number" class="form-control" name="telepon_pic" id="telepon_pic">
+                                <div class="form-control-feedback" id="invalid_telepon_pic"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-          <div class="wizards">
-              <div class="progressbar">
-                  <div class="progress-line" data-now-value="19.66" data-number-of-steps="3" style="width: 19.66%;"></div> <!-- 19.66% -->
-              </div>
-              <div class="form-wizard active">
-                  <div class="wizard-icon"><i class="fa fa-user"></i></div>
-                  <p class="text-center">Data Pribadi</p>
-              </div>
-              <div class="form-wizard">
-                  <div class="wizard-icon"><i class="fa fa-key"></i></div>
-                  <p class="text-center">Informasi</p>
-              </div>
-              <div class="form-wizard">
-                  <div class="wizard-icon"><i class="fa fa-globe"></i></div>
-                  <p class="text-center">Account</p>
-              </div>
-          </div><br>
-
-          <fieldset>
-              <div class="row">
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                      <label class="form-control-label" for="nama_perusahaan">Nama Perusahaan</label>
-                      <input type="text" class="form-control" name="nama_perusahaan" id="nama_perusahaan">
-                  </div>
-                  <div class="form-group">
-                      <label class="form-control-label" for="penanggung_jawab">Penanggung Jawab</label>
-                      <input type="text" class="form-control" name="penanggung_jawab" id="penanggung_jawab">
-                  </div>
-                  <div class="form-group">
-                      <label class="form-control-label" for="alamat_perusahaan">Alamat Perusahaan</label>
-                      <textarea class="form-control" name="alamat_perusahaan" id="alamat_perusahaan" rows="6"></textarea>
-                  </div>
-                  <div class="form-group">
-                      <label class="form-control-label" for="kode_pos">Kode Pos</label>
-                      <input type="number" class="form-control" name="kode_pos" id="kode_pos">
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                      <label class="form-control-label" for="telepon">Telepon</label>
-                      <input type="number" class="form-control" name="telepon" id="telepon">
-                  </div>
-                  <div class="form-group">
-                      <label class="form-control-label" for="telepon">Fax</label>
-                      <input type="number" class="form-control" name="fax" id="fax">
-                  </div>
-                  <div class="form-group">
-                      <label class="form-control-label" for="npwp">NPWP</label>
-                      <input type="number" class="form-control" name="npwp" id="npwp">
-                  </div>
-                  <div class="form-group">
-                      <label class="form-control-label" for="mou">MOU <small><i>.doc / .docx / .pdf</i></small></label>
-                      <input type="file" class="form-control" name="mou" id="mou">
-                  </div>
-                  <div class="form-group">
-                      <label class="form-control-label" for="logo_perusahaan">Logo Perusahaan <small><i>.jpg / .jpeg / .png</i></small></label>
-                      <input type="file" class="form-control" name="logo_perusahaan" id="logo_perusahaan">
-                  </div>
-                  <div class="form-group">
-                      <label class="form-control-label" for="website">Website</label>
-                      <input type="url" class="form-control" name="website" id="website">
-                  </div>
-                </div>
-              </div>
-              <div class="wizard-buttons">
-                  <button type="button" class="btn btn-next">Next</button>
-              </div>
-          </fieldset>
-          <fieldset>
-              <div class="form-group">
-                  <label class="form-control-label" for="nama_pic">Nama PIC</label>
-                  <input type="text" class="form-control" name="nama_pic" id="nama_pic">
-              </div>
-              <div class="form-group">
-                  <label class="form-control-label" for="email_pic">Email PIC</label>
-                  <input type="email" class="form-control" name="email_pic" id="email_pic">
-              </div>
-              <div class="form-group">
-                  <label class="form-control-label" for="telepon_pic">Telepon PIC</label>
-                  <input type="number" class="form-control" name="telepon_pic" id="telepon_pic">
-              </div>
-              <div class="wizard-buttons">
-                  <button type="button" class="btn btn-previous">Previous</button>
-                  <button type="button" class="btn btn-next">Next</button>
-              </div>
-          </fieldset>
-          <fieldset>
-              <div class="form-group">
-                  <label class="form-control-label" for="email_perusahaan">Email Perusahaan</label>
-                  <input type="text" class="form-control" name="email_perusahaan" id="email_perusahaan">
-              </div>
-              <div class="form-group">
-                  <label class="form-control-label" for="username">Username</label>
-                  <input type="text" class="form-control" name="username" id="username">
-              </div>
-              <div class="form-group">
-                  <label class="form-control-label" for="expired_date">Expired Date</label>
-                  <input type="date" class="form-control" name="expired_date" id="expired_date">
-              </div>
-              <div class="wizard-buttons">
-                <button type="button" class="btn btn-previous">Previous</button>
-                <button type="submit" name="save" id="submit_client" class="btn btn-primary btn-submit"><i class="fa fa-check"></i>Simpan</button>
-              </div>
-          </fieldset>
-        </form>
+                <!-- Step 3 -->
+                <h6>Account</h6>
+                <section>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="email_perusahaan">Email Perusahaan</label>
+                                <input type="text" class="form-control" name="email_perusahaan" id="email_perusahaan">
+                                <div class="form-control-feedback" id="invalid_email_perusahaan"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="username">Username</label>
+                                <input type="text" class="form-control" name="username" id="username">
+                                <div class="form-control-feedback" id="invalid_username"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="expired_date">Expired Date</label>
+                                <input type="date" class="form-control" name="expired_date" id="expired_date">
+                                <div class="form-control-feedback" id="invalid_expired_date"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                    
+            </form>
       </div>
     </div>
   </div>
 </div>
 
-<script type="text/javascript">
-  function scroll_to_class(element_class, removed_height) {
-    var scroll_to = $(element_class).offset().top - removed_height;
-    if($(window).scrollTop() != scroll_to) {
-      $('html, body').stop().animate({scrollTop: scroll_to}, 0);
-    }
-  }
+<script>
+    var setupForm = (function(){
+        var ID_CLIENT = location.hash.substr(14);
+        var form = $(".validation-wizard");
 
-  function bar_progress(progress_line_object, direction) {
-    var number_of_steps = progress_line_object.data('number-of-steps');
-    var now_value = progress_line_object.data('now-value');
-    var new_value = 0;
-    if(direction == 'right') {
-      new_value = now_value + ( 100 / number_of_steps );
-    }
-    else if(direction == 'left') {
-      new_value = now_value - ( 100 / number_of_steps );
-    }
-    progress_line_object.attr('style', 'width: ' + new_value + '%;').data('now-value', new_value);
-  }
+        var setupData = function(){
+          $.ajax({
+                url: `<?= base_url('api/client/show/'); ?>${auth.token}?id_client=${ID_CLIENT}`,
+                dataType: 'JSON',
+                type: 'GET',
+                success: function(response){
+                    if(response.status === 200){
+                        if(response.data.length !== 1){
+                            location.hash = '#/add_client';
+                        } else {
+                            $.each(response.data, function(k,v){
+                                $('#nama_perusahaan').val(v.nama_perusahaan);
+                                $('#penanggung_jawab').val(v.penanggung_jawab);
+                                $('#alamat_perusahaan').val(v.alamat_perusahaan);
+                                $('#kode_pos').val(v.kode_pos);
+                                $('#telepon').val(v.telepon);
+                                $('#fax').val(v.fax);
+                                $('#npwp').val(v.npwp);
+                                $('#website').val(v.website);
+                                $('#nama_pic').val(v.nama_pic);
+                                $('#email_pic').val(v.email_pic);
+                                $('#telepon_pic').val(v.telepon_pic);
+                                $('#email_perusahaan').val(v.email_perusahaan);
+                                $('#username').val(v.username);
+                                $('#expired_date').val(v.expired_date);
+                            });
+                        }
+                    } else {
+                        location.hash = '#/add_client';
+                    }
+                    
+                },
+                error: function(){
+                    makeNotif('error', 'Failed', 'Tidak dapat mengakases server', 'bottom-right')
+                }
+            })
+        }
 
-  function load_data(id_client){
-    $.ajax({
-      url: `<?= base_url('api/client/show/'); ?>${auth.token}?id_client=${id_client}`,
-      dataType: 'JSON',
-      type: 'GET',
-      success: function(response){
-        $.each(response.data, function(k,v){
-          $('#nama_perusahaan').val(v.nama_perusahaan);
-          $('#penanggung_jawab').val(v.penanggung_jawab);
-          $('#alamat_perusahaan').val(v.alamat_perusahaan);
-          $('#kode_pos').val(v.kode_pos);
-          $('#telepon').val(v.telepon);
-          $('#fax').val(v.fax);
-          $('#npwp').val(v.npwp);
-          $('#website').val(v.website);
-          $('#nama_pic').val(v.nama_pic);
-          $('#email_pic').val(v.email_pic);
-          $('#telepon_pic').val(v.telepon_pic);
-          $('#email_perusahaan').val(v.email_perusahaan);
-          $('#username').val(v.username);
-          $('#expired_date').val(v.expired_date);
-        });
-      },
-      error: function(){
-        makeNotif('error', 'Failed', 'Tidak dapat mengakases server', 'bottom-right')
-      }
+        var setupValidate = function(){
+            form.validate({
+                rules: {
+                    nama_perusahaan: "required",
+                    penanggung_jawab: "required",
+                    alamat_perusahaan: "required",
+                    kode_pos: "required",
+                    telepon: "required",
+                    fax: "required",
+                    npwp: "required",
+                    website: "required",
+                    nama_pic: "required",
+                    email_pic: "required",
+                    telepon_pic: "required",
+                    email_perusahaan: "required",
+                    username: "required",
+                    expired_date: "required",
+                },
+                messages: {
+                    nama_perusahaan: "Masukkan nama perusahaan",
+                    penanggung_jawab: "Masukkan penanggung jawab",
+                    alamat_perusahaan: "Masukkan alamat perusahaan",
+                    kode_pos: "Masukkan kode pos perusahaan",
+                    telepon: "Masukkan telepon perusahaan",
+                    fax: "Masukkan fax perusahaan",
+                    npwp: "Masukkan npwp perusahaan",
+                    website: "Masukkan website perusahaan",
+                    nama_pic: "Masukkan nama pic perusahaan",
+                    email_pic: "Masukkan email pic perusahaan",
+                    telepon_pic: "Masukkan telepon pic perusahaan",
+                    email_perusahaan: "Masukkan email perusahaan",
+                    username: "Masukkan username perusahaan",
+                    expired_date: "Pilih tanggal expired MOU",
+                },
+                errorClass: 'form-control-danger',
+                validClass: 'form-control-success',
+                success: function(error, element){
+                    $(element).parent('div').removeClass('has-danger');
+                },
+                errorPlacement: function(error, element) {
+                    var name = $(element).attr("id");
+
+                    $(element).parent('div').addClass('has-danger');
+                    $('#invalid_'+name).text(error.text());
+                },
+            });
+        }
+
+        var setupStep = function(){
+            form.steps({
+                headerTag: "h6",
+                bodyTag: "section",
+                transitionEffect: "fade",
+                titleTemplate: '<span class="step">#index#</span> #title#',
+                labels: {
+                    finish: "Simpan"
+                },
+                onStepChanging: function (event, currentIndex, newIndex)
+                {   
+                    if (currentIndex > newIndex)
+                    {
+                        return true;
+                    }
+
+                    form.validate().settings.ignore = ":disabled,:hidden";
+                    return form.valid();
+                },
+                onStepChanged: function (event, currentIndex, priorIndex)
+                {
+                    // Used to skip the "Warning" step if the user is old enough.
+                    if (currentIndex === 2 && Number($("#age-2").val()) >= 18)
+                    {
+                        form.steps("next");
+                    }
+                    // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+                    if (currentIndex === 2 && priorIndex === 3)
+                    {
+                        form.steps("previous");
+                    }
+                },
+                onFinishing: function (event, currentIndex)
+                {
+                    form.validate().settings.ignore = ":disabled";
+                    return form.valid();
+                },
+                onFinished: function (event, currentIndex)
+                {
+                    form.submit();
+                }
+            })
+        }
+
+        var submitForm = function(){
+            $('#form_client').on('submit', function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    url: `<?= base_url('api/client/edit/') ?>${auth.token}?id_client=${ID_CLIENT}`,
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: new FormData(this),
+                    processData:false,
+                    contentType:false,
+                    beforeSend: function(){
+                        $('#submit_client').addClass('disabled').html(`<i class="fa fa-spinner fa-spin"></i>`)
+                    },
+                    success: function(response){
+                        if(response.status === 200){
+                        makeNotif('success', 'Success', response.message, 'bottom-right')
+                        location.hash = '#/client';
+                        } else {
+                        makeNotif('error', 'Failed', response.message, 'bottom-right')
+                        $('#submit_client').removeClass('disabled').html(`<i class="fa fa-check" ></i> Simpan`)
+                        }
+
+                    },
+                    error: function(err){
+                        makeNotif('error', 'Failed', 'Tidak dapat mengakases server', 'bottom-right')
+                        $('#submit_client').removeClass('disabled').html(`<i class="fa fa-check" ></i> Simpan`)
+                    }
+                })
+            });
+        }
+
+        return {
+            init : function(){
+                setupData();
+                setupValidate();
+                setupStep();
+                submitForm();
+            }
+        }
+    })();
+
+    $(document).ready(function(){
+        setupForm.init();
     })
-  }
+    
 
-  $(document).ready(function(){
-    var id_client = location.hash.substr(14);
-    load_data(id_client);
-
-    $('form fieldset:first').fadeIn('slow');
-
-    $('form input[type="text"], input[type="date"], input[type="number"], input[type="url"], input[type="password"],  input[type="email"],  input[type="tel"], form textarea, form select').on('focus', function() {
-      $(this).parent().removeClass('has-danger');
-      $(this).removeClass('form-control-danger');
-    });
-
-    $('form .btn-next').on('click', function() {
-     var parent_fieldset = $(this).parents('fieldset');
-     var next_step = true;
-     var current_active_step = $(this).parents('form').find('.form-wizard.active');
-     var progress_line = $(this).parents('form').find('.progress-line');
-
-     parent_fieldset.find('input[type="text"], input[type="date"], input[type="number"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], textarea, select, input[type="hidden"]').each(function() {
-       if( $(this).val() == "" ) {
-         $(this).parent().addClass('has-danger');
-         $(this).addClass('form-control-danger');
-         next_step = false;
-       }
-       else {
-         $(this).parent().removeClass('has-danger');
-         $(this).removeClass('form-control-danger');
-       }
-     });
-
-     if( next_step ) {
-       parent_fieldset.fadeOut(400, function() {
-         current_active_step.removeClass('active').addClass('activated').next().addClass('active');
-         bar_progress(progress_line, 'right');
-         $(this).next().fadeIn();
-         scroll_to_class( $('form'), 20 );
-       });
-     }
-
-    });
-
-    // previous step
-    $('form .btn-previous').on('click', function() {
-     var current_active_step = $(this).parents('form').find('.form-wizard.active');
-     var progress_line = $(this).parents('form').find('.progress-line');
-
-     $(this).parents('fieldset').fadeOut(400, function() {
-       current_active_step.removeClass('active').prev().removeClass('activated').addClass('active');
-       bar_progress(progress_line, 'left');
-       $(this).prev().fadeIn();
-       scroll_to_class( $('form'), 20 );
-     });
-    });
-
-    $('#edit_client').on('submit', function(e) {
-     e.preventDefault();
-
-     $(this).find('input[type="text"], input[type="date"], input[type="number"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], textarea, select, input[type="hidden"]').each(function() {
-       if( $(this).val() == "" ) {
-         $(this).parent().addClass('has-danger');
-         $(this).addClass('form-control-danger');
-         makeNotif('warning', 'Warning', 'Masih ada field yang belum terisi', 'bottom-right')
-       }
-       else {
-         $(this).parent().removeClass('has-danger');
-         $(this).removeClass('form-control-danger');
-       }
-     });
-
-     $.ajax({
-       url: `<?= base_url('api/client/edit/') ?>${auth.token}?id_client=${id_client}`,
-       type: 'POST',
-       dataType: 'JSON',
-       data: new FormData(this),
-       processData:false,
-       contentType:false,
-       beforeSend: function(){
-         $('#submit_client').addClass('disabled').html(`<i class="fa fa-spinner fa-spin"></i>`)
-       },
-       success: function(response){
-         if(response.status === 200){
-           makeNotif('success', 'Success', response.message, 'bottom-right')
-           location.hash = '#/client';
-         } else {
-           makeNotif('error', 'Failed', response.message, 'bottom-right')
-           $('#submit_client').removeClass('disabled').html(`<i class="fa fa-check" ></i> Simpan`)
-         }
-
-       },
-       error: function(err){
-         makeNotif('error', 'Failed', 'Tidak dapat mengakases server', 'bottom-right')
-         $('#submit_client').removeClass('disabled').html(`<i class="fa fa-check" ></i> Simpan`)
-       }
-
-     })
-    });
-  })
 </script>

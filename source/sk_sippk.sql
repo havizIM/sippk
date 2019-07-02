@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 01, 2019 at 05:22 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 5.6.35
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 02 Jul 2019 pada 08.14
+-- Versi server: 10.1.40-MariaDB
+-- Versi PHP: 7.1.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chat`
+-- Struktur dari tabel `chat`
 --
 
 CREATE TABLE `chat` (
@@ -40,7 +40,7 @@ CREATE TABLE `chat` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `client`
+-- Struktur dari tabel `client`
 --
 
 CREATE TABLE `client` (
@@ -68,7 +68,7 @@ CREATE TABLE `client` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `client`
+-- Dumping data untuk tabel `client`
 --
 
 INSERT INTO `client` (`id_client`, `nama_perusahaan`, `penanggung_jawab`, `alamat_perusahaan`, `kode_pos`, `telepon`, `fax`, `npwp`, `mou`, `logo_perusahaan`, `website`, `nama_pic`, `email_pic`, `telepon_pic`, `email_perusahaan`, `username`, `password`, `expired_date`, `status`, `token`, `tgl_registrasi`) VALUES
@@ -77,7 +77,7 @@ INSERT INTO `client` (`id_client`, `nama_perusahaan`, `penanggung_jawab`, `alama
 -- --------------------------------------------------------
 
 --
--- Table structure for table `instruction`
+-- Struktur dari tabel `instruction`
 --
 
 CREATE TABLE `instruction` (
@@ -101,7 +101,7 @@ CREATE TABLE `instruction` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log`
+-- Struktur dari tabel `log`
 --
 
 CREATE TABLE `log` (
@@ -115,7 +115,7 @@ CREATE TABLE `log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `log`
+-- Dumping data untuk tabel `log`
 --
 
 INSERT INTO `log` (`id_log`, `user`, `id_ref`, `refrensi`, `keterangan`, `kategori`, `tgl_log`) VALUES
@@ -266,13 +266,12 @@ INSERT INTO `log` (`id_log`, `user`, `id_ref`, `refrensi`, `keterangan`, `katego
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedule`
+-- Struktur dari tabel `schedule`
 --
 
 CREATE TABLE `schedule` (
   `id_schedule` varchar(10) NOT NULL,
   `id_client` varchar(8) NOT NULL,
-  `barging` int(3) NOT NULL,
   `plan_date` date NOT NULL,
   `plan_tonage` int(11) NOT NULL,
   `confirmed_date` date NOT NULL,
@@ -280,10 +279,21 @@ CREATE TABLE `schedule` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `schedule`
+--
+
+INSERT INTO `schedule` (`id_schedule`, `id_client`, `plan_date`, `plan_tonage`, `confirmed_date`, `status`, `created_at`) VALUES
+('S-PCMA-131', 'CL-00001', '1992-10-11', 1385031, '0000-00-00', 'Proccess', '2019-07-02 06:13:18'),
+('S-PCMA-172', 'CL-00001', '1992-10-10', 123890, '0000-00-00', 'Proccess', '2019-07-02 06:13:18'),
+('S-PCMA-186', 'CL-00001', '2020-10-10', 123123, '0000-00-00', 'Proccess', '2019-07-01 19:14:35'),
+('S-PCMA-192', 'CL-00001', '2019-10-10', 123123, '0000-00-00', 'Proccess', '2019-07-01 19:15:56'),
+('S-PCMA-235', 'CL-00001', '2019-11-13', 123133, '0000-00-00', 'Proccess', '2019-07-01 19:51:05');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `survey`
+-- Struktur dari tabel `survey`
 --
 
 CREATE TABLE `survey` (
@@ -299,7 +309,7 @@ CREATE TABLE `survey` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -315,7 +325,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `level`, `tgl_registrasi`, `foto`, `status`, `token`) VALUES
@@ -330,13 +340,13 @@ INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `level`, `tg
 --
 
 --
--- Indexes for table `chat`
+-- Indeks untuk tabel `chat`
 --
 ALTER TABLE `chat`
   ADD PRIMARY KEY (`id_chat`);
 
 --
--- Indexes for table `client`
+-- Indeks untuk tabel `client`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`id_client`),
@@ -344,73 +354,73 @@ ALTER TABLE `client`
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `instruction`
+-- Indeks untuk tabel `instruction`
 --
 ALTER TABLE `instruction`
   ADD PRIMARY KEY (`no_si`),
   ADD KEY `id_schedule` (`id_schedule`);
 
 --
--- Indexes for table `log`
+-- Indeks untuk tabel `log`
 --
 ALTER TABLE `log`
   ADD PRIMARY KEY (`id_log`),
   ADD KEY `user` (`user`);
 
 --
--- Indexes for table `schedule`
+-- Indeks untuk tabel `schedule`
 --
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`id_schedule`),
-  ADD UNIQUE KEY `id_client` (`id_client`);
+  ADD KEY `id_client` (`id_client`);
 
 --
--- Indexes for table `survey`
+-- Indeks untuk tabel `survey`
 --
 ALTER TABLE `survey`
   ADD PRIMARY KEY (`id_survey`),
   ADD KEY `no_si` (`no_si`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `log`
+-- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
   MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `instruction`
+-- Ketidakleluasaan untuk tabel `instruction`
 --
 ALTER TABLE `instruction`
   ADD CONSTRAINT `instruction_ibfk_1` FOREIGN KEY (`id_schedule`) REFERENCES `schedule` (`id_schedule`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `log`
+-- Ketidakleluasaan untuk tabel `log`
 --
 ALTER TABLE `log`
   ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `schedule`
+-- Ketidakleluasaan untuk tabel `schedule`
 --
 ALTER TABLE `schedule`
-  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
 
 --
--- Constraints for table `survey`
+-- Ketidakleluasaan untuk tabel `survey`
 --
 ALTER TABLE `survey`
   ADD CONSTRAINT `survey_ibfk_1` FOREIGN KEY (`no_si`) REFERENCES `instruction` (`no_si`) ON UPDATE CASCADE;

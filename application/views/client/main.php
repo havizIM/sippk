@@ -17,7 +17,7 @@
     <link href="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <link href="<?= base_url() ?>assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
    
-    <!-- <link href="<?= base_url() ?>assets/plugins/css-chart/css-chart.css" rel="stylesheet"> -->
+    <link href="<?= base_url() ?>assets/plugins/css-chart/css-chart.css" rel="stylesheet">
     <!--This page css - Morris CSS -->
     <link href="<?= base_url() ?>assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Vector CSS -->
@@ -26,6 +26,10 @@
     <link href="<?= base_url() ?>assets/eksternal/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="<?= base_url() ?>assets/eksternal/css/colors/blue.css" id="theme" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -99,7 +103,22 @@
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
-                
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon --><b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="<?= base_url() ?>assets/logo/logo.png" alt="homepage" class="dark-logo">
+                            <!-- Light Logo icon -->
+                            <img src="<?= base_url() ?>assets/logo/logo.png" alt="homepage" class="light-logo" style="width: 35px; height: 35px;">
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text --><span>
+                         <!-- dark Logo text -->
+                         <img src="<?= base_url() ?>assets/logo/titan-small2.png" alt="homepage" class="dark-logo">
+                         <!-- Light Logo text -->    
+                         <img src="<?= base_url() ?>assets/logo/titan-small2.png" class="light-logo" alt="homepage"></span> </a>
+                </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
                 <!-- ============================================================== -->
@@ -107,143 +126,132 @@
                     <!-- ============================================================== -->
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav m-auto">
-
-                         <b>
-                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                        <img src="<?= base_url() ?>assets/logo/logo.png" alt="homepage" class="light-logo" />
-                        </b>
-
-                        <span class="lg-pos">
-                         <!-- Light Logo text -->    
-                         <img src="<?= base_url() ?>assets/logo/titan-small2.png" class="light-logo" alt="homepage" style="position: relative; top:50%;" /></span> </a>
-
-                    </ul>
-
-                    
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav my-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-settings"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right scale-up">
-                            <ul class="dropdown-user">
-                                <li><a href="javascript:void(0)" id="change_pass"><i class="ti-settings"></i> Account Setting</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li style="cursor:pointer;"><a id="logout_client"><i class="fa fa-power-off"></i> Logout</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url() ?>assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
-                            <div class="dropdown-menu bg-ig scale-up">
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        
+                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-view-grid"></i></a>
+                            <div class="dropdown-menu scale-up-left">
                                 <ul class="mega-dropdown-menu row">
-                                    <li class="col-lg-4 flex-20 m-b-30">
-                                        <h4 class="m-b-20 text-white">ACCOUNT</h4>
+                                    <li class="col-lg-3 col-xlg-2 m-b-30">
+                                        <h4 class="m-b-20">CAROUSEL</h4>
                                         <!-- CAROUSEL -->
                                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                             <div class="carousel-inner" role="listbox">
                                                 <div class="carousel-item active">
-                                                    <div class="container text-center m-b-20"><a target="__blank" id="logo_perusahaan"><img class="d-block img-fluid" id="logo_perusahaan_img" alt="First slide" style="width: 100%;"></a></div>
+                                                    <div class="container"> <img class="d-block img-fluid" src="<?= base_url() ?>assets/images/big/img1.jpg" alt="First slide"></div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="container"><img class="d-block img-fluid" src="<?= base_url() ?>assets/images/big/img2.jpg" alt="Second slide"></div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="container"><img class="d-block img-fluid" src="<?= base_url() ?>assets/images/big/img3.jpg" alt="Third slide"></div>
+                                                </div>
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
+                                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+                                        </div>
+                                        <!-- End CAROUSEL -->
+                                    </li>
+                                    <li class="col-lg-3 m-b-30">
+                                        <h4 class="m-b-20">ACCORDION</h4>
+                                        <!-- Accordian -->
+                                        <div id="accordion" class="nav-accordion" role="tablist" aria-multiselectable="true">
+                                            <div class="card">
+                                                <div class="card-header" role="tab" id="headingOne">
+                                                    <h5 class="mb-0">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                  Collapsible Group Item #1
+                                                </a>
+                                              </h5> </div>
+                                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                                    <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high. </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" role="tab" id="headingTwo">
+                                                    <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                  Collapsible Group Item #2
+                                                </a>
+                                              </h5> </div>
+                                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                    <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" role="tab" id="headingThree">
+                                                    <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                  Collapsible Group Item #3
+                                                </a>
+                                              </h5> </div>
+                                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                                    <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End CAROUSEL -->
-                                        <div class="card-body text-white" style="border: 1px solid rgba(0,0,0,.125); box-shadow: 0 0 27px rgba(0,0,0,.2), 0 2px 9px -2px rgba(0,0,0,.2);"> 
-                                            <small class="text-muted">ID Client </small>
-                                            <h6 id="id_client"></h6> 
-
-                                            <small class="text-muted p-t-10 db">Username</small>
-                                            <h6 id="username"></h6> 
-
-                                            <small class="text-muted p-t-10 db">Regristration Date</small>
-                                            <h6 id="tgl_registrasi"></h6> 
-
-                                            <small class="text-muted p-t-10 db">Expired Date</small>
-                                            <h6 id="expired_date"></h6>
-
-                                            <small class="text-muted p-t-10 db">Status</small>
-                                            <h6 id="status"></h6> 
-                                        </div>
                                     </li>
-                                    <li class="col-lg-4 flex-20 m-b-30">
-                                        <h4 class="m-b-20 text-white">COMPANY</h4>
-                                        <!-- Accordian -->
-                                        <div id="accordion" class="nav-accordion text-white" role="tablist" aria-multiselectable="true">
-                                            
-                                            <div class="card-body" style="border: 1px solid rgba(0,0,0,.125); box-shadow: 0 0 27px rgba(0,0,0,.2), 0 2px 9px -2px rgba(0,0,0,.2);"> 
-                                                <small class="text-muted">Nama Perusahaan </small>
-                                                <h6 id="nama_perusahaan"></h6> 
-
-                                                <small class="text-muted p-t-10 db">Penanggung Jawab</small>
-                                                <h6 id="penanggung_jawab"></h6>
-
-
-                                                <small class="text-muted p-t-10 db">Alamat Perusahaan</small>
-                                                <h6 id="alamat_perusahaan"></h6> 
-
-                                                <small class="text-muted p-t-10 db">NPWP</small>
-                                                <h6 id="npwp"></h6>
-
-                                                <small class="text-muted p-t-10 db">Kode Pos</small>
-                                                <h6 id="kode_pos"></h6> 
-
-                                                <small class="text-muted p-t-10 db">Mou</small>
-                                                <a target="__blank" id="mou"><h6>Download</h6></a>
-
-                                                <small class="text-muted p-t-10 db">Logo Perusahaan</small>
-                                                
-
-                                                <small class="text-muted p-t-10 db">Telepon</small>
-                                                <h6 id="telepon"></h6> 
-
-                                                <small class="text-muted p-t-10 db">Fax</small>
-                                                <h6 id="fax"></h6>
-
-                                                <small class="text-muted p-t-10 db">Email Perusahaan</small>
-                                                <h6 id="email_perusahaan"></h6> 
-
-                                                <small class="text-muted p-t-10 db">Website</small>
-                                                <a target="__blank" id="website"><h6 id="text_website"></h6></a>  
-                                                
+                                    <li class="col-lg-3  m-b-30">
+                                        <h4 class="m-b-20">CONTACT US</h4>
+                                        <!-- Contact -->
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter Name"> </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" placeholder="Enter email"> </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Message"></textarea>
                                             </div>
-                                        </div>
+                                            <button type="submit" class="btn btn-info">Submit</button>
+                                        </form>
                                     </li>
-                                    <li class="col-lg-4 flex-20  m-b-30 text-white">
-                                        <h4 class="m-b-20 text-white">PIC</h4>
-
-                                       <div class="card-body" style="border: 1px solid rgba(0,0,0,.125); box-shadow: 0 0 27px rgba(0,0,0,.2), 0 2px 9px -2px rgba(0,0,0,.2);">
-
-                                                <small class="text-muted p-t-10 db">Nama PIC</small>
-                                                <h6 id="nama_pic"></h6> 
-
-                                                <small class="text-muted p-t-10 db">Email</small>
-                                                <h6 id="email_pic"></h6>
-
-                                                <small class="text-muted p-t-10 db">Telepon</small>
-                                                <h6 id="telepon_pic"></h6>
-                                       </div>
-
+                                    <li class="col-lg-3 col-xlg-4 m-b-30">
+                                        <h4 class="m-b-20">List style</h4>
+                                        <!-- List style -->
+                                        <ul class="list-style-none">
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> You can give link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Give link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Another Give link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Forth link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Another fifth link</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
-                      </li>
-                                <!-- ============================================================== -->
-                        <!-- Comment -->
+                        </li>
                         <!-- ============================================================== -->
-                       
-                        
-                        
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right scale-up">
+                                <ul class="dropdown-user">
+                                    <li>
+                                        <div class="dw-user-box">
+                                            <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-text">
+                                                <h4>Steave Jobs</h4>
+                                                <p class="text-muted">varun@gmail.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a id="change_pass"><i class="ti-settings"></i> Account Setting</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a id="logout_client"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
         </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
+
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
@@ -252,26 +260,10 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">PERSONAL</li>
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                            <a class="has-arrow" href="#/dashboard" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
                         </li>
                         <li>
-                            <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Apps</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="app-calendar.html">Calendar</a></li>
-                                <li>
-                                    <a class="has-arrow" href="#" aria-expanded="false">Inbox</a>
-                                    <ul aria-expanded="false" class="collapse">
-                                        <li><a href="app-email.html">Mailbox</a></li>
-                                        <li><a href="app-email-detail.html">Mailbox Detail</a></li>
-                                        <li><a href="app-compose.html">Compose Mail</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="app-chat.html">Chat app</a></li>
-                                <li><a href="app-ticket.html">Support Ticket</a></li>
-                                <li><a href="app-contact.html">Contact / Employee</a></li>
-                                <li><a href="app-contact2.html">Contact Grid</a></li>
-                                <li><a href="app-contact-detail.html">Contact Detail</a></li>
-                            </ul>
+                            <a class="has-arrow" href="#/schedule" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Schedule </span></a>
                         </li>
                     </ul>
                 </nav>
@@ -290,6 +282,10 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
+
+                <div id="content">
+                    <!-- LOAD ALL CONTENT -->
+                </div>
                 
                 <div class="">
                     <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
@@ -430,18 +426,7 @@
     <script src="<?= base_url() ?>assets/plugins/sparkline/jquery.sparkline.min.js"></script>
     <!--Custom JavaScript -->
     <script src="<?= base_url() ?>assets/eksternal/js/custom.min.js"></script>
-    <!-- ============================================================== -->
-    <!-- This page plugins -->
-    <!-- ============================================================== -->
-    <!-- chartist chart -->
-    <!-- <script src="<?= base_url() ?>assets/plugins/chartist-js/dist/chartist.min.js"></script> -->
-    <!-- <script src="<?= base_url() ?>assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script> -->
-    <!--c3 JavaScript -->
-    <!-- <script src="<?= base_url() ?>assets/plugins/d3/d3.min.js"></script> -->
-    <!-- <script src="<?= base_url() ?>assets/plugins/c3-master/c3.min.js"></script> -->
-    <!-- Vector map JavaScript -->
-    <script src="<?= base_url() ?>assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="<?= base_url() ?>assets/plugins/vectormap/jquery-jvectormap-us-aea-en.js"></script>
+    
     <!-- <script src="<?= base_url() ?>assets/eksternal/js/dashboard2.js"></script> -->
     <!-- ============================================================== -->
     <!-- Style switcher -->
@@ -451,14 +436,19 @@
     <!-- NOTIF -->
     <script src="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="<?= base_url() ?>assets/plugins/toast-master/js/jquery.toast.js"></script>
-</body>
 
-</html>
+    
+    <script src="<?= base_url() ?>assets/plugins/wizard/jquery.validate.min.js"></script>
 
-<script>
-    $(document).ready(function(){
-        function makeNotif(icon, heading, text, position){
-          $.toast({
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
+    <script>
+
+
+    var makeNotif = function(icon, heading, text, position){
+        $.toast({
             heading: heading,
             text: text,
             position: position,
@@ -466,141 +456,189 @@
             icon: icon,
             hideAfter: 3500,
             stack: 1
-          });
+        });
+    }
+
+    var setupMain = (function(){
+
+        var LINK; 
+
+        var loadContent = function(LINK){
+            $.get(`<?= base_url().'main/'?>${LINK}`,function(response){
+
+                $('#content').html(response);
+            });
         }
 
-        //GET VARIABLE\\
-        $.ajax({
-            url: `<?= base_url().'api/auth/profile_client/' ?>${auth.token}`,
-            type: 'GET',
-            dataType: 'JSON',
-            success: function(response){
-                $.each(response.data, function(k, v){
-                    //ACCOUNT\\
-                    $('#telepon').text(v.telepon);
-                    $('#id_client').text(v.id_client);
-                    $('#username').text(v.username);
-                    $('#tgl_registrasi').text(v.tgl_registrasi);
-                    $('#expired_date').text(v.expired_date);
-                    $('#status').text(v.status);
-                    
-                    //COMPANY\\
-                    $('#nama_perusahaan').text(v.nama_perusahaan);
-                    $('#penanggung_jawab').text(v.penanggung_jawab);
-                    $('#npwp').text(v.npwp);
-                    $('#website').attr('href', `${v.website}`);
-                    $('#text_website').text(v.website);
-                    $('#mou').attr('href', `<?= base_url().'doc/mou/' ?>${v.mou}`);
-                    $('#logo_perusahaan_img').attr('src', `<?= base_url().'doc/logo_perusahaan/' ?>${v.logo_perusahaan}`);
-                    $('#logo_perusahaan').attr('href', `<?= base_url().'doc/logo_perusahaan/' ?>${v.logo_perusahaan}`);
-                    $('#alamat_perusahaan').text(v.alamat_perusahaan);
-                    $('#kode_pos').text(v.kode_pos);
-                    $('#telepon').text(v.telepon);
-                    $('#email_perusahaan').text(v.email_perusahaan);
-                    $('#fax').text(v.fax);
-                    
-                    //PIC\\
-                    $('#nama_pic').text(v.nama_pic);
-                    $('#telepon_pic').text(v.telepon_pic);
-                    $('#email_pic').text(v.email_pic);
-                });
-            },
+        var hashLoad = function(LINK){
 
-            error: function(){
-               makeNotif('error', 'Tidak dapat mengakses server', 'bottomRight')
-             },
-        });
-        
-       
-
-        //CHANGE PASSWORD PART\\
-
-        //Modal Change Pass
-        $('#change_pass').on('click', function(){
-            $('#form_pass')[0].reset();
-            $('#modal_pass').modal('show');
-        });
-
-        // Show Password
-        $('.show_pass').click(function(){
-          if($(this).is(':checked')){
-            $('#password_baru').attr('type','text');
-            $('#password_lama').attr('type','text');
-          }else{
-            $('#password_baru').attr('type','password');
-            $('#password_lama').attr('type','password');
-          };
-        });
-
-        //Form Pass Valid Ajax
-        $('#form_pass').on('submit', function(e){
-            e.preventDefault();
-
-            var passwrod_lama = $('#password_lama').val();
-            var password_baru = $('#password_baru').val();
-
-            if(password_lama === '' || password_baru === ''){
-                makeNotif('warning', 'Warning', 'All field is required', 'top-right');
+            if(!location.hash){
+                location.hash = '#/dashboard';
             } else {
-                $.ajax({
-              url: `<?= base_url('api/auth/password_client/') ?>${auth.token}`,
-              type: 'POST',
-              dataType: 'JSON',
-              data: $(this).serialize(),
-              beforeSend: function(){
-                $('#submit_pass').addClass('disabled').html('<i class="fa fa-spinner fa-spin" style="font-size:20px;"></i>')
-              },
-              success: function(response){
-                if(response.status === 200){
-                  makeNotif('success', 'Success', response.message, 'bottom-right')
-                  $('#modal_pass').modal('hide')
-                } else {
-                  makeNotif('error', 'Failed', response.message, 'bottom-right')
-                }
-                $('#submit_pass').removeClass('disabled').html('Save Change');
-              },
-              error: function(){
-                makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
-                $('#submit_pass').removeClass('disabled').html('Save Change')
-              }
-            })
+                LINK = location.hash.substr(2);
+                loadContent(LINK);
             }
-        });
-        //CHANGE PASSWORD PART\\
 
-        $('#logout_client').on('click', function(){
-          swal({
-            title: "Are you sure?",
-            text: "You will need to login again.",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes",
-            cancelButtonText: "No",
-            closeOnConfirm: false,
-            closeOnCancel: true,
-            showLoaderOnConfirm: true
-          }, function(isConfirm){
-              if (isConfirm) {
-                  $.ajax({
-                    url: `<?= base_url('api/auth/logout_client/') ?>${auth.token}`,
-                    type: 'GET',
-                    dataType: 'JSON',
-                    success: function(response){
-                      if(response.status === 200){
-                        localStorage.clear();
-                        window.location.replace(`<?= base_url('auth/ext_login') ?>`);
-                      } else {
-                        makeNotif('error', 'Failed', response.message, 'bottom-right')
-                      }
-                    },
-                    error: function(){
-                      makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
+            $(window).on('hashchange', function(){
+                LINK = location.hash.substr(2);
+                loadContent(LINK);
+            });
+        }
+
+        var getProfile = function(){
+            $.ajax({
+                url: `<?= base_url().'ext/auth/profile_client/' ?>${auth.token}`,
+                type: 'GET',
+                dataType: 'JSON',
+                success: function(response){
+                    $.each(response.data, function(k, v){
+                        //ACCOUNT\\
+                        // $('#telepon').text(v.telepon);
+                        // $('#id_client').text(v.id_client);
+                        // $('#username').text(v.username);
+                        // $('#tgl_registrasi').text(v.tgl_registrasi);
+                        // $('#expired_date').text(v.expired_date);
+                        // $('#status').text(v.status);
+                        
+                        //COMPANY\\
+                        // $('#nama_perusahaan').text(v.nama_perusahaan);
+                        // $('#penanggung_jawab').text(v.penanggung_jawab);
+                        // $('#npwp').text(v.npwp);
+                        // $('#website').attr('href', `${v.website}`);
+                        // $('#text_website').text(v.website);
+                        // $('#mou').attr('href', `<?= base_url().'doc/mou/' ?>${v.mou}`);
+                        // $('#logo_perusahaan_img').attr('src', `<?= base_url().'doc/logo_perusahaan/' ?>${v.logo_perusahaan}`);
+                        // $('#logo_perusahaan').attr('href', `<?= base_url().'doc/logo_perusahaan/' ?>${v.logo_perusahaan}`);
+                        // $('#alamat_perusahaan').text(v.alamat_perusahaan);
+                        // $('#kode_pos').text(v.kode_pos);
+                        // $('#telepon').text(v.telepon);
+                        // $('#email_perusahaan').text(v.email_perusahaan);
+                        // $('#fax').text(v.fax);
+                        
+                        //PIC\\
+                        // $('#nama_pic').text(v.nama_pic);
+                        // $('#telepon_pic').text(v.telepon_pic);
+                        // $('#email_pic').text(v.email_pic);
+                    });
+                },
+
+                error: function(){
+                makeNotif('error', 'Tidak dapat mengakses server', 'bottomRight')
+                },
+            });
+        }
+
+        var triggerModal = function(){
+            $('#change_pass').on('click', function(){
+                $('#form_pass')[0].reset();
+                $('#modal_pass').modal('show');
+            });
+        }
+
+        var showPass = function(){
+            $('.show_pass').click(function(){
+                if($(this).is(':checked')){
+                    $('#password_baru').attr('type','text');
+                    $('#password_lama').attr('type','text');
+                }else{
+                    $('#password_baru').attr('type','password');
+                    $('#password_lama').attr('type','password');
+                };
+            });
+        }
+
+        var submitForm = function(){
+            $('#form_pass').on('submit', function(e){
+                e.preventDefault();
+
+                var passwrod_lama = $('#password_lama').val();
+                var password_baru = $('#password_baru').val();
+
+                if(password_lama === '' || password_baru === ''){
+                    makeNotif('warning', 'Warning', 'All field is required', 'top-right');
+                } else {
+                    $.ajax({
+                url: `<?= base_url('ext/auth/password_client/') ?>${auth.token}`,
+                type: 'POST',
+                dataType: 'JSON',
+                data: $(this).serialize(),
+                beforeSend: function(){
+                    $('#submit_pass').addClass('disabled').html('<i class="fa fa-spinner fa-spin" style="font-size:20px;"></i>')
+                },
+                success: function(response){
+                    if(response.status === 200){
+                    makeNotif('success', 'Success', response.message, 'bottom-right')
+                    $('#modal_pass').modal('hide')
+                    } else {
+                    makeNotif('error', 'Failed', response.message, 'bottom-right')
                     }
-                  })
-              }
-          });
-        });
+                    $('#submit_pass').removeClass('disabled').html('Save Change');
+                },
+                error: function(){
+                    makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
+                    $('#submit_pass').removeClass('disabled').html('Save Change')
+                }
+                })
+                }
+            });
+        }
 
+        var logoutClient = function(){
+            $('#logout_client').on('click', function(){
+                swal({
+                    title: "Are you sure?",
+                    text: "You will need to login again.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    closeOnCancel: true,
+                    showLoaderOnConfirm: true
+                }, function(isConfirm){
+                    if (isConfirm) {
+                        $.ajax({
+                            url: `<?= base_url('ext/auth/logout_client/') ?>${auth.token}`,
+                            type: 'GET',
+                            dataType: 'JSON',
+                            success: function(response){
+                            if(response.status === 200){
+                                localStorage.clear();
+                                window.location.replace(`<?= base_url('auth/ext_login') ?>`);
+                            } else {
+                                makeNotif('error', 'Failed', response.message, 'bottom-right')
+                            }
+                            },
+                            error: function(){
+                            makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
+                            }
+                        })
+                    }
+                });
+            });
+        }
+
+        return {
+            init: function(){
+                hashLoad();
+                getProfile();
+                triggerModal();
+                showPass();
+                submitForm();
+                logoutClient();
+            }
+        }
+        
+    })();
+
+    
+
+    $(document).ready(function(){
+        setupMain.init();
     });
 </script>
+</body>
+
+</html>
+

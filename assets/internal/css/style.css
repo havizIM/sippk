@@ -6508,7 +6508,7 @@ File: scss
   color: #fc4b6c; }
 
 .has-danger .form-control-danger {
-  background-image: url(../../assets/images/icon/danger.svg); }
+  background-image: url(../../images/icon/danger.svg); }
 
 .has-danger .form-control {
   border-color: #fc4b6c; }

@@ -15,7 +15,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<?= base_url() ?>assets/internal/css/style-wizard.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/plugins/wizard/steps.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/internal/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="<?= base_url() ?>assets/internal/css/colors/default-dark.css" id="theme" rel="stylesheet">
@@ -169,6 +169,9 @@
                          <li>
                             <a href="#/client" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Client</span></a>
                         </li>
+                         <li>
+                            <a href="#/schedule" aria-expanded="false"><i class="fa fa-calendar"></i><span class="hide-menu">Schedule</span></a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -260,6 +263,10 @@
     <!-- ============================================================== -->
     <script src="<?= base_url() ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
     <script src="<?= base_url() ?>assets/plugins/chart.js/chart.min.js"></script>
+
+    
+    <script src="<?= base_url() ?>assets/plugins/wizard/jquery.steps.min.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/wizard/jquery.validate.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>

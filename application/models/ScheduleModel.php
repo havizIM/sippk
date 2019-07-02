@@ -6,25 +6,39 @@ class ScheduleModel extends CI_Model {
 
     function show($where, $like)
     {
-      $this->db->select('*')->from('schedule');
+      $this->db->select('b.*, a.id_schedule, a.plan_date, a.plan_tonage, a.confirmed_date, a.status as status_schedule, a.created_at')
+               ->from('schedule a')
+               ->join('client b', 'a.id_client = b.id_client');
 
-      if(count($where) != 0){
-        $this->db->where($where);
+      if(!empty($where)){
+        foreach($where as $key => $value){
+            if($value != null){
+                $this->db->where($key, $value);
+            }
+        }
       }
 
-      if(count($like) != 0){
-        $this->db->like($like);
+      if(!empty($like)){
+        foreach($where as $key => $value){
+            if($value != null){
+                $this->db->like($key, $value);
+            }
+        }
       }
 
-      $this->db->order_by('created_at', 'desc');
+      $this->db->order_by('a.created_at', 'desc');
       return $this->db->get();
     }
 
     function add($data, $log)
     {
       $this->db->trans_start();
-      $this->db->insert('schedule', $data);
-      $this->db->insert('log', $log);
+      $this->db->insert_batch('schedule', $data);
+
+      if(!empty($log)){
+        $this->db->insert('log', $log);
+      }
+
       $this->db->trans_complete();
 
       if ($this->db->trans_status() === FALSE){
@@ -40,7 +54,11 @@ class ScheduleModel extends CI_Model {
     {
       $this->db->trans_start();
       $this->db->where('id_schedule', $param)->update('schedule', $data);
-      $this->db->insert('log', $log);
+
+      if(!empty($log)){
+        $this->db->insert('log', $log);
+      }
+      
       $this->db->trans_complete();
 
       if ($this->db->trans_status() === FALSE){
@@ -56,7 +74,11 @@ class ScheduleModel extends CI_Model {
     {
       $this->db->trans_start();
       $this->db->where('id_schedule', $param)->delete('schedule');
-      $this->db->insert('log', $log);
+      
+      if(!empty($log)){
+        $this->db->insert('log', $log);
+      }
+
       $this->db->trans_complete();
 
       if ($this->db->trans_status() === FALSE){

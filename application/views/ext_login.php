@@ -173,7 +173,7 @@
             makeNotif('warning', 'Warning', 'All field is required', 'bottom-right');
           }else {
             $.ajax({
-              url: '<?= base_url().'api/auth/login_client/' ?>',
+              url: '<?= base_url().'ext/auth/login_client/' ?>',
               type: 'POST',
               dataType: 'JSON',
               data: $('#form_login').serialize(),
@@ -218,7 +218,7 @@
             makeNotif('warning', 'Warning', 'All field is required', 'bottom-right');
           } else {
             $.ajax({
-              url: '<?= base_url().'api/auth/lupa_password/' ?>',
+              url: '<?= base_url().'ext/auth/lupa_password/' ?>',
               type: 'POST',
               dataType: 'JSON',
               data: $('#form_forgot_pass').serialize(),
