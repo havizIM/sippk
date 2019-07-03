@@ -95,7 +95,7 @@ class Schedule extends CI_Controller {
                 $data       = array();
                 foreach($post['plan_date'] as $key => $val){
                   $data[] = array(
-                    'id_schedule'       => 'S-'.$otorisasi->username.'-'.rand(),
+                    'id_schedule'       => 'S-'.rand(),
                     'id_client'         => $otorisasi->id_client,
                     'plan_date'         => $post['plan_date'][$key],
                     'plan_tonage'       => $post['plan_tonage'][$key],
@@ -142,7 +142,7 @@ class Schedule extends CI_Controller {
           $plan_tonage    = $this->input->post('plan_tonage');
 
           if($id_schedule == null){
-            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Tidak ada ID User yang dipilih'));
+            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Tidak ada ID Schedule yang dipilih'));
           } else {
             if($plan_tonage == null || $plan_date == null){
               json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
@@ -164,6 +164,97 @@ class Schedule extends CI_Controller {
                 $this->pusher->trigger('sippk', 'schedule', $log);
                 json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Success edit schedule'));
               }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function confirm($token = null){
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+			json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        $param  = array('token' => $token);
+        $auth   = $this->AuthModel->cekAuthClient($param);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+          $otorisasi = $auth->row();
+
+          $id_schedule    = $this->input->get('id_schedule');
+
+          if($id_schedule == null){
+            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Tidak ada ID Schedule yang dipilih'));
+          } else {
+            $data = array(
+              'status'     => 'Confirmed'
+            );
+
+            $log = array(
+              'description'        => 'Success edit schedule'
+            );
+
+            $edit = $this->ScheduleModel->edit($id_schedule, $data, FALSE);
+
+            if(!$edit){
+              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Failed edit schedule'));
+            } else {
+              $this->pusher->trigger('sippk', 'schedule', $log);
+              json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Success edit schedule'));
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function cancel($token = null){
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+			json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        $param  = array('token' => $token);
+        $auth   = $this->AuthModel->cekAuthClient($param);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+          $otorisasi = $auth->row();
+
+          $id_schedule    = $this->input->get('id_schedule');
+
+          if($id_schedule == null){
+            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Tidak ada ID Schedule yang dipilih'));
+          } else {
+
+            $data = array(
+              'status'     => 'Cancel'
+            );
+
+            $log = array(
+              'description'        => 'Success edit schedule'
+            );
+
+            $edit = $this->ScheduleModel->edit($id_schedule, $data, FALSE);
+
+            if(!$edit){
+              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Failed edit schedule'));
+            } else {
+              $this->pusher->trigger('sippk', 'schedule', $log);
+              json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Success edit schedule'));
             }
           }
         }

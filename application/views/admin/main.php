@@ -17,6 +17,8 @@
     <!-- Custom CSS -->
     <link href="<?= base_url() ?>assets/plugins/wizard/steps.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/internal/css/style.css" rel="stylesheet">
+
+    <link href="<?= base_url() ?>assets/plugins/css-chart/css-chart.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="<?= base_url() ?>assets/internal/css/colors/default-dark.css" id="theme" rel="stylesheet">
     <link href="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
@@ -52,6 +54,10 @@
           margin-right: 0px;
           position: relative;
           right: 30px;
+        }
+
+        .modal-header.stlye {
+            background: #1e88e5;
         }
 
         .topbar .top-navbar .navbar-nav > .nav-item > .nav-link {

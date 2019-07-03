@@ -24,7 +24,7 @@
                     <h6 class="text-muted">Proccess</h6></div>
                 <!-- Column -->
                 <div class="col text-right align-self-center">
-                    <div id="percent_proccess" class="css-bar m-b-0 css-bar-warning"></div>
+                    <div id="percent_proccess" class="css-bar m-b-0 css-bar-warning css-bar-100"></div>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                     <h6 class="text-muted">Confirmed</h6></div>
                 <!-- Column -->
                 <div class="col text-right align-self-center">
-                    <div id="percent_confirmed" class="css-bar m-b-0 css-bar-success"></div>
+                    <div id="percent_confirmed" class="css-bar m-b-0 css-bar-success css-bar-100"></div>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                     <h6 class="text-muted">Complete</h6></div>
                 <!-- Column -->
                 <div class="col text-right ">
-                    <div id="percent_complete" class="css-bar m-b-0 css-bar-info"></div>
+                    <div id="percent_complete" class="css-bar m-b-0 css-bar-info css-bar-100"></div>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                     <h6 class="text-muted">Cancel</h6></div>
                 <!-- Column -->
                 <div class="col text-right align-self-center">
-                    <div id="percent_cancel" class="css-bar m-b-0 css-bar-danger"></div>
+                    <div id="percent_cancel" class="css-bar m-b-0 css-bar-danger css-bar-100"></div>
                 </div>
             </div>
         </div>
@@ -192,10 +192,10 @@
                     $('#count_complete').text(count_complete);
                     $('#count_cancel').text(count_cancel);
 
-                    $('#percent_proccess').attr('data-label', percent_proccess.toFixed()+'%').addClass('css-bar-'+percent_proccess.toFixed());
-                    $('#percent_confirmed').attr('data-label',  percent_confirmed.toFixed()+'%').addClass('css-bar-'+ percent_confirmed.toFixed());
-                    $('#percent_complete').attr('data-label',  percent_complete.toFixed()+'%').addClass('css-bar-'+ percent_complete.toFixed());
-                    $('#percent_cancel').attr('data-label',  percent_cancel.toFixed()+'%').addClass('css-bar-'+ percent_cancel.toFixed());
+                    $('#percent_proccess').attr('data-label', percent_proccess.toFixed()+'%');
+                    $('#percent_confirmed').attr('data-label',  percent_confirmed.toFixed()+'%');
+                    $('#percent_complete').attr('data-label',  percent_complete.toFixed()+'%');
+                    $('#percent_cancel').attr('data-label',  percent_cancel.toFixed()+'%');
 
                     return response.data;
                 }
@@ -226,15 +226,19 @@
                 },
                 {"data": null, 'render': function(data, type, row){
                         if(row.status_schedule === 'Proccess'){
-                            return `<div class="btn-group">
+                            if(row.confirmed_date === '0000-00-00'){
+                                return `<div class="btn-group">
                                         <button data-id="${row.id_schedule}" data-date="${row.plan_date}" data-tonage="${row.plan_tonage}" class="btn btn-sm btn-success edit-schedule">Edit</button>
                                         <button class="btn btn-sm btn-danger delete-schedule" data-id="${row.id_schedule}">Delete</button>
                                     </div>`
-                        } else if(row.status_schedule === 'Confirmed'){
-                            return `<div class="btn-group">
-                                        <button class="btn btn-sm btn-info delete-schedule">Confirm</button>
-                                        <button class="btn btn-sm btn-danger delete-schedule">Cancel</button>
-                                    </div>`
+                            } else {
+                                return `<div class="btn-group">
+                                            <button data-id="${row.id_schedule}" class="btn btn-sm btn-info confirm-schedule">Confirm</button>
+                                            <button data-id="${row.id_schedule}" class="btn btn-sm btn-warning cancel-schedule">Cancel</button>
+                                        </div>`
+                            }
+                        } else {
+                            return '-';
                         }
                     }
                 }
@@ -261,6 +265,84 @@
                     if (isConfirm) {
                         $.ajax({
                             url: `<?= base_url('ext/schedule/delete/') ?>${auth.token}?id_schedule=${id}`,
+                            type: 'GET',
+                            dataType: 'JSON',
+                            success: function(response){
+                                swal.close();
+                                if(response.status === 200){
+                                    makeNotif('success', 'Success', response.message, 'bottom-right')
+                                    TABLE.ajax.reload();
+                                } else {
+                                    makeNotif('error', 'Failed', response.message, 'bottom-right')
+                                }
+                            },
+                            error: function(){
+                                swal.close();
+                                makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
+                            }
+                        })
+                    }
+                });
+            });
+        }
+
+        var confirmSchedule = function(){
+            $('#t_schedule').on('click', '.confirm-schedule', function(){
+                var id = $(this).attr('data-id');
+                swal({
+                    title: "Are you sure?",
+                    text: "This data will confirmed",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    closeOnCancel: true,
+                    showLoaderOnConfirm: true
+                }, function(isConfirm){
+                    if (isConfirm) {
+                        $.ajax({
+                            url: `<?= base_url('ext/schedule/confirm/') ?>${auth.token}?id_schedule=${id}`,
+                            type: 'GET',
+                            dataType: 'JSON',
+                            success: function(response){
+                                swal.close();
+                                if(response.status === 200){
+                                    makeNotif('success', 'Success', response.message, 'bottom-right')
+                                    TABLE.ajax.reload();
+                                } else {
+                                    makeNotif('error', 'Failed', response.message, 'bottom-right')
+                                }
+                            },
+                            error: function(){
+                                swal.close();
+                                makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
+                            }
+                        })
+                    }
+                });
+            });
+        }
+
+        var cancelSchedule = function(){
+            $('#t_schedule').on('click', '.cancel-schedule', function(){
+                var id = $(this).attr('data-id');
+                swal({
+                    title: "Are you sure?",
+                    text: "This data will canceled permanently",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    closeOnCancel: true,
+                    showLoaderOnConfirm: true
+                }, function(isConfirm){
+                    if (isConfirm) {
+                        $.ajax({
+                            url: `<?= base_url('ext/schedule/cancel/') ?>${auth.token}?id_schedule=${id}`,
                             type: 'GET',
                             dataType: 'JSON',
                             success: function(response){
@@ -343,9 +425,11 @@
         return {
             init: function(){
                 TABLE;
-                deleteSchedule();
                 openModal();
                 submitEdit();
+                deleteSchedule();
+                confirmSchedule();
+                cancelSchedule();
             }
         }
     })();

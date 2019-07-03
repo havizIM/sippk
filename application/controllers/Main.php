@@ -28,5 +28,14 @@ class Main extends CI_Controller {
 		$this->load->view('client/add_schedule');
 	}
 
+	public function instruction($id = null)
+	{
+		if($id == null){
+			$this->load->view('client/instruction');
+		} else {
+			$this->load->view('client/detail_instruction');
+		}
+	}
+
     
 }
