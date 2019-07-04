@@ -53,6 +53,7 @@
             ajax: {
                 url: '<?= base_url('ext/instruction/show/'); ?>'+auth.token,
                 dataSrc: function(response){
+                    console.log(response);
                     return response.data;
                 }
             },

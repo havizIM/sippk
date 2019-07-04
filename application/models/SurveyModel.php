@@ -2,14 +2,15 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class InstructionModel extends CI_Model {
+class SurveyModel extends CI_Model {
 
-    function show($where, $like, $not_in)
+    function show($where, $like)
     {
-      $this->db->select('a.*, b.confirmed_date, b.status, c.id_client, c.nama_pic, c.nama_perusahaan, c.alamat_perusahaan, c.kode_pos, c.telepon, c.fax, c.logo_perusahaan')
-               ->from('instruction a')
-               ->join('schedule b', 'a.id_schedule = b.id_schedule')
-               ->join('client c', 'c.id_client = b.id_client');
+      $this->db->select('a.*, b.qty, b.commodity, c.id_schedule, c.plan_date, c.plan_tonage, c.confirmed_date, c.status as status_schedule, c.created_at, d.*')
+               ->from('survey a')
+               ->join('instruction b', 'b.no_si = a.no_si')
+               ->join('schedule c', 'c.id_schedule = b.id_schedule')
+               ->join('client d', 'd.id_client = c.id_client');
 
       if(!empty($where)){
         foreach($where as $key => $value){
@@ -17,10 +18,6 @@ class InstructionModel extends CI_Model {
                 $this->db->where($key, $value);
             }
         }
-      }
-
-      if(!empty($not_in) && $not_in == TRUE){
-        $this->db->where('`no_si` NOT IN (SELECT `no_si` FROM `survey`)', NULL, FALSE);
       }
 
       if(!empty($like)){
@@ -31,14 +28,14 @@ class InstructionModel extends CI_Model {
         }
       }
 
-      $this->db->order_by('a.create_at', 'desc');
+      $this->db->order_by('a.created_at', 'desc');
       return $this->db->get();
     }
 
     function add($data, $log)
     {
       $this->db->trans_start();
-      $this->db->insert('instruction', $data);
+      $this->db->insert('survey', $data);
 
       if(!empty($log)){
         $this->db->insert('log', $log);
@@ -58,7 +55,7 @@ class InstructionModel extends CI_Model {
     function edit($param, $data, $log)
     {
       $this->db->trans_start();
-      $this->db->where('no_si', $param)->update('instruction', $data);
+      $this->db->where('id_survey', $param)->update('survey', $data);
 
       if(!empty($log)){
         $this->db->insert('log', $log);
@@ -78,7 +75,7 @@ class InstructionModel extends CI_Model {
     function delete($param, $log)
     {
       $this->db->trans_start();
-      $this->db->where('no_si', $param)->delete('instruction');
+      $this->db->where('id_survey', $param)->delete('survey');
       
       if(!empty($log)){
         $this->db->insert('log', $log);

@@ -49,7 +49,7 @@ class Schedule extends CI_Controller {
                 'YEAR(a.plan_date)'   => $this->input->get('tahun')
             );
 
-            $show  = $this->ScheduleModel->show($where, FALSE);
+            $show  = $this->ScheduleModel->show($where, FALSE, FALSE);
             $schedule  = array();
 
             foreach($show->result() as $key){

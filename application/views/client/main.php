@@ -265,6 +265,9 @@
                         <li>
                             <a class="has-arrow" href="#/schedule" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Schedule </span></a>
                         </li>
+                        <li>
+                            <a class="has-arrow" href="#/instruction" aria-expanded="false"><i class="fa fa-file"></i><span class="hide-menu">Instruction </span></a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -426,6 +429,7 @@
     <script src="<?= base_url() ?>assets/plugins/sparkline/jquery.sparkline.min.js"></script>
     <!--Custom JavaScript -->
     <script src="<?= base_url() ?>assets/eksternal/js/custom.min.js"></script>
+    <script src="<?= base_url() ?>assets/eksternal/js/jquery.PrintArea.js" type="text/JavaScript"></script>
     
     <!-- <script src="<?= base_url() ?>assets/eksternal/js/dashboard2.js"></script> -->
     <!-- ============================================================== -->
@@ -444,6 +448,8 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+    <script src="<?= base_url() ?>assets/eksternal/js/html2canvas.min.js" type="text/JavaScript"></script>
     <script>
 
 

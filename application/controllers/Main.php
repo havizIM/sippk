@@ -37,5 +37,15 @@ class Main extends CI_Controller {
 		}
 	}
 
+	public function add_instruction()
+	{
+		$this->load->view('client/add_instruction');
+	}
+
+	public function edit_instruction($id)
+	{
+		$this->load->view('client/edit_instruction');
+	}
+
     
 }

@@ -21,7 +21,8 @@ class Instruction extends CI_Controller {
     );
 
 
-	$this->load->model('InstructionModel');
+    $this->load->model('InstructionModel');
+    $this->load->model('ScheduleModel');
   }
 
   function show($token = null){
@@ -47,7 +48,7 @@ class Instruction extends CI_Controller {
                 'c.id_client'   => $otorisasi->id_client
             );
 
-            $show         = $this->InstructionModel->show($where, FALSE);
+            $show         = $this->InstructionModel->show($where, FALSE, FALSE);
             $instruction  = array();
 
             foreach($show->result() as $key){
@@ -55,7 +56,7 @@ class Instruction extends CI_Controller {
 
                 $json['no_si']                  = $key->no_si;
                 $json['schedule']               = array('id_schedule' => $key->id_schedule, 'confirmed_date' => $key->confirmed_date, 'status' => $key->status);
-                $json['client']                 = array('id_client' => $key->id_client, 'nama_perusahaan' => $key->nama_perusahaan, 'alamat_perusahaan' => $key->alamat_perusahaan, 'kode_pos' => $key->kode_pos, 'telepon' => $key->telepon, 'fax' => $key->fax, 'logo_perusahaan' => $key->logo_perusahaan);
+                $json['client']                 = array('id_client' => $key->id_client, 'nama_perusahaan' => $key->nama_perusahaan, 'alamat_perusahaan' => $key->alamat_perusahaan, 'kode_pos' => $key->kode_pos, 'telepon' => $key->telepon, 'fax' => $key->fax, 'logo_perusahaan' => $key->logo_perusahaan, 'nama_pic' => $key->nama_pic);
                 $json['owner_barge']            = $key->owner_barge;
                 $json['owner_barge_address']    = $key->owner_barge_address;
                 $json['consignee']              = $key->consignee;
@@ -78,6 +79,52 @@ class Instruction extends CI_Controller {
     }
   }
 
+  function lookup_schedule($token = null){
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+      json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        $param  = array('token' => $token);
+        $auth   = $this->AuthModel->cekAuthClient($param);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+
+            $otorisasi      = $auth->row();
+            $where          = array(
+                'a.id_schedule'          => $this->input->get('id_schedule'),
+                'a.id_client'            => $otorisasi->id_client,
+                'a.status'              => 'Confirmed'
+            );
+
+            $show  = $this->ScheduleModel->show($where, FALSE, TRUE);
+            $schedule  = array();
+
+            foreach($show->result() as $key){
+                $json = array();
+
+                $json['id_schedule']        = $key->id_schedule;
+                $json['plan_date']          = $key->plan_date;
+                $json['plan_tonage']        = $key->plan_tonage;
+                $json['confirmed_date']     = $key->confirmed_date;
+                $json['status_schedule']    = $key->status_schedule;
+                $json['created_at']         = $key->created_at;
+
+                $schedule[] = $json;
+            }
+
+            json_output(200, array('status' => 200, 'description' => 'Berhasil', 'data' => $schedule));
+        }
+      }
+    }
+  }
+
   function add($token = null){
     $method = $_SERVER['REQUEST_METHOD'];
 
@@ -88,41 +135,62 @@ class Instruction extends CI_Controller {
       if($token == null){
         json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
       } else {
-        $param = array('token' => $token);
-        $auth = $this->AuthModel->cekAuthClient($param);
+        $param  = array('token' => $token);
+        $auth   = $this->AuthModel->cekAuthClient($param);
 
         if($auth->num_rows() != 1){
           json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
         } else {
+          $otorisasi = $auth->row();
 
-            $otorisasi  = $auth->row();
-            $post       = $this->input->post();
+          $head                 = 'SI'.'-'.date('my').'-'.$otorisasi->username.'-';
+          $no_si                = $this->KodeModel->buatKode('instruction', $head, 'no_si', 3);
+          $id_schedule          = $this->input->post('id_schedule');
+          $owner_barge          = $this->input->post('owner_barge');
+          $owner_barge_address  = $this->input->post('owner_barge_address');
+          $consignee            = $this->input->post('consignee');
+          $consignee_address    = $this->input->post('consignee_address');
+          $commodity            = $this->input->post('commodity');
+          $qty                  = $this->input->post('qty');
+          $port_loading         = $this->input->post('port_loading');
+          $port_discharge       = $this->input->post('port_discharge');
+          $doc_required         = $this->input->post('doc_required');
+          $tug_boat             = $this->input->post('tug_boat');
+          $barge_name           = $this->input->post('barge_name');
 
-            if(!isset($post['plan_date']) && count($post['plan_date']) < 1){
-                json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Pilih barang yang akan dipilih'));
-              } else {
-                $data       = array();
-                foreach($post['plan_date'] as $key => $val){
-                  $data[] = array(
-                    'id_schedule'       => 'S-'.rand(),
-                    'id_client'         => $otorisasi->id_client,
-                    'plan_date'         => $post['plan_date'][$key],
-                    'plan_tonage'       => $post['plan_tonage'][$key],
-                    'status'            => 'Proccess'
-                  );
-                }
+          if($id_schedule == null || $owner_barge == null || $owner_barge_address == null || $consignee == null || $consignee_address == null || $commodity == null || $qty == null || $port_loading == null || $port_discharge == null || $doc_required == null || $tug_boat == null || $barge_name == null){
+            json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
+          } else {
 
-                $log = array('description' => 'Client Add Schedule');
+            $data = array(
+                'no_si'               => $no_si,
+                'id_schedule'         => $id_schedule,
+                'owner_barge'         => $owner_barge,
+                'owner_barge_address' => $owner_barge_address,
+                'consignee'           => $consignee,
+                'consignee_address'   => $consignee_address,
+                'commodity'           => $commodity,
+                'qty'                 => $qty,
+                'port_loading'        => $port_loading,
+                'port_discharge'      => $port_discharge,
+                'doc_required'        => $doc_required,
+                'tug_boat'            => $tug_boat,
+                'barge_name'          => $barge_name
+            );
 
-                $add = $this->InstructionModel->add($data, FALSE);
+            $log = array(
+              'description'        => 'Success add instruction'
+            );
 
-                if(!$add){
-                  json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Failed add schedule'));
-                } else {
-                  $this->pusher->trigger('sippk', 'schedule', $log);
-                  json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Success add schedule'));
-                }
-              }
+            $add = $this->InstructionModel->add($data, FALSE);
+
+            if(!$add){
+              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Failed add instruction'));
+            } else {
+              $this->pusher->trigger('sippk', 'instruction', $log);
+              json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Success add instruction'));
+            }
+          }
         }
       }
     }
@@ -146,124 +214,50 @@ class Instruction extends CI_Controller {
         } else {
           $otorisasi = $auth->row();
 
-          $id_schedule    = $this->input->post('id_schedule');
-          $plan_date      = $this->input->post('plan_date');
-          $plan_tonage    = $this->input->post('plan_tonage');
+          $no_si                = $this->input->post('no_si');
+          $id_schedule          = $this->input->post('id_schedule');
+          $owner_barge          = $this->input->post('owner_barge');
+          $owner_barge_address  = $this->input->post('owner_barge_address');
+          $consignee            = $this->input->post('consignee');
+          $consignee_address    = $this->input->post('consignee_address');
+          $commodity            = $this->input->post('commodity');
+          $qty                  = $this->input->post('qty');
+          $port_loading         = $this->input->post('port_loading');
+          $port_discharge       = $this->input->post('port_discharge');
+          $doc_required         = $this->input->post('doc_required');
+          $tug_boat             = $this->input->post('tug_boat');
+          $barge_name           = $this->input->post('barge_name');
 
-          if($id_schedule == null){
-            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Tidak ada ID Schedule yang dipilih'));
-          } else {
-            if($plan_tonage == null || $plan_date == null){
-              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
-            } else {
-              $data = array(
-                'plan_date'     => $plan_date,
-                'plan_tonage'   => $plan_tonage
-              );
-
-              $log = array(
-                'description'        => 'Success edit schedule'
-              );
-
-              $edit = $this->InstructionModel->edit($id_schedule, $data, FALSE);
-
-              if(!$edit){
-                json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Failed edit schedule'));
-              } else {
-                $this->pusher->trigger('sippk', 'schedule', $log);
-                json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Success edit schedule'));
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  function confirm($token = null){
-    $method = $_SERVER['REQUEST_METHOD'];
-
-    if ($method != 'GET') {
-			json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
-		} else {
-
-      if($token == null){
-        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
-      } else {
-        $param  = array('token' => $token);
-        $auth   = $this->AuthModel->cekAuthClient($param);
-
-        if($auth->num_rows() != 1){
-          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
-        } else {
-          $otorisasi = $auth->row();
-
-          $id_schedule    = $this->input->get('id_schedule');
-
-          if($id_schedule == null){
-            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Tidak ada ID Schedule yang dipilih'));
-          } else {
-            $data = array(
-              'status'     => 'Confirmed'
-            );
-
-            $log = array(
-              'description'        => 'Success edit schedule'
-            );
-
-            $edit = $this->InstructionModel->edit($id_schedule, $data, FALSE);
-
-            if(!$edit){
-              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Failed edit schedule'));
-            } else {
-              $this->pusher->trigger('sippk', 'schedule', $log);
-              json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Success edit schedule'));
-            }
-          }
-        }
-      }
-    }
-  }
-
-  function cancel($token = null){
-    $method = $_SERVER['REQUEST_METHOD'];
-
-    if ($method != 'GET') {
-			json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
-		} else {
-
-      if($token == null){
-        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
-      } else {
-        $param  = array('token' => $token);
-        $auth   = $this->AuthModel->cekAuthClient($param);
-
-        if($auth->num_rows() != 1){
-          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
-        } else {
-          $otorisasi = $auth->row();
-
-          $id_schedule    = $this->input->get('id_schedule');
-
-          if($id_schedule == null){
-            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Tidak ada ID Schedule yang dipilih'));
+          if($no_si == null || $id_schedule == null || $owner_barge == null || $owner_barge_address == null || $consignee == null || $consignee_address == null || $commodity == null || $qty == null || $port_loading == null || $port_discharge == null || $doc_required == null || $tug_boat == null || $barge_name == null){
+            json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
           } else {
 
             $data = array(
-              'status'     => 'Cancel'
+                'id_schedule'         => $id_schedule,
+                'owner_barge'         => $owner_barge,
+                'owner_barge_address' => $owner_barge_address,
+                'consignee'           => $consignee,
+                'consignee_address'   => $consignee_address,
+                'commodity'           => $commodity,
+                'qty'                 => $qty,
+                'port_loading'        => $port_loading,
+                'port_discharge'      => $port_discharge,
+                'doc_required'        => $doc_required,
+                'tug_boat'            => $tug_boat,
+                'barge_name'          => $barge_name
             );
 
             $log = array(
-              'description'        => 'Success edit schedule'
+              'description'        => 'Success edit instruction'
             );
 
-            $edit = $this->InstructionModel->edit($id_schedule, $data, FALSE);
+            $edit = $this->InstructionModel->edit($no_si, $data, FALSE);
 
             if(!$edit){
-              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Failed edit schedule'));
+              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Failed edit instruction'));
             } else {
-              $this->pusher->trigger('sippk', 'schedule', $log);
-              json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Success edit schedule'));
+              $this->pusher->trigger('sippk', 'instruction', $log);
+              json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Success edit instruction'));
             }
           }
         }
@@ -288,53 +282,21 @@ class Instruction extends CI_Controller {
         } else {
 
           $otorisasi      = $auth->row();
-          $id_schedule    = $this->input->get('id_schedule');
+          $no_si          = $this->input->get('no_si');
 
-            if($id_schedule == null){
-              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'ID Schedule tidak ditemukan'));
-            } else {
-              $log = array('description' => 'Client Add Schedule');
-
-              $delete = $this->InstructionModel->delete($id_schedule, FALSE);
-
-              if(!$delete){
-                json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menghapus schedule'));
-              } else {
-                $this->pusher->trigger('sippk', 'schedule', $log);
-                json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menghapus schedule'));
-              }
-            }
-        }
-      }
-    }
-  }
-
-  function statistic($token = null)
-  {
-    $method = $_SERVER['REQUEST_METHOD'];
-
-    if ($method != 'GET') {
-      json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
-		} else {
-
-      if($token == null){
-        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
-      } else {
-        $auth = $this->AuthModel->cekAuthClient($token);
-
-        if($auth->num_rows() != 1){
-          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
-        } else {
-
-          $otorisasi = $auth->row();
-
-          if($otorisasi->level != 'Helpdesk'){
-            json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
+          if($no_si == null){
+            json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'No SI tidak ditemukan'));
           } else {
+            $log = array('description' => 'Client Add instruction');
 
-            $statistic  = $this->InstructionModel->statistic()->result();
-            json_output(200, array('status' => 200, 'description' => 'Berhasil', 'data' => $statistic));
+            $delete = $this->InstructionModel->delete($no_si, FALSE);
 
+            if(!$delete){
+              json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menghapus instruction'));
+            } else {
+              $this->pusher->trigger('sippk', 'instruction', $log);
+              json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menghapus instruction'));
+            }
           }
         }
       }

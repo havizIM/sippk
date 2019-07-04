@@ -11,16 +11,16 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="card" id="detail_instruction">
-            
-        </div>
+        <div class="card" id="action_instruction"></div>
+        <div class="card" id="detail_instruction"></div>
     </div>
 </div>
 
 <script>
 
     var DOM = {
-        container: '#detail_instruction'
+        container: '#detail_instruction',
+        action: '#action_instruction'
     };
 
     var renderUI = (function(){
@@ -29,22 +29,22 @@
                 var HTML = '';
 
                 HTML += `
-                    <div class="card-body">
+                    <div class="card-body" id="printArea">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="pull-left text-center" style="width: 25%">
-                                    <img src="<?= base_url('doc/logo_perusahaan/') ?>${data.client.logo_perusahaan}"  style="width: 60%; height: 100%; vertical-align: middle;" />
+                                    <img src="<?= base_url('doc/logo_perusahaan/') ?>${data.client.logo_perusahaan}"  style="width: 50%; vertical-align: middle;" />
                                     <h6 class="m-t-10"><b>No. ${data.no_si}</b></h6>
                                 </div>
                                 <div class="pull-right text-right">
-                                    <h1>${data.client.nama_perusahaan}</h1>
-                                    <h3>${data.client.alamat_perusahaan}</h3>
-                                    <h5>Telp. ${data.client.telepon} Fax. ${data.client.fax}</h5>
+                                    <h3>${data.client.nama_perusahaan}</h3>
+                                    <h6>${data.client.alamat_perusahaan}</h6>
+                                    <h6>Telp. ${data.client.telepon} Fax. ${data.client.fax}</h6>
                                 </div>
                                 
                             </div>
                             <div class="col-md-12">
-                                <hr><br/>
+                                <hr>
                                 <center>
                                     <h5><b>SHIPPING INSTRUCTION</b></h5>
                                 </center>
@@ -63,7 +63,7 @@
                                         <td>
                                             ${data.owner_barge}
                                             <br/>
-                                            ${data.owner_barge_address}
+                                            ${data.owner_barge_address.replace(/(\r\n|\n|\r)/gm, '<br>')}
                                         </td>
                                     </tr>
                                     <tr>
@@ -71,7 +71,7 @@
                                         <td>
                                             ${data.consignee}
                                             <br/>
-                                            ${data.consignee_address}
+                                            ${data.consignee_address.replace(/(\r\n|\n|\r)/gm, '<br>')}
                                         </td>
                                     </tr>
                                     <tr>
@@ -92,7 +92,7 @@
                                     </tr>
                                     <tr>
                                         <td>DOC REQUIRED</td>
-                                        <td>${data.doc_required}</td>
+                                        <td>${data.doc_required.replace(/(\r\n|\n|\r)/gm, '<br>')}</td>
                                     </tr>
                                     <tr>
                                         <td>TUG BOAT</td>
@@ -110,10 +110,10 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="pull-right text-right">
-                                    <h5>Jakarta, 10 Oktober 2019</h5>
-                                    <h5>Mengetahui,</h5>
-                                    <br><br><br><br>
-                                    <h5><b>( Haviz Indra Maulana )</b></h5>
+                                    <p>Jakarta, ${data.create_at}</p>
+                                    <p>Mengetahui,</p>
+                                    <br><br><br>
+                                    <p><b>( ${data.client.nama_pic} )</b></p>
                                 </div>
                             </div>
                         </div>
@@ -124,8 +124,35 @@
 
                 $(DOM.container).html(HTML)
             },
+            
             renderNoData: function(){
 
+            },
+            
+            renderAction: function(data){
+                var HTML = '';
+
+                HTML += `
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6"> `;
+
+                if(data.schedule.status !== 'Complete'){
+                    HTML += `
+                                <a href="#/edit_instruction/${data.no_si}" class="btn btn-md btn-success"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                <button id="delete" data-id="${data.no_si}" class="btn btn-md btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                    `;
+                }
+
+                HTML += `   </div>
+                            <div class="col-md-6 text-right">
+                                <button id="print" class="btn btn-md btn-info"><i class="fa fa-print"></i> Print</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                $(DOM.action).html(HTML)
             }
         }
     })();
@@ -145,6 +172,7 @@
                         } else {
                             $.each(response.data, function(k, v){
                                 UI.renderDetail(v);
+                                UI.renderAction(v);
                             })
                         }
                     } else {
@@ -157,9 +185,62 @@
             }) 
         }
 
+        var actionPrint = function(){
+            $(document).on('click', '#print', function(){
+                var mode = 'iframe'; //popup
+                var close = mode == "popup";
+                var options = {
+                    mode: mode,
+                    popClose: close
+                };
+                $('#printArea').printArea(options);
+            });
+        }
+
+        var actionDelete = function(){
+            $(document).on('click', '#delete', function(){
+                var no_si = $(this).attr('data-id');
+
+                swal({
+                    title: "Apakah anda yakin?",
+                    text: "Data SI ini akan terhapus secara permanen.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Ya",
+                    cancelButtonText: "Tidak",
+                    closeOnConfirm: false,
+                    closeOnCancel: true,
+                    showLoaderOnConfirm: true
+                }, function (isConfirm) {
+                    if(isConfirm){
+                        $.ajax({
+                            url: `<?= base_url('ext/instruction/delete/') ?>${auth.token}?no_si=${no_si}`,
+                            type: 'GET',
+                            dataType: 'JSON',
+                            success: function(response){
+                                if(response.status === 200){
+                                    swal.close();
+                                    makeNotif('success', response.description, response.message, 'bottom-left');
+                                    location.hash = '#/instruction';
+                                } else {
+                                    makeNotif('error', response.description, response.message, 'bottom-left');
+                                }
+                            },
+                            error: function(){
+                                makeNotif('error', 'Error', 'Tidak dapat mengakses server', 'bottom-left');
+                            }
+                        })
+                    }
+                });
+            });
+        }
+
         return {
             init: function(){
                 getData();
+                actionPrint();
+                actionDelete();
             }
         }
     })(renderUI);

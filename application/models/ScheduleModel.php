@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ScheduleModel extends CI_Model {
 
-    function show($where, $like)
+    function show($where, $like, $not_in)
     {
       $this->db->select('b.*, a.id_schedule, a.plan_date, a.plan_tonage, a.confirmed_date, a.status as status_schedule, a.created_at')
                ->from('schedule a')
@@ -16,6 +16,10 @@ class ScheduleModel extends CI_Model {
                 $this->db->where($key, $value);
             }
         }
+      }
+
+      if(!empty($not_in) && $not_in == TRUE){
+        $this->db->where('`id_schedule` NOT IN (SELECT `id_schedule` FROM `instruction`)', NULL, FALSE);
       }
 
       if(!empty($like)){

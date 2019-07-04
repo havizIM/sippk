@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jul 2019 pada 08.14
+-- Waktu pembuatan: 04 Jul 2019 pada 09.04
 -- Versi server: 10.1.40-MariaDB
 -- Versi PHP: 7.1.29
 
@@ -94,9 +94,15 @@ CREATE TABLE `instruction` (
   `doc_required` varchar(200) NOT NULL,
   `tug_boat` varchar(30) NOT NULL,
   `barge_name` varchar(50) NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status_si` enum('Proses','Confirmed','Cancel','') NOT NULL
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `instruction`
+--
+
+INSERT INTO `instruction` (`no_si`, `id_schedule`, `owner_barge`, `owner_barge_address`, `consignee`, `consignee_address`, `commodity`, `qty`, `port_loading`, `port_discharge`, `doc_required`, `tug_boat`, `barge_name`, `create_at`) VALUES
+('SI-0719-PCMA-001', 'S--1759672', 'Yaaayayayaaaaa', 'ascascas', 'asdascas', 'asdasdasdsa', 'adgsfbak', 1624812, 'adgbidangvlda', 'badbvkldank', 'andkfngadknf\r\nadgbiadnbgdafda\r\nadgidahogadn', 'hdainvkadnvk', 'dkanvldanvadva', '2019-07-03 20:42:55');
 
 -- --------------------------------------------------------
 
@@ -261,7 +267,38 @@ INSERT INTO `log` (`id_log`, `user`, `id_ref`, `refrensi`, `keterangan`, `katego
 (140, 'USR00000003', 'CL-00001', 'Client', 'Mengedit data client', 'Edit', '2019-05-01 03:09:05'),
 (141, 'USR00000003', 'CL-00002', 'Client', 'Menghapus data client baru', 'Delete', '2019-05-01 03:09:31'),
 (142, 'USR00000003', 'CL-00001', 'Client', 'Menonaktifkan Client', 'Nonaktif', '2019-05-01 03:16:26'),
-(143, 'USR00000003', 'CL-00001', 'Client', 'Aktivasi Client', 'Aktivasi', '2019-05-01 03:16:55');
+(143, 'USR00000003', 'CL-00001', 'Client', 'Aktivasi Client', 'Aktivasi', '2019-05-01 03:16:55'),
+(144, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-02 06:17:38'),
+(145, 'USR00000003', 'CL-00001', 'Client', 'Menonaktifkan Client', 'Nonaktif', '2019-07-02 06:19:02'),
+(146, 'USR00000003', 'CL-00001', 'Client', 'Aktivasi Client', 'Aktivasi', '2019-07-02 06:19:20'),
+(147, 'USR00000003', 'CL-00001', 'Client', 'Menonaktifkan Client', 'Nonaktif', '2019-07-02 06:19:59'),
+(148, 'USR00000003', 'CL-00001', 'Client', 'Aktivasi Client', 'Aktivasi', '2019-07-02 06:20:44'),
+(149, 'USR00000003', '-', 'Auth', 'User logout', 'Logout', '2019-07-02 08:56:47'),
+(150, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-02 12:17:31'),
+(151, 'USR00000003', 'CL-00001', 'Client', 'Menonaktifkan Client', 'Nonaktif', '2019-07-02 12:18:14'),
+(152, 'USR00000003', 'CL-00001', 'Client', 'Aktivasi Client', 'Aktivasi', '2019-07-02 13:08:27'),
+(153, 'USR00000003', 'S-PCMA-186', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-02 18:33:58'),
+(154, 'USR00000003', 'S-PCMA-192', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-02 18:39:03'),
+(155, 'USR00000003', 'S-PCMA-235', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-02 18:55:00'),
+(156, 'USR00000003', 'S-PCMA-131', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-02 18:55:35'),
+(157, 'USR00000003', 'S-PCMA-172', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-02 18:55:59'),
+(158, 'USR00000003', 'S-PCMA-186', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-02 19:05:42'),
+(159, 'USR00000003', 'S-PCMA-235', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-02 19:05:47'),
+(160, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-03 12:44:43'),
+(161, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-03 21:11:37'),
+(162, 'USR00000003', 'S-PCMA-660', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-03 21:13:22'),
+(163, 'USR00000003', 'S-PCMA-660', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-03 21:13:30'),
+(164, 'USR00000003', 'S--1759672', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-03 21:13:49'),
+(165, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-03 21:27:21'),
+(166, 'USR00000003', 'S-PCMA-660', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-03 21:29:28'),
+(167, 'USR00000003', 'S--1188835', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-03 21:29:31'),
+(168, 'USR00000003', 'S--1759672', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-03 21:29:35'),
+(169, 'USR00000003', 'SRY-0000001', 'Survey', 'Menambah data Survey baru', 'Add', '2019-07-04 06:27:14'),
+(170, 'USR00000003', 'SRY-0000002', 'Survey', 'Menambah data Survey baru', 'Add', '2019-07-04 06:39:42'),
+(171, 'USR00000003', 'SRY-0000001', 'Survey', 'Mengedit data Survey baru', 'Add', '2019-07-04 06:40:26'),
+(172, 'USR00000003', 'SRY-0000001', 'Survey', 'Mengedit data Survey baru', 'Add', '2019-07-04 06:40:36'),
+(173, 'USR00000003', 'SRY-0000001', 'Survey', 'Mengedit data Survey baru', 'Add', '2019-07-04 06:40:45'),
+(174, 'USR00000003', 'SRY-0000001', 'Survey', 'Mengedit data Survey baru', 'Add', '2019-07-04 06:40:58');
 
 -- --------------------------------------------------------
 
@@ -284,11 +321,23 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`id_schedule`, `id_client`, `plan_date`, `plan_tonage`, `confirmed_date`, `status`, `created_at`) VALUES
-('S-PCMA-131', 'CL-00001', '1992-10-11', 1385031, '0000-00-00', 'Proccess', '2019-07-02 06:13:18'),
-('S-PCMA-172', 'CL-00001', '1992-10-10', 123890, '0000-00-00', 'Proccess', '2019-07-02 06:13:18'),
-('S-PCMA-186', 'CL-00001', '2020-10-10', 123123, '0000-00-00', 'Proccess', '2019-07-01 19:14:35'),
-('S-PCMA-192', 'CL-00001', '2019-10-10', 123123, '0000-00-00', 'Proccess', '2019-07-01 19:15:56'),
-('S-PCMA-235', 'CL-00001', '2019-11-13', 123133, '0000-00-00', 'Proccess', '2019-07-01 19:51:05');
+('S--1188835', 'CL-00001', '2019-07-31', 10, '2019-07-19', 'Complete', '2019-07-02 19:11:01'),
+('S--1759672', 'CL-00001', '2019-07-31', 10, '2019-07-31', 'Complete', '2019-07-02 19:10:50'),
+('S--1909041', 'CL-00001', '2019-07-12', 10, '0000-00-00', 'Proccess', '2019-07-02 19:10:50'),
+('S--2080720', 'CL-00001', '2019-07-12', 10, '0000-00-00', 'Proccess', '2019-07-02 19:11:01'),
+('S--5150012', 'CL-00001', '2019-07-30', 10, '0000-00-00', 'Proccess', '2019-07-02 19:11:01'),
+('S--5185945', 'CL-00001', '2019-07-27', 10, '0000-00-00', 'Proccess', '2019-07-02 19:11:01'),
+('S--5980824', 'CL-00001', '2019-07-30', 10, '0000-00-00', 'Proccess', '2019-07-02 19:10:50'),
+('S--6665281', 'CL-00001', '2019-07-27', 10, '0000-00-00', 'Proccess', '2019-07-02 19:10:50'),
+('S-PCMA-131', 'CL-00001', '1992-10-11', 1385031, '2019-08-16', 'Cancel', '2019-07-02 06:13:18'),
+('S-PCMA-132', 'CL-00001', '2019-07-30', 10, '0000-00-00', 'Proccess', '2019-07-02 19:12:08'),
+('S-PCMA-172', 'CL-00001', '1992-10-10', 123890, '2019-08-08', 'Cancel', '2019-07-02 06:13:18'),
+('S-PCMA-183', 'CL-00001', '2019-07-27', 10, '0000-00-00', 'Proccess', '2019-07-02 19:12:08'),
+('S-PCMA-186', 'CL-00001', '2020-10-10', 123123, '2020-10-10', 'Cancel', '2019-07-01 19:14:35'),
+('S-PCMA-192', 'CL-00001', '2019-10-10', 123123, '2019-10-10', 'Cancel', '2019-07-01 19:15:56'),
+('S-PCMA-235', 'CL-00001', '2019-11-13', 123133, '2019-11-13', 'Complete', '2019-07-01 19:51:05'),
+('S-PCMA-660', 'CL-00001', '2019-07-31', 10, '2019-07-31', 'Complete', '2019-07-02 19:12:08'),
+('S-PCMA-807', 'CL-00001', '2019-07-12', 10, '0000-00-00', 'Proccess', '2019-07-02 19:12:08');
 
 -- --------------------------------------------------------
 
@@ -305,6 +354,13 @@ CREATE TABLE `survey` (
   `actual_time` time NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `survey`
+--
+
+INSERT INTO `survey` (`id_survey`, `no_si`, `total_loaded`, `document`, `actual_date`, `actual_time`, `created_at`) VALUES
+('SRY-0000001', 'SI-0719-PCMA-001', 136571, 'SRY-0000001.pdf', '2019-10-11', '21:00:00', '2019-07-04 06:27:14');
 
 -- --------------------------------------------------------
 
@@ -395,7 +451,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

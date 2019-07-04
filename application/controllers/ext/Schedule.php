@@ -47,7 +47,7 @@ class Schedule extends CI_Controller {
                 'a.id_client'   => $otorisasi->id_client
             );
 
-            $show  = $this->ScheduleModel->show($where, FALSE);
+            $show  = $this->ScheduleModel->show($where, FALSE, FALSE);
             $schedule  = array();
 
             foreach($show->result() as $key){

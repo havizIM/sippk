@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e0186ead-01be-42d1-9149-b107454441da",
+		"_postman_id": "66998dc0-c752-4af9-9e0d-4d6ce67f8e58",
 		"name": "SIPPK",
 		"description": "Sistem Informasi Persediaan Barang",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -105,7 +105,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "localhost/sippk/api/auth/logout_user/875a8f2f42c570f",
 					"host": [
@@ -128,7 +127,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "localhost/sippk/api/auth/logout_client/e69b76f88179856c6e84",
 					"host": [
@@ -151,7 +149,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "localhost/sippk/api/auth/profile_client/e69b76f88179856c6e84",
 					"host": [
@@ -259,12 +256,14 @@
 					]
 				},
 				"url": {
-					"raw": "localhost/sippk/api/auth/lupa_password",
+					"raw": "https://sippk.codemaniacid.com/api/auth/lupa_password",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"sippk",
+						"codemaniacid",
+						"com"
 					],
 					"path": [
-						"sippk",
 						"api",
 						"auth",
 						"lupa_password"
@@ -279,7 +278,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "localhost/sippk/api/log/show/2fa535dfeca3f34",
 					"host": [
@@ -302,7 +300,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "localhost/sippk/api/user/show/2fa535dfeca3f34",
 					"host": [
@@ -325,7 +322,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "localhost/sippk/api/client/show/c0e49cd9fa90328",
 					"host": [
@@ -587,10 +583,12 @@
 						},
 						{
 							"key": "mou",
+							"value": null,
 							"type": "file"
 						},
 						{
 							"key": "logo_perusahaan",
+							"value": null,
 							"type": "file"
 						},
 						{
@@ -663,10 +661,6 @@
 						"value": "application/x-www-form-urlencoded"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
-				},
 				"url": {
 					"raw": "localhost/sippk/api/user/delete/875a8f2f42c570f?id_user=USR00000007",
 					"host": [
@@ -700,10 +694,6 @@
 						"value": "application/x-www-form-urlencoded"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
-				},
 				"url": {
 					"raw": "localhost/sippk/api/client/delete/c0e49cd9fa90328?id_client=CL-00002",
 					"host": [
@@ -737,10 +727,6 @@
 						"value": "application/x-www-form-urlencoded"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
-				},
 				"url": {
 					"raw": "localhost/sippk/api/client/aktif/c0e49cd9fa90328?id_client=CL-00001",
 					"host": [
@@ -774,10 +760,6 @@
 						"value": "application/x-www-form-urlencoded"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id_user\": \"USR00000001\"\n}"
-				},
 				"url": {
 					"raw": "localhost/sippk/api/client/nonaktif/c0e49cd9fa90328?id_client=CL-00001",
 					"host": [
@@ -798,6 +780,262 @@
 					]
 				},
 				"description": "Link :\n- localhost/sippk/api/client/nonaktif/--token--\n\nMethod :\n- GET\n\nParams :\n- id_client\n\nHak Akses :\n- Admin\n\nNote :\n- Token bisa didapatkan dari localStorage\n- Params bersifat wajib digunakan. Karena dibutuhkan untuk menentukan data mana yang dieksekusi"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Instruction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sippk/api/instruction/show/c0e49cd9fa90328?",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"instruction",
+						"show",
+						"c0e49cd9fa90328"
+					],
+					"query": [
+						{
+							"key": "no_si",
+							"value": "SI-0719-PCMA-001",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Survey",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sippk/api/survey/show/c0e49cd9fa90328?",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"survey",
+						"show",
+						"c0e49cd9fa90328"
+					],
+					"query": [
+						{
+							"key": "id_survey",
+							"value": "SI-0719-PCMA-001",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Survey - Ext",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sippk/ext/survey/show/c0e49cd9fa90328?",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"ext",
+						"survey",
+						"show",
+						"c0e49cd9fa90328"
+					],
+					"query": [
+						{
+							"key": "id_survey",
+							"value": "SI-0719-PCMA-001",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Survey",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sippk/api/survey/delete/c0e49cd9fa90328?id_survey=SRY-0000002",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"survey",
+						"delete",
+						"c0e49cd9fa90328"
+					],
+					"query": [
+						{
+							"key": "id_survey",
+							"value": "SRY-0000002"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Survey",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "no_si",
+							"value": "SI-0719-PCMA-001",
+							"description": "Lookup Instruction",
+							"type": "text"
+						},
+						{
+							"key": "total_loaded",
+							"value": "13657136",
+							"type": "text"
+						},
+						{
+							"key": "actual_date",
+							"value": "2019-10-10",
+							"type": "text"
+						},
+						{
+							"key": "actual_time",
+							"value": "20:00",
+							"type": "text"
+						},
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/C:/Users/TI/Documents/Admin - SIMANDIK.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sippk/api/survey/add/c0e49cd9fa90328",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"survey",
+						"add",
+						"c0e49cd9fa90328"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Survey",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "no_si",
+							"value": "SI-0719-PCMA-001",
+							"description": "Lookup Instruction",
+							"type": "text"
+						},
+						{
+							"key": "total_loaded",
+							"value": "136571",
+							"type": "text"
+						},
+						{
+							"key": "actual_date",
+							"value": "2019-10-11",
+							"type": "text"
+						},
+						{
+							"key": "actual_time",
+							"value": "21:00",
+							"type": "text"
+						},
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/C:/Users/TI/Documents/Admin - SIMANDIK.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/sippk/api/survey/edit/c0e49cd9fa90328?id_survey=SRY-0000001",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"survey",
+						"edit",
+						"c0e49cd9fa90328"
+					],
+					"query": [
+						{
+							"key": "id_survey",
+							"value": "SRY-0000001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lookup Instruction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/sippk/api/survey/lookup_si/c0e49cd9fa90328",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sippk",
+						"api",
+						"survey",
+						"lookup_si",
+						"c0e49cd9fa90328"
+					]
+				}
 			},
 			"response": []
 		}
