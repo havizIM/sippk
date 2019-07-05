@@ -53,7 +53,7 @@ class Survey extends CI_Controller {
                 $json = array();
 
                 $json['id_survey']              = $key->id_survey;
-                $json['schedule']               = array('id_schedule' => $key->id_schedule, 'confirmed_date' => $key->confirmed_date, 'status' => $key->status_schedule);
+                $json['schedule']               = array('id_schedule' => $key->id_schedule, 'confirmed_date' => $key->confirmed_date,  'status' => $key->status_schedule);
                 $json['client']                 = array('id_client' => $key->id_client, 'nama_perusahaan' => $key->nama_perusahaan, 'alamat_perusahaan' => $key->alamat_perusahaan, 'kode_pos' => $key->kode_pos, 'telepon' => $key->telepon, 'fax' => $key->fax, 'logo_perusahaan' => $key->logo_perusahaan, 'nama_pic' => $key->nama_pic);
                 $json['instruction']            = array('no_si' => $key->no_si, 'commodity' => $key->commodity, 'qty' => $key->qty);
                 $json['total_loaded']           = $key->total_loaded;
