@@ -266,7 +266,10 @@
                             <a class="has-arrow" href="#/schedule" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Schedule </span></a>
                         </li>
                         <li>
-                            <a class="has-arrow" href="#/instruction" aria-expanded="false"><i class="fa fa-file"></i><span class="hide-menu">Instruction </span></a>
+                            <a class="has-arrow" href="#/instruction" aria-expanded="false"><i class="fa fa-file-text"></i><span class="hide-menu">Instruction </span></a>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="#/survey" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Survey </span></a>
                         </li>
                     </ul>
                 </nav>

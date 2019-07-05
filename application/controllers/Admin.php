@@ -37,5 +37,25 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/schedule');
 	}
 
+	public function survey($id = null)
+	{
+		if($id == null){
+			$this->load->view('admin/survey');
+		} else {
+			$this->load->view('admin/detail_survey');
+		}
+	}
+
+	public function instruction($id = null)
+	{
+		if($id == null){
+			$this->load->view('admin/instruction');
+		} else {
+			$this->load->view('admin/detail_instruction');
+		}
+	}
+
+
+
 
 }

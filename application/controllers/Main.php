@@ -47,5 +47,14 @@ class Main extends CI_Controller {
 		$this->load->view('client/edit_instruction');
 	}
 
+	public function survey($id = null)
+	{
+		if($id == null){
+			$this->load->view('client/survey');
+		} else {
+			$this->load->view('client/detail_survey');
+		}
+	}
+
     
 }

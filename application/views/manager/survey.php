@@ -1,14 +1,16 @@
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
-        <h3 class="text-themecolor m-b-0 m-t-0">Client</h3>
+        <h3 class="text-themecolor m-b-0 m-t-0">Survey</h3>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
-            <li class="breadcrumb-item active">Client</li>
+            <li class="breadcrumb-item active">Survey</li>
         </ol>
     </div>
+
     <div class="col-md-7 col-4 align-self-center">
       <div class="d-flex m-t-10 justify-content-end">
-        
+        <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+        </div>
       </div>
     </div>
 </div>
@@ -17,20 +19,20 @@
     <div class="col-12">
         <div class="card card-outline-info">
             <div class="card-header">
-              <h4 class="m-b-0 text-white">Data Client</h4>
+              <h4 class="m-b-0 text-white">Data Survey</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table" id="t_client">
+                  <table class="table" id="t_survey">
                     <thead>
                       <tr>
+                        <th>ID Survey</th>
                         <th>Nama Perusahaan</th>
-                        <th>ID Client</th>
-                        <th>Penanggung Jawab</th>
-                        <th>Email</th>
-                        <th>Expired Date</th>
-                        <th>Status</th>
-                        <th>Tgl Registrasi</th>
+                        <th>No SI</th>
+                        <th>Commodity</th>
+                        <th>Quantity</th>
+                        <th>Total  Loaded</th>
+                       
                       </tr>
                     </thead>
                     <tbody>
@@ -46,7 +48,7 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    var t_client = $('#t_client').DataTable({
+    var t_survey = $('#t_survey').DataTable({
       columnDefs: [{
         targets: [],
         searchable: true
@@ -54,31 +56,24 @@
       autoWidth: true,
       responsive: true,
       processing: true,
-      ajax: '<?= base_url('api/client/show/'); ?>'+auth.token,
+      ajax: '<?= base_url('api/survey/show/'); ?>'+auth.token,
       columns: [
-        {"data": 'nama_perusahaan'},
-        {"data": null, 'render': function(data, type, row){
-            return `<a href="#/client/${row.id_client}">${row.id_client}</a>`
-          }
+       {"data": null, 'render': function(data, type, row){
+                return `<a href="#/survey/${row.id_survey}">${row.id_survey}</a>`;
+            }
         },
-        {"data": 'penanggung_jawab'},
-        {"data": 'email_perusahaan'},
-        {"data": 'expired_date'},
         {"data": null, 'render': function(data, type, row){
-          if(row.status === 'Aktif'){
-            return `<span class="badge badge-pill badge-primary">${row.status}</span>`
-          } else {
-            return `<span class="badge badge-pill badge-danger">${row.status}</span>`;
-          }
-            
-          }
+                return `<a href="#/client/${row.client.id_client}">${row.client.nama_perusahaan}</a>`;
+            }
         },
-        {"data": 'tgl_registrasi'},
+        {"data": 'instruction.no_si'},
+        {"data": 'instruction.commodity'},
+        {"data": 'instruction.qty'},
+        {"data": 'total_loaded'},
+
       ],
       order: [[0, 'desc']]
     });
-
-    
 
   });
 </script>

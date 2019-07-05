@@ -6,6 +6,11 @@
             <li class="breadcrumb-item active">Client</li>
         </ol>
     </div>
+    <div class="col-md-7 col-4 align-self-center">
+      <div class="d-flex m-t-10 justify-content-end">
+        
+      </div>
+    </div>
 </div>
 
 <div class="row">
@@ -19,26 +24,13 @@
                   <table class="table" id="t_client">
                     <thead>
                       <tr>
-                        <th>ID Client</th>
                         <th>Nama Perusahaan</th>
+                        <th>ID Client</th>
                         <th>Penanggung Jawab</th>
-                        <th>Alamat</th>
-                        <th>Kode Pos</th>
-                        <th>Telepon</th>
-                        <th>Fax</th>
                         <th>Email</th>
-                        <th>Username</th>
-                        <th>NPWP</th>
-                        <th>PIC</th>
-                        <th>Email PIC</th>
-                        <th>Telepon PIC</th>
                         <th>Expired Date</th>
                         <th>Status</th>
                         <th>Tgl Registrasi</th>
-                        <th>Logo</th>
-                        <th>MOU</th>
-                        <th>Website</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -64,37 +56,29 @@
       processing: true,
       ajax: '<?= base_url('api/client/show/'); ?>'+auth.token,
       columns: [
-        {"data": 'id_client'},
         {"data": 'nama_perusahaan'},
+        {"data": null, 'render': function(data, type, row){
+            return `<a href="#/client/${row.id_client}">${row.id_client}</a>`
+          }
+        },
         {"data": 'penanggung_jawab'},
-        {"data": 'alamat_perusahaan'},
-        {"data": 'kode_pos'},
-        {"data": 'telepon'},
-        {"data": 'fax'},
         {"data": 'email_perusahaan'},
-        {"data": 'username'},
-        {"data": 'npwp'},
-        {"data": 'nama_pic'},
-        {"data": 'email_pic'},
-        {"data": 'telepon_pic'},
         {"data": 'expired_date'},
-        {"data": 'status'},
+        {"data": null, 'render': function(data, type, row){
+          if(row.status === 'Aktif'){
+            return `<span class="badge badge-pill badge-primary">${row.status}</span>`
+          } else {
+            return `<span class="badge badge-pill badge-danger">${row.status}</span>`;
+          }
+            
+          }
+        },
         {"data": 'tgl_registrasi'},
-        {"data": null, 'render': function(data, type, row){
-            return `<img src="<?= base_url('doc/logo_perusahaan/') ?>${row.logo_perusahaan}" style="width: 150px; height: 100px" />`
-          }
-        },
-        {"data": null, 'render': function(data, type, row){
-            return `<a href="<?= base_url('doc/mou/') ?>${row.mou}" target="__blank">Download</a>`
-          }
-        },
-        {"data": null, 'render': function(data, type, row){
-            return `<a href="${row.website}" target="__blank">${row.website}</a>`
-          }
-        },
       ],
       order: [[0, 'desc']]
     });
+
+    
 
   });
 </script>

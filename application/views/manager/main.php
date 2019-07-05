@@ -15,6 +15,7 @@
     <link href="<?= base_url() ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
      <!-- Custom CSS -->
     <link href="<?= base_url() ?>assets/internal/css/style.css" rel="stylesheet">
+     <link href="<?= base_url() ?>assets/plugins/css-chart/css-chart.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="<?= base_url() ?>assets/internal/css/colors/default-dark.css" id="theme" rel="stylesheet">
     <link href="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
@@ -166,6 +167,15 @@
                         </li> 
                          <li>
                             <a href="#/client" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Client</span></a>
+                        </li>
+                         <li>
+                            <a href="#/schedule" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Schedule</span></a>
+                        </li>
+                         <li>
+                            <a href="#/instruction" aria-expanded="false"><i class="fa fa-file-text"></i><span class="hide-menu">Istruction</span></a>
+                        </li>
+                         <li>
+                            <a href="#/survey" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Survey</span></a>
                         </li>
                     </ul>
                 </nav>

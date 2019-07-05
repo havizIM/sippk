@@ -13,9 +13,36 @@ class Manager extends CI_Controller {
 		$this->load->view('manager/dashboard');
 	}
 
-	public function client()
+	public function client($id = null)
+	{	
+		if($id == null){
+			$this->load->view('manager/client');
+		} else {
+			$this->load->view('manager/detail_client');
+		}
+	}
+
+	public function instruction($id = null)
 	{
-		$this->load->view('manager/client');
+		if($id == null){
+			$this->load->view('manager/instruction');
+		} else {
+			$this->load->view('manager/detail_instruction');
+		}
+	}
+
+	public function survey($id = null)
+	{
+		if($id == null){
+			$this->load->view('manager/survey');
+		} else {
+			$this->load->view('manager/detail_survey');
+		}
+	}
+
+	public function schedule()
+	{	
+		$this->load->view('manager/schedule');
 	}
 
 }

@@ -169,6 +169,12 @@
                          <li>
                             <a href="#/client" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Client</span></a>
                         </li>
+                         <li>
+                            <a href="#/instruction" aria-expanded="false"><i class="fa fa-file-text"></i><span class="hide-menu">Instruction</span></a>
+                        </li>
+                         <li>
+                            <a href="#/survey" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Survey</span></a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -260,6 +266,8 @@
     <!-- ============================================================== -->
     <script src="<?= base_url() ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
     <script src="<?= base_url() ?>assets/plugins/chart.js/chart.min.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/wizard/jquery.validate.min.js"></script>
+    <script src="<?= base_url() ?>assets/eksternal/js/jquery.PrintArea.js" type="text/JavaScript"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
