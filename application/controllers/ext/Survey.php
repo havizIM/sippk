@@ -34,7 +34,8 @@ class Survey extends CI_Controller {
       if($token == null){
         json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
       } else {
-        $auth   = $this->AuthModel->cekAuth($token);
+        $param = array('token' => $token);
+        $auth   = $this->AuthModel->cekAuthClient($param);
 
         if($auth->num_rows() != 1){
           json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
