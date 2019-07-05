@@ -6,7 +6,7 @@ class SurveyModel extends CI_Model {
 
     function show($where, $like)
     {
-      $this->db->select('a.*, b.qty, b.commodity, c.id_schedule, c.plan_date, c.plan_tonage, c.confirmed_date, c.status as status_schedule, c.created_at, d.*')
+      $this->db->select('a.*, b.qty, b.commodity, c.id_schedule, c.plan_date, c.plan_tonage, c.confirmed_date, c.status as status_schedule, c.created_at, d.id_client, d.nama_perusahaan, d.alamat_perusahaan, d.kode_pos, d.telepon, d.fax, d.logo_perusahaan, d.nama_pic')
                ->from('survey a')
                ->join('instruction b', 'b.no_si = a.no_si')
                ->join('schedule c', 'c.id_schedule = b.id_schedule')
