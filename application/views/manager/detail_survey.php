@@ -31,31 +31,31 @@
                     }
 
                     html += `<div class="card card-outline-info">
-                            <div class="card-header">
-                                <h4 class="m-b-0 text-white">Data Perusahaan</h4>
-                            </div>
-                            <div class="card-body">
-                                <center class="m-t-30"> <img src="<?= base_url() ?>doc/logo_perusahaan/${data.client.logo_perusahaan}" width="100%">
-                                    <h4 class="card-title m-t-10">${data.client.nama_perusahaan}</h4>
-                                    <h6 class="card-subtitle"></h6>
-                                </center>
-                            </div>
-                            <div><hr></div>
-                            <div class="card-body">
-                                <small class="text-muted">Alamat </small>
-                                <h6>${data.client.alamat_perusahaan}</h6>
-                                
-                                <small class="text-muted p-t-20 db">Kode Pos</small>
-                                <h6>${data.client.kode_pos}</h6>
+                                <div class="card-header">
+                                    <h4 class="m-b-0 text-white">Data Perusahaan</h4>
+                                </div>
+                                <div class="card-body">
+                                    <center class="m-t-30"> <img src="<?= base_url() ?>doc/logo_perusahaan/${data.client.logo_perusahaan}" width="100%">
+                                        <h4 class="card-title m-t-10">${data.client.nama_perusahaan}</h4>
+                                        <h6 class="card-subtitle"></h6>
+                                    </center>
+                                </div>
+                                <div><hr></div>
+                                <div class="card-body">
+                                    <small class="text-muted">Alamat </small>
+                                    <h6>${data.client.alamat_perusahaan}</h6>
+                                    
+                                    <small class="text-muted p-t-20 db">Kode Pos</small>
+                                    <h6>${data.client.kode_pos}</h6>
 
-                                <small class="text-muted p-t-20 db">Nama PIC</small>
-                                <h6>${data.client.nama_pic}</h6>
-                                
-                                <small class="text-muted p-t-20 db">Telepon</small>
-                                <h6>${data.client.telepon}</h6>
+                                    <small class="text-muted p-t-20 db">Nama PIC</small>
+                                    <h6>${data.client.nama_pic}</h6>
+                                    
+                                    <small class="text-muted p-t-20 db">Telepon</small>
+                                    <h6>${data.client.telepon}</h6>
 
-                                <small class="text-muted p-t-20 db">Fax</small>
-                                <h6>${data.client.fax}</h6>
+                                    <small class="text-muted p-t-20 db">Fax</small>
+                                    <h6>${data.client.fax}</h6>
 
                             </div>
                         </div>
@@ -77,22 +77,64 @@
                                     <small class="text-muted p-t-20 db">Status</small>
                                     <h6><span class="badge badge-pill badge-${data.schedule.status === 'Complete' ? 'success' : 'primary'}">${data.schedule.status}</span></h6>
 
-                                    <small class="text-muted p-t-20 db">Commodity</small>
-                                    <h6>${data.instruction.commodity}</h6>
-                                    
-                                    <small class="text-muted p-t-20 db">Quantity</small>
-                                    <h6>${data.instruction.qty}</h6>
-
-
-                                    <small class="text-muted p-t-20 db">Total Loaded</small>
-                                    <h6>${data.total_loaded}</h6>
-
                                     <small class="text-muted p-t-20 db">Schedule</small>
                                     <h6>${data.actual_date} - ${data.actual_time}</h6> 
 
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="d-flex flex-row">
+                                        <div class="p-10 bg-info">
+                                            <h3 class="text-white box m-b-0"><i class="ti-harddrives"></i></h3></div>
+                                        <div class="align-self-center m-l-20">
+                                            <h3 class="m-b-0 text-info">${data.instruction.commodity}</h3>
+                                            <h5 class="text-muted m-b-0">Commodity</h5></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                             <div class="col-lg-6 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row">
+                                        <div class="round round-lg align-self-center round-info"><i class="ti-server"></i></div>
+                                        <div class="m-l-10 align-self-center">
+                                            <h3 class="m-b-0 font-light">${data.instruction.qty}</h3>
+                                            <h5 class="text-muted m-b-0">Quantity</h5></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row">
+                                            <div class="round round-lg align-self-center round-info"><i class="ti-bar-chart"></i></div>
+                                            <div class="m-l-10 align-self-center">
+                                                <h3 class="m-b-0 font-light">${data.total_loaded}</h3>
+                                                <h5 class="text-muted m-b-0">Total Loaded</h5></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                             <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Daily Sales</h4>
+                                        <div class="text-right"> <span class="text-muted">Todays Income</span>
+                                            <h1 class="font-light"><sup><i class="ti-arrow-up text-success"></i></sup> $120</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                     
+                    </div>
+                    <div class="col-md-12">
                         <div class="card card-outline-info">
                             <div class="card-header">
                                 <h4 class="m-b-0 text-white">Document</h4>
@@ -101,8 +143,7 @@
                                  <embed src="<?= base_url() ?>doc/document/${data.document}" style="width: 100%; height: 500px;">       
                             </div>
                         </div>
-                    </div>
-                `;
+                    </div>`;
 
                 $('#content_profile').html(html);
             },
