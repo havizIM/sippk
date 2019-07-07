@@ -83,7 +83,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="port_loading">Port Loading</label>
-                                    <input type="text" id="port_loading" name="port_loading" class="form-control">
+                                    <input type="text" id="port_loading" name="port_loading" class="form-control" value="SDJ Jetty" readonly>
                                     <div class="form-control-feedback" id="invalid_port_loading"></div>
                                 </div>
                                 <div class="form-group">
