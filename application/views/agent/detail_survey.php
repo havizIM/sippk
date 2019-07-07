@@ -139,9 +139,17 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="card-title">Balance</h4>
-                                            <div class="text-right"> <span class="text-muted">${persentase.toFixed()}%</span>
-                                                <h1 class="font-light"><sup><i class="${selisih > 0 ? 'ti-arrow-up text-success' : 'ti-arrow-down text-danger'}"></i></sup> ${selisih}</h1>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="align-self-center"><i class="wi wi-earthquake" style="font-size:65px;color:#cb48ff;"></i></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="text-right"> <span class="text-muted">${persentase.toFixed()}%</span>
+                                                        <h1 class="font-light"><sup><i class="${selisih > 0 ? 'ti-arrow-up text-success' : 'ti-arrow-down text-danger'}"></i></sup> ${selisih}</h1>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
