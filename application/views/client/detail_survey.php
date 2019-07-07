@@ -91,23 +91,24 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="card">
                                     <div class="d-flex flex-row">
-                                        <div class="p-10 bg-info">
-                                            <h3 class="text-white box m-b-0"><i class="ti-harddrives"></i></h3></div>
+                                        <div class="p-10 bg-info"><h3 class="text-white box m-b-0"><i class="ti-harddrives"></i></h3></div>
                                         <div class="align-self-center m-l-20">
                                             <h3 class="m-b-0 text-info">Commodity</h3>
-                                            <h5 class="text-muted m-b-0">${data.instruction.commodity}</h5></div>
+                                            <h5 class="text-muted m-b-0">${data.instruction.commodity}</h5>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             
                              <div class="col-lg-6 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex flex-row">
-                                        <div class="round round-lg align-self-center round-info"><i class="ti-server"></i></div>
-                                        <div class="m-l-10 align-self-center">
-                                            <h3 class="m-b-0 font-light">${data.instruction.qty}</h3>
-                                            <h5 class="text-muted m-b-0">Quantity</h5></div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row">
+                                            <div class="round round-lg align-self-center round-info"><i class="ti-server"></i></div>
+                                            <div class="m-l-10 align-self-center">
+                                                <h3 class="m-b-0 font-light">${data.instruction.qty}</h3>
+                                                <h5 class="text-muted m-b-0">Quantity</h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -135,7 +136,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                        
