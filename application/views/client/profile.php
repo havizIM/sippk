@@ -17,31 +17,8 @@
                         <h3 class="text-themecolor m-b-0 m-t-0">Profile</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                            <li class="breadcrumb-item active">profile</li>
+                            <li class="breadcrumb-item active">Profile</li>
                         </ol>
-                    </div>
-                    <div class="col-md-7 col-4 align-self-center">
-                        <div class="d-flex m-t-10 justify-content-end">
-                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
-                                <div class="chart-text m-r-10">
-                                    <h6 class="m-b-0"><small>THIS MONTH</small></h6>
-                                    <h4 class="m-t-0 text-info">$58,356</h4></div>
-                                <div class="spark-chart">
-                                    <div id="monthchart"></div>
-                                </div>
-                            </div>
-                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
-                                <div class="chart-text m-r-10">
-                                    <h6 class="m-b-0"><small>LAST MONTH</small></h6>
-                                    <h4 class="m-t-0 text-primary">$48,356</h4></div>
-                                <div class="spark-chart">
-                                    <div id="lastmonthchart"></div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -64,11 +41,14 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-body"> <small class="text-muted">ID Client </small>
-                                <h6 id="id_client"></h6> <small class="text-muted p-t-30 db">Phone</small>
-                                <h6 id="telepon"></h6> <small class="text-muted p-t-30 db">fax</small>
-                                <h6 id="fax"></h6> <small class="text-muted p-t-30 db">Registration Date</small>
-                                <h6 id="tgl_registrasi"></h6><small class="text-muted p-t-30 db">Expired Date</small>
+                            <div class="card-header">
+                                <h4 class="card-title">Account Info</h4>
+                            </div>
+                            <div class="card-body">
+                                <small class="text-muted db">Registration Date</small>
+                                <h6 id="tgl_registrasi"></h6>
+                                
+                                <small class="text-muted p-t-30 db">Expired Date</small>
                                 <h6 id="expired_date"></h6>
                             </div>
                         </div>
@@ -86,9 +66,10 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <!--second tab-->
-                                <div class="tab-pane active" id="profile" role="tabpanel" style="height: 720px;">
+                                <div class="tab-pane active" id="profile" role="tabpanel">
                                     <div class="card-body">
                                        <form class="form-horizontal form-material">
+                                       
                                             <div class="form-group">
                                                 <label class="col-md-12">Penanggung Jawab</label>
                                                 <div class="col-md-12">
@@ -115,6 +96,20 @@
                                                     <input type="text" id="email_perusahaan" class="form-control color form-control-line" readonly>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label for="example-email" class="col-md-12">Telepon</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" id="telepon" class="form-control color form-control-line" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="example-email" class="col-md-12">Fax</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" id="fax" class="form-control color form-control-line" readonly>
+                                                </div>
+                                            </div>
                                           
                                             <div class="form-group">
                                                 <label class="col-md-12">Alamat Perusahaan</label>
@@ -131,15 +126,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <button class="btn btn-success">Update Profile</button>
-                                                </div>
-                                            </div>
                                          
                                         </form>
-                                        <hr>
                                     </div>
                                 </div>
 
@@ -165,15 +153,8 @@
                                                     <input type="text" id="email_pic" class="form-control color form-control-line" readonly>
                                                 </div>
                                             </div>
-
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <button class="btn btn-success">Update Profile</button>
-                                                </div>
-                                            </div>
                                          
                                         </form>
-                                        <hr>
                                     </div>
                                     </div>
 
@@ -219,12 +200,11 @@
                     $.each(response.data, function(k, v){
                         // ACCOUNT\\
                         $('#nama_perusahaan').text(v.nama_perusahaan);
-                        $('#telepon').text(v.telepon);
-                        $('#id_client').text(v.id_client);
+                        $('#telepon').val(v.telepon);
                         $('#username').text(v.username);
                         $('#tgl_registrasi').text(v.tgl_registrasi);
                         $('#expired_date').text(v.expired_date);
-                        $('#status').text(v.status);
+                        $('#status').text(`${v.id_client} - ${v.status}`);
                         
                         // COMPANY\\
                         $('#penanggung_jawab').val(v.penanggung_jawab);
@@ -238,7 +218,7 @@
                         $('#alamat_perusahaan').val(v.alamat_perusahaan);
                         $('#kode_pos').val(v.kode_pos);
                         // $('#telepon').val(v.telepon);
-                        $('#fax').text(v.fax);
+                        $('#fax').val(v.fax);
                         
                         // PIC\\
                         $('#nama_pic').val(v.nama_pic);

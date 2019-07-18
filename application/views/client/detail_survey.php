@@ -79,11 +79,12 @@
                                     <small class="text-muted p-t-20 db">Confirmed Date</small>
                                     <h6>${data.schedule.confirmed_date}</h6>
 
+                                    <small class="text-muted p-t-20 db">Actual Date</small>
+                                    <h6>${data.actual_date} - ${data.actual_time}</h6> 
+
                                     <small class="text-muted p-t-20 db">Status</small>
                                     <h6><span class="badge badge-pill badge-${data.schedule.status === 'Complete' ? 'success' : 'primary'}">${data.schedule.status}</span></h6>
 
-                                    <small class="text-muted p-t-20 db">Schedule</small>
-                                    <h6>${data.actual_date} - ${data.actual_time}</h6> 
 
                             </div>
                         </div>
