@@ -248,7 +248,7 @@ class Schedule extends CI_Controller {
           } else {
 
             $data = array(
-              'status'     => 'Cancel'
+              'status'     => 'Cancel by Admin'
             );
 
             $log = array(

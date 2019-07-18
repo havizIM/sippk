@@ -131,7 +131,7 @@
                 $('#content_profile').html(html);
             },
             renderNoData: function(){
-                console.log('No Data');
+                $('#content_profile').html(`<h1>Data tidak ditemukan</h1>`);
             }
         }
 

@@ -232,7 +232,7 @@
                             count_complete++;
                         }
 
-                        if(v.status_schedule === 'Cancel'){
+                        if(v.status_schedule === 'Cancel by Admin' || v.status_schedule === 'Cancel by Client'){
                             count_cancel++;
                         }
                     });
