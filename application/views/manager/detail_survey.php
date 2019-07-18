@@ -24,6 +24,10 @@
             renderProfile: function(data){
                 var html = '';
 
+                var selisih = data.total_loaded - data.instruction.qty;
+
+                var persentase = (selisih / data.total_loaded) * 100;
+
                 html += `<div class="col-md-6"> `;
 
                     if(data.schedule.status !== 'Complete'){
@@ -83,54 +87,54 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="card">
-                                    <div class="d-flex flex-row">
-                                        <div class="p-10 bg-info">
-                                            <h3 class="text-white box m-b-0"><i class="ti-harddrives"></i></h3></div>
-                                        <div class="align-self-center m-l-20">
-                                            <h3 class="m-b-0 text-info">${data.instruction.commodity}</h3>
-                                            <h5 class="text-muted m-b-0">Commodity</h5></div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                             <div class="col-lg-6 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex flex-row">
-                                        <div class="round round-lg align-self-center round-info"><i class="ti-server"></i></div>
-                                        <div class="m-l-10 align-self-center">
-                                            <h3 class="m-b-0 font-light">${data.instruction.qty}</h3>
-                                            <h5 class="text-muted m-b-0">Quantity</h5></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="card">
                                         <div class="d-flex flex-row">
-                                            <div class="round round-lg align-self-center round-info"><i class="ti-bar-chart"></i></div>
-                                            <div class="m-l-10 align-self-center">
-                                                <h3 class="m-b-0 font-light">${data.total_loaded}</h3>
-                                                <h5 class="text-muted m-b-0">Total Loaded</h5></div>
+                                            <div class="p-10 bg-info"><h3 class="text-white box m-b-0"><i class="ti-harddrives"></i></h3></div>
+                                            <div class="align-self-center m-l-20">
+                                                <h3 class="m-b-0 text-info">Commodity</h3>
+                                                <h5 class="text-muted m-b-0">${data.instruction.commodity}</h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                             <div class="col-lg-12 col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Daily Sales</h4>
-                                        <div class="text-right"> <span class="text-muted">Todays Income</span>
-                                            <h1 class="font-light"><sup><i class="ti-arrow-up text-success"></i></sup> $120</h1>
+                                
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-row">
+                                                <div class="round round-lg align-self-center round-info"><i class="ti-server"></i></div>
+                                                <div class="m-l-10 align-self-center">
+                                                    <h3 class="m-b-0 font-light">${data.instruction.qty}</h3>
+                                                    <h5 class="text-muted m-b-0">Quantity</h5>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-row">
+                                                <div class="round round-lg align-self-center round-info"><i class="ti-bar-chart"></i></div>
+                                                <div class="m-l-10 align-self-center">
+                                                    <h3 class="m-b-0 font-light">${data.total_loaded}</h3>
+                                                    <h5 class="text-muted m-b-0">Total Loaded</h5></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Balance</h4>
+                                            <div class="text-right"> <span class="text-muted">${persentase.toFixed()}%</span>
+                                                <h1 class="font-light"><sup><i class="${selisih > 0 ? 'ti-arrow-up text-success' : 'ti-arrow-down text-danger'}"></i></sup> ${selisih}</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                      
                     </div>

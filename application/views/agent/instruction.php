@@ -5,11 +5,6 @@
             <li class="breadcrumb-item active">Instruction</li>
         </ol>
     </div>
-    <div class="col-md-7 col-4 align-self-center">
-        <div class="d-flex m-t-10 justify-content-end">
-            <a href="#/add_instruction" class="btn btn-info btn-md"><i class="fa fa-plus"></i> Add Instruction</a>
-        </div>
-    </div>
 </div>
 
 <div class="row">
