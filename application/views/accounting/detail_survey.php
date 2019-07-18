@@ -7,9 +7,6 @@
             <li class="breadcrumb-item active">Detail Survey</li>
         </ol>
     </div>
-    <div class="col-md-7 col-4 align-self-center">
-
-    </div>
 </div>
 
 <div class="row" id="content_profile">
