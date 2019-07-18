@@ -177,7 +177,7 @@
                             count_complete++;
                         }
 
-                        if(v.status_schedule === 'Cancel'){
+                        if(v.status_schedule === 'Cancel by Admin' || v.status_schedule === 'Cancel by Client'){
                             count_cancel++;
                         }
                     });
@@ -212,7 +212,7 @@
                         } else if(row.status_schedule === 'Complete'){
                             return `<div class="label label-table label-success">${row.status_schedule}</div>`
                         } else {
-                           return `<div class="label label-table label-danger">${row.status_schedule}</div>`
+                           return `<div class="label label-table label-danger">Cancel</div>`
                         } 
                     }
                 },
@@ -237,7 +237,9 @@
                                             <button data-id="${row.id_schedule}" class="btn btn-sm btn-warning cancel-schedule">Cancel</button>
                                         </div>`
                             }
-                        } else {
+                        } else if(row.status_schedule === 'Cancel by Admin' || row.status_schedule === 'Cancel by Client'){
+                            return row.status_schedule
+                        }  else {
                             return '-';
                         }
                     }

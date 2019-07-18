@@ -271,7 +271,7 @@
                         } else if(row.status_schedule === 'Complete'){
                             return `<div class="label label-table label-success">${row.status_schedule}</div>`
                         } else {
-                           return `<div class="label label-table label-danger">${row.status_schedule}</div>`
+                           return `<div class="label label-table label-danger">Cancel</div>`
                         } 
                     }
                 },
@@ -292,9 +292,10 @@
                             
                         } else if(row.status_schedule === 'Confirmed'){
                             return `<div class="btn-group">
-                                        <button data-id="${row.id_schedule}" class="btn btn-sm btn-info complete-schedule">Complete</button>
                                         <button data-id="${row.id_schedule}" class="btn btn-sm btn-danger cancel-schedule">Cancel</button>
                                     </div>`
+                        } else if(row.status_schedule === 'Cancel by Admin' || row.status_schedule === 'Cancel by Client'){
+                            return row.status_schedule
                         } else {
                             return '-';
                         }
@@ -407,46 +408,7 @@
                 }
             })
         }
-
-        var completeSchedule = function(){
-            $('#t_schedule').on('click', '.complete-schedule', function(){
-                var id = $(this).attr('data-id');
-                swal({
-                    title: "Are you sure?",
-                    text: "This data will confirmed",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes",
-                    cancelButtonText: "No",
-                    closeOnConfirm: false,
-                    closeOnCancel: true,
-                    showLoaderOnConfirm: true
-                }, function(isConfirm){
-                    if (isConfirm) {
-                        $.ajax({
-                            url: `<?= base_url('api/schedule/complete/') ?>${auth.token}?id_schedule=${id}`,
-                            type: 'GET',
-                            dataType: 'JSON',
-                            success: function(response){
-                                swal.close();
-                                if(response.status === 200){
-                                    makeNotif('success', 'Success', response.message, 'bottom-right')
-                                    TABLE.ajax.reload();
-                                } else {
-                                    makeNotif('error', 'Failed', response.message, 'bottom-right')
-                                }
-                            },
-                            error: function(){
-                                swal.close();
-                                makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
-                            }
-                        })
-                    }
-                });
-            });
-        }
-
+        
         var cancelSchedule = function(){
             $('#t_schedule').on('click', '.cancel-schedule', function(){
                 var id = $(this).attr('data-id');

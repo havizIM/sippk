@@ -171,9 +171,6 @@
                             <a href="#/client" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Client</span></a>
                         </li>
                          <li>
-                            <a href="#/schedule" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Schedule</span></a>
-                        </li>
-                         <li>
                             <a href="#/instruction" aria-expanded="false"><i class="fa fa-file-text"></i><span class="hide-menu">Instruction</span></a>
                         </li>
                          <li>

@@ -30,10 +30,6 @@
 
                 html += `<div class="col-md-6"> `;
 
-                    if(data.schedule.status !== 'Complete'){
-                    html += ``
-                    }
-
                     html += `<div class="card card-outline-info">
                                 <div class="card-header">
                                     <h4 class="m-b-0 text-white">Data Perusahaan</h4>
@@ -73,16 +69,17 @@
                             <div class="card-body">
 
                                     <small class="text-muted">Nomor SI</small>
-                                    <h6>${data.instruction.no_si}</h6>
+                                    <h6><a href="#/instruction/${data.instruction.no_si}">${data.instruction.no_si}</a></h6>
                                     
                                     <small class="text-muted p-t-20 db">Confirmed Date</small>
                                     <h6>${data.schedule.confirmed_date}</h6>
 
+                                    <small class="text-muted p-t-20 db">Actual Date</small>
+                                    <h6>${data.actual_date} - ${data.actual_time}</h6>
+
                                     <small class="text-muted p-t-20 db">Status</small>
                                     <h6><span class="badge badge-pill badge-${data.schedule.status === 'Complete' ? 'success' : 'primary'}">${data.schedule.status}</span></h6>
 
-                                    <small class="text-muted p-t-20 db">Schedule</small>
-                                    <h6>${data.actual_date} - ${data.actual_time}</h6> 
 
                             </div>
                         </div>

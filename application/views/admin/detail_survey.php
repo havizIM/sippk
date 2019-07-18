@@ -31,7 +31,16 @@
                 html += `<div class="col-md-6"> `;
 
                     if(data.schedule.status !== 'Complete'){
-                    html += ``
+                    html += `
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row text-center justify-content-md-center">
+                                        <div class="btn-group text-center" role="group">
+                                            <button type="button" class="btn btn-md btn-success complete-schedule" id="complete" data-id="${data.schedule.id_schedule}"><i class="fa fa-check"></i> Complete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
                     }
 
                     html += `<div class="card card-outline-info">
@@ -64,8 +73,8 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-md-6">
-
                         <div class="card card-outline-info">
                             <div class="card-header">
                                 <h4 class="m-b-0 text-white">Instruction</h4>
@@ -73,16 +82,17 @@
                             <div class="card-body">
 
                                     <small class="text-muted">Nomor SI</small>
-                                    <h6>${data.instruction.no_si}</h6>
+                                    <h6><a href="#/instruction/${data.instruction.no_si}">${data.instruction.no_si}</a></h6>
                                     
                                     <small class="text-muted p-t-20 db">Confirmed Date</small>
                                     <h6>${data.schedule.confirmed_date}</h6>
 
+                                    <small class="text-muted p-t-20 db">Actual Date</small>
+                                    <h6>${data.actual_date} - ${data.actual_time}</h6> 
+                                    
                                     <small class="text-muted p-t-20 db">Status</small>
                                     <h6><span class="badge badge-pill badge-${data.schedule.status === 'Complete' ? 'success' : 'primary'}">${data.schedule.status}</span></h6>
 
-                                    <small class="text-muted p-t-20 db">Schedule</small>
-                                    <h6>${data.actual_date} - ${data.actual_time}</h6> 
 
                             </div>
                         </div>
@@ -186,6 +196,45 @@
             }) 
         }
 
+        var completeSchedule = function(){
+            $(document).on('click', '.complete-schedule', function(){
+                var id = $(this).attr('data-id');
+                swal({
+                    title: "Are you sure?",
+                    text: "This data will confirmed",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    closeOnCancel: true,
+                    showLoaderOnConfirm: true
+                }, function(isConfirm){
+                    if (isConfirm) {
+                        $.ajax({
+                            url: `<?= base_url('api/schedule/complete/') ?>${auth.token}?id_schedule=${id}`,
+                            type: 'GET',
+                            dataType: 'JSON',
+                            success: function(response){
+                                swal.close();
+                                if(response.status === 200){
+                                    makeNotif('success', 'Success', response.message, 'bottom-right')
+                                    TABLE.ajax.reload();
+                                } else {
+                                    makeNotif('error', 'Failed', response.message, 'bottom-right')
+                                }
+                            },
+                            error: function(){
+                                swal.close();
+                                makeNotif('error', 'Failed', 'Cannot access server', 'bottom-right')
+                            }
+                        })
+                    }
+                });
+            });
+        }
+
         var deleteSurvey = function(){
             $(document).on('click', '#delete_survey', function(){
                 var id_survey = $(this).attr('data-id');
@@ -230,6 +279,7 @@
             init : function(){
                 dataProfile();
                 deleteSurvey();
+                completeSchedule();
             }
         }
 
