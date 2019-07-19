@@ -51,6 +51,7 @@ class Auth extends CI_Controller {
               'id_client'       => $key->id_client,
               'username'        => $key->username,
               'nama_perusahaan' => $key->nama_perusahaan,
+              'logo_perusahaan' => $key->logo_perusahaan,
               'token'           => $key->token
             );
           }
