@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jul 2019 pada 09.04
+-- Waktu pembuatan: 19 Jul 2019 pada 17.12
 -- Versi server: 10.1.40-MariaDB
 -- Versi PHP: 7.1.29
 
@@ -94,6 +94,7 @@ CREATE TABLE `instruction` (
   `doc_required` varchar(200) NOT NULL,
   `tug_boat` varchar(30) NOT NULL,
   `barge_name` varchar(50) NOT NULL,
+  `signature` text NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -101,8 +102,10 @@ CREATE TABLE `instruction` (
 -- Dumping data untuk tabel `instruction`
 --
 
-INSERT INTO `instruction` (`no_si`, `id_schedule`, `owner_barge`, `owner_barge_address`, `consignee`, `consignee_address`, `commodity`, `qty`, `port_loading`, `port_discharge`, `doc_required`, `tug_boat`, `barge_name`, `create_at`) VALUES
-('SI-0719-PCMA-001', 'S--1759672', 'Yaaayayayaaaaa', 'ascascas', 'asdascas', 'asdasdasdsa', 'adgsfbak', 1624812, 'adgbidangvlda', 'badbvkldank', 'andkfngadknf\r\nadgbiadnbgdafda\r\nadgidahogadn', 'hdainvkadnvk', 'dkanvldanvadva', '2019-07-03 20:42:55');
+INSERT INTO `instruction` (`no_si`, `id_schedule`, `owner_barge`, `owner_barge_address`, `consignee`, `consignee_address`, `commodity`, `qty`, `port_loading`, `port_discharge`, `doc_required`, `tug_boat`, `barge_name`, `signature`, `create_at`) VALUES
+('SI-0719-PCMA-001', 'S--1759672', 'Yaaayayayaaaaa', 'ascascas', 'asdascas', 'asdasdasdsa', 'adgsfbak', 1624812, 'adgbidangvlda', 'badbvkldank', 'andkfngadknf\r\nadgbiadnbgdafda\r\nadgidahogadn', 'hdainvkadnvk', 'dkanvldanvadva', '', '2019-07-03 20:42:55'),
+('SI-0719-PCMA-002', 'S-14409129', 'PT Maju Mundur Indonesi', 'Jl. Coba coba', 'PT. Penerima Indonesia', 'Jl. Penerima ajah', 'Coal Mateng', 999, 'SDJ Jetty', 'Tanjung Priuk', '- SKCK\r\n- KTP\r\n- NPWP', 'A2012912', 'Coba Ahhh', '', '2019-07-07 04:25:13'),
+('SI-0719-PCMA-003', 'S-18047005', '123', '123', '123123', '123', '123', 123, 'SDJ Jetty', '123', '123', '123', '123', 'SI-0719-PCMA-003.png', '2019-07-19 11:34:42');
 
 -- --------------------------------------------------------
 
@@ -298,7 +301,50 @@ INSERT INTO `log` (`id_log`, `user`, `id_ref`, `refrensi`, `keterangan`, `katego
 (171, 'USR00000003', 'SRY-0000001', 'Survey', 'Mengedit data Survey baru', 'Add', '2019-07-04 06:40:26'),
 (172, 'USR00000003', 'SRY-0000001', 'Survey', 'Mengedit data Survey baru', 'Add', '2019-07-04 06:40:36'),
 (173, 'USR00000003', 'SRY-0000001', 'Survey', 'Mengedit data Survey baru', 'Add', '2019-07-04 06:40:45'),
-(174, 'USR00000003', 'SRY-0000001', 'Survey', 'Mengedit data Survey baru', 'Add', '2019-07-04 06:40:58');
+(174, 'USR00000003', 'SRY-0000001', 'Survey', 'Mengedit data Survey baru', 'Add', '2019-07-04 06:40:58'),
+(175, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-05 18:28:21'),
+(176, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-07 03:29:53'),
+(177, 'USR00000003', '-', 'Auth', 'User logout', 'Logout', '2019-07-07 03:53:59'),
+(178, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-07 04:11:39'),
+(179, 'USR00000003', 'S-14409129', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-07 04:12:23'),
+(180, 'USR00000003', 'S-13591105', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-07 04:12:26'),
+(181, 'USR00000003', 'S-PCMA-132', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-07 04:15:49'),
+(182, 'USR00000003', 'S--5150012', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-07 04:16:32'),
+(183, 'USR00000003', '-', 'Auth', 'User logout', 'Logout', '2019-07-07 04:27:41'),
+(184, 'USR00000005', '-', 'Auth', 'User login', 'Login', '2019-07-07 04:27:59'),
+(185, 'USR00000005', 'SRY-0000002', 'Survey', 'Menambah data Survey baru', 'Add', '2019-07-07 04:29:28'),
+(186, 'USR00000005', '-', 'Auth', 'User logout', 'Logout', '2019-07-07 04:35:34'),
+(187, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-07 05:56:53'),
+(188, 'USR00000003', '-', 'Auth', 'User logout', 'Logout', '2019-07-07 12:30:19'),
+(189, 'USR00000005', '-', 'Auth', 'User login', 'Login', '2019-07-07 12:30:32'),
+(190, 'USR00000005', '-', 'Auth', 'User logout', 'Logout', '2019-07-07 12:43:00'),
+(191, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-09 13:05:18'),
+(192, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-14 04:20:27'),
+(193, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-17 14:07:58'),
+(194, 'USR00000003', '-', 'Auth', 'User logout', 'Logout', '2019-07-18 12:59:54'),
+(195, 'USR00000003', '-', 'Auth', 'User logout', 'Logout', '2019-07-18 13:00:17'),
+(196, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-18 13:00:23'),
+(197, 'USR00000003', 'S--5980824', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 13:07:01'),
+(198, 'USR00000003', 'S-PCMA-183', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 13:49:56'),
+(199, 'USR00000003', 'S-PCMA-183', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 13:50:18'),
+(200, 'USR00000003', 'S--5185945', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 13:50:32'),
+(201, 'USR00000003', 'S--6665281', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 13:50:36'),
+(202, 'USR00000003', 'S-PCMA-807', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 13:50:45'),
+(203, 'USR00000003', 'S--1909041', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 13:51:53'),
+(204, 'USR00000003', 'S--2080720', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 13:51:55'),
+(205, 'USR00000003', 'S-PCMA-807', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 13:52:38'),
+(206, 'USR00000003', 'S-PCMA-183', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 13:57:33'),
+(207, 'USR00000003', 'S--5150012', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 14:04:58'),
+(208, 'USR00000003', 'S-13591105', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 14:05:03'),
+(209, 'USR00000003', 'S-14409129', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 14:05:05'),
+(210, 'USR00000003', 'S-14409129', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 14:43:28'),
+(211, 'USR00000003', 'S--5185945', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 14:59:52'),
+(212, 'USR00000003', '-', 'Auth', 'User logout', 'Logout', '2019-07-18 15:16:30'),
+(213, 'USR00000006', '-', 'Auth', 'User login', 'Login', '2019-07-18 15:32:58'),
+(214, 'USR00000003', '-', 'Auth', 'User login', 'Login', '2019-07-18 19:47:58'),
+(215, 'USR00000003', 'S-18047005', 'Schedule', 'Mengedit data schedule baru', 'Edit', '2019-07-18 19:48:52'),
+(216, 'USR00000006', '-', 'Auth', 'User logout', 'Logout', '2019-07-19 12:17:22'),
+(217, 'USR00000001', '-', 'Auth', 'User login', 'Login', '2019-07-19 12:17:27');
 
 -- --------------------------------------------------------
 
@@ -312,7 +358,7 @@ CREATE TABLE `schedule` (
   `plan_date` date NOT NULL,
   `plan_tonage` int(11) NOT NULL,
   `confirmed_date` date NOT NULL,
-  `status` enum('Proccess','Confirmed','Complete','Cancel') NOT NULL,
+  `status` enum('Proccess','Confirmed','Complete','Cancel by Client','Cancel by Admin') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -323,21 +369,19 @@ CREATE TABLE `schedule` (
 INSERT INTO `schedule` (`id_schedule`, `id_client`, `plan_date`, `plan_tonage`, `confirmed_date`, `status`, `created_at`) VALUES
 ('S--1188835', 'CL-00001', '2019-07-31', 10, '2019-07-19', 'Complete', '2019-07-02 19:11:01'),
 ('S--1759672', 'CL-00001', '2019-07-31', 10, '2019-07-31', 'Complete', '2019-07-02 19:10:50'),
-('S--1909041', 'CL-00001', '2019-07-12', 10, '0000-00-00', 'Proccess', '2019-07-02 19:10:50'),
-('S--2080720', 'CL-00001', '2019-07-12', 10, '0000-00-00', 'Proccess', '2019-07-02 19:11:01'),
-('S--5150012', 'CL-00001', '2019-07-30', 10, '0000-00-00', 'Proccess', '2019-07-02 19:11:01'),
-('S--5185945', 'CL-00001', '2019-07-27', 10, '0000-00-00', 'Proccess', '2019-07-02 19:11:01'),
-('S--5980824', 'CL-00001', '2019-07-30', 10, '0000-00-00', 'Proccess', '2019-07-02 19:10:50'),
-('S--6665281', 'CL-00001', '2019-07-27', 10, '0000-00-00', 'Proccess', '2019-07-02 19:10:50'),
-('S-PCMA-131', 'CL-00001', '1992-10-11', 1385031, '2019-08-16', 'Cancel', '2019-07-02 06:13:18'),
-('S-PCMA-132', 'CL-00001', '2019-07-30', 10, '0000-00-00', 'Proccess', '2019-07-02 19:12:08'),
-('S-PCMA-172', 'CL-00001', '1992-10-10', 123890, '2019-08-08', 'Cancel', '2019-07-02 06:13:18'),
-('S-PCMA-183', 'CL-00001', '2019-07-27', 10, '0000-00-00', 'Proccess', '2019-07-02 19:12:08'),
-('S-PCMA-186', 'CL-00001', '2020-10-10', 123123, '2020-10-10', 'Cancel', '2019-07-01 19:14:35'),
-('S-PCMA-192', 'CL-00001', '2019-10-10', 123123, '2019-10-10', 'Cancel', '2019-07-01 19:15:56'),
+('S--1909041', 'CL-00001', '2019-07-12', 10, '0000-00-00', 'Cancel by Admin', '2019-07-02 19:10:50'),
+('S--2080720', 'CL-00001', '2019-07-12', 10, '0000-00-00', 'Cancel by Admin', '2019-07-02 19:11:01'),
+('S--5150012', 'CL-00001', '2019-07-30', 10, '2019-07-30', 'Complete', '2019-07-02 19:11:01'),
+('S--5185945', 'CL-00001', '2019-07-27', 10, '2019-07-27', 'Cancel by Client', '2019-07-02 19:11:01'),
+('S--5980824', 'CL-00001', '2019-07-30', 10, '0000-00-00', 'Cancel by Admin', '2019-07-02 19:10:50'),
+('S--6665281', 'CL-00001', '2019-07-27', 10, '2019-07-14', 'Cancel by Client', '2019-07-02 19:10:50'),
+('S-13591105', 'CL-00001', '2019-07-14', 2000, '2019-07-14', 'Complete', '2019-07-07 04:10:45'),
+('S-14409129', 'CL-00001', '2019-07-13', 1000, '2019-07-13', 'Complete', '2019-07-07 04:10:45'),
+('S-18047005', 'CL-00001', '2019-07-19', 1000, '2019-07-19', 'Confirmed', '2019-07-18 19:47:01'),
+('S-PCMA-183', 'CL-00001', '2019-07-27', 10, '2019-07-27', 'Cancel by Client', '2019-07-02 19:12:08'),
 ('S-PCMA-235', 'CL-00001', '2019-11-13', 123133, '2019-11-13', 'Complete', '2019-07-01 19:51:05'),
 ('S-PCMA-660', 'CL-00001', '2019-07-31', 10, '2019-07-31', 'Complete', '2019-07-02 19:12:08'),
-('S-PCMA-807', 'CL-00001', '2019-07-12', 10, '0000-00-00', 'Proccess', '2019-07-02 19:12:08');
+('S-PCMA-807', 'CL-00001', '2019-07-12', 10, '2019-07-14', 'Cancel by Admin', '2019-07-02 19:12:08');
 
 -- --------------------------------------------------------
 
@@ -360,7 +404,8 @@ CREATE TABLE `survey` (
 --
 
 INSERT INTO `survey` (`id_survey`, `no_si`, `total_loaded`, `document`, `actual_date`, `actual_time`, `created_at`) VALUES
-('SRY-0000001', 'SI-0719-PCMA-001', 136571, 'SRY-0000001.pdf', '2019-10-11', '21:00:00', '2019-07-04 06:27:14');
+('SRY-0000001', 'SI-0719-PCMA-001', 136571, 'SRY-0000001.pdf', '2019-10-11', '21:00:00', '2019-07-04 06:27:14'),
+('SRY-0000002', 'SI-0719-PCMA-002', 2000, 'SRY-0000002.pdf', '2019-07-10', '20:30:00', '2019-07-07 04:29:28');
 
 -- --------------------------------------------------------
 
@@ -375,6 +420,7 @@ CREATE TABLE `user` (
   `password` varchar(15) NOT NULL,
   `level` enum('Helpdesk','Admin','Agent','Manager','Accounting') NOT NULL,
   `tgl_registrasi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `phone` varchar(15) NOT NULL,
   `foto` text NOT NULL,
   `status` enum('Aktif','Nonaktif','','') NOT NULL,
   `token` varchar(15) NOT NULL
@@ -384,12 +430,12 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `level`, `tgl_registrasi`, `foto`, `status`, `token`) VALUES
-('USR00000001', 'Helpdesk', 'helpdesk', 'helpdesk', 'Helpdesk', '2019-04-13 18:22:52', 'user.jpg', 'Aktif', '875a8f2f42c570f'),
-('USR00000003', 'Haviz Indra Maulana', 'havizIM', 'ajyp7', 'Admin', '2019-04-15 17:17:04', 'user.jpg', 'Aktif', 'c0e49cd9fa90328'),
-('USR00000004', 'Dian Ratna Sari', 'dianrs', '6zeb9', 'Accounting', '2019-04-15 17:18:17', 'user.jpg', 'Aktif', 'e2baa50d717f2e8'),
-('USR00000005', 'Tezar Tri Handika', 'tezarth', 'nh106', 'Agent', '2019-04-15 18:07:36', 'user.jpg', 'Aktif', 'b34716876d1413c'),
-('USR00000006', 'Devan Dirganatara Putra', 'devandp', 'ulbya', 'Manager', '2019-04-15 18:08:07', 'user.jpg', 'Aktif', 'cbb527c93eb9b52');
+INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `level`, `tgl_registrasi`, `phone`, `foto`, `status`, `token`) VALUES
+('USR00000001', 'Helpdesk', 'helpdesk', 'helpdesk', 'Helpdesk', '2019-04-13 18:22:52', '', 'user.jpg', 'Aktif', '875a8f2f42c570f'),
+('USR00000003', 'Haviz Indra Maulana', 'havizIM', 'ajyp7', 'Admin', '2019-04-15 17:17:04', '', 'user.jpg', 'Aktif', 'c0e49cd9fa90328'),
+('USR00000004', 'Dian Ratna Sari', 'dianrs', '6zeb9', 'Accounting', '2019-04-15 17:18:17', '', 'user.jpg', 'Aktif', 'e2baa50d717f2e8'),
+('USR00000005', 'Tezar Tri Handika', 'tezarth', 'nh106', 'Agent', '2019-04-15 18:07:36', '', 'user.jpg', 'Aktif', 'b34716876d1413c'),
+('USR00000006', 'Devan Dirganatara Putra', 'devandp', 'ulbya', 'Manager', '2019-04-15 18:08:07', '', 'user.jpg', 'Aktif', 'cbb527c93eb9b52');
 
 --
 -- Indexes for dumped tables
@@ -451,7 +497,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
