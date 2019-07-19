@@ -91,6 +91,17 @@ class SurveyModel extends CI_Model {
         return true;
       }
     }
+
+    function statistic($tahun)
+    {
+      $this->db->select("YEAR(actual_date) as tahun, MONTH(actual_date) as bulan, COUNT('id_survey') as jml_survey, SUM(total_loaded) as total_survey");
+
+      $this->db->from("survey");
+      $this->db->where("YEAR(actual_date)", $tahun);
+
+      $this->db->group_by("MONTH(actual_date)");
+      return $this->db->get();
+    }
 }
 
 ?>

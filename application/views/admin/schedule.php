@@ -456,7 +456,6 @@
             changeEvent();
             openModal();
             submitConfirm();
-            completeSchedule();
             cancelSchedule();
           }
         }

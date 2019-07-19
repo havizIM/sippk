@@ -110,10 +110,10 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="pull-right text-right">
-                                    <p>Jakarta, ${data.create_at}</p>
-                                    <p>Mengetahui,</p>
-                                    <br><br><br>
-                                    <p><b>( ${data.client.nama_pic} )</b></p>
+                                    <p style="margin-right: 80px">Jakarta, ${data.create_at}</p>
+                                    <p style="margin-right: 80px">Mengetahui,</p>
+                                    <img src="<?= base_url('doc/signature/') ?>${data.signature}" style="width: 50%" />
+                                    <p style="margin-right: 80px"><b>(${data.client.nama_pic})</b></p>
                                 </div>
                             </div>
                         </div>

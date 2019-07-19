@@ -94,6 +94,18 @@ class InstructionModel extends CI_Model {
         return true;
       }
     }
+
+    function statistic($tahun)
+    {
+      $this->db->select("YEAR(create_at) as tahun, MONTH(create_at) as bulan, COUNT('no_si') as jml_instruction, SUM(qty) as total_instruction");
+
+      $this->db->from("instruction");
+      $this->db->where("YEAR(create_at)", $tahun);
+
+      $this->db->group_by("MONTH(create_at)");
+      return $this->db->get();
+    }
+
 }
 
 ?>

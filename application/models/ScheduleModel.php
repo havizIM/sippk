@@ -132,6 +132,18 @@ class ScheduleModel extends CI_Model {
       // $this->db->order_by('a.created_at', 'desc');
       return $this->db->get();
     }
+
+    function statistic($tahun)
+    {
+      $this->db->select("YEAR(confirmed_date) as tahun, MONTH(confirmed_date) as bulan, COUNT('id_schedule') as jml_schedule, SUM(plan_tonage) as total_schedule");
+
+      $this->db->from("schedule");
+      $this->db->where("YEAR(confirmed_date)", $tahun);
+      $this->db->where('(status = "Confirmed" OR status = "Complete")');
+
+      $this->db->group_by("MONTH(confirmed_date)");
+      return $this->db->get();
+    }
 }
 
 ?>

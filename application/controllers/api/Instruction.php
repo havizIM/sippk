@@ -65,6 +65,7 @@ class Instruction extends CI_Controller {
                 $json['doc_required']           = $key->doc_required;
                 $json['tug_boat']               = $key->tug_boat;
                 $json['barge_name']             = $key->barge_name;
+                $json['signature']              = $key->signature;
                 $json['create_at']              = $key->create_at;
 
                 $instruction[] = $json;

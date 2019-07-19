@@ -22,6 +22,8 @@ class Schedule extends CI_Controller {
 
 
     $this->load->model('ScheduleModel');
+    $this->load->model('InstructionModel');
+    $this->load->model('SurveyModel');
     $this->load->model('ClientModel');
   }
 
@@ -57,7 +59,7 @@ class Schedule extends CI_Controller {
                 $json = array();
 
                 $json['id_schedule']        = $key->id_schedule;
-                $json['client']             = array('id_client' => $key->id_client, 'nama_perusahaan' => $key->nama_perusahaan);
+                $json['client']             = array('id_client' => $key->id_client, 'nama_perusahaan' => $key->nama_perusahaan, 'username' => $key->username);
                 $json['plan_date']          = $key->plan_date;
                 $json['plan_tonage']        = $key->plan_tonage;
                 $json['confirmed_date']     = $key->confirmed_date;
@@ -402,6 +404,81 @@ class Schedule extends CI_Controller {
             }
 
             json_output(200, array('status' => 200, 'description' => 'Berhasil', 'data' => $laporan));
+        }
+      }
+    }
+  }
+
+  function statistic($token = null)
+  {
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+      json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        $auth = $this->AuthModel->cekAuth($token);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+
+          $otorisasi = $auth->row();
+
+          $tahun = date('Y');
+
+          $schedule    = $this->ScheduleModel->statistic($tahun);
+          $instruction = $this->InstructionModel->statistic($tahun);
+          $survey      = $this->SurveyModel->statistic($tahun);
+
+          $jml_schedule     = array("0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+          $jml_instruction  = array("0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+          $jml_survey       = array("0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+
+          $total_schedule     = array("0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+          $total_instruction  = array("0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+          $total_survey       = array("0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+
+          foreach($schedule->result() as $key){
+            $index = $key->bulan - 1;
+
+            $jml_schedule[$index]   = $key->jml_schedule;
+            $total_schedule[$index] = $key->total_schedule;
+          }
+
+          foreach($instruction->result() as $key){
+            $index = $key->bulan - 1;
+
+            $jml_instruction[$index]    = $key->jml_instruction;
+            $total_instruction[$index]  = $key->total_instruction;
+          }
+
+          foreach($survey->result() as $key){
+            $index = $key->bulan - 1;
+
+            $jml_survey[$index] = $key->jml_survey;
+            $total_survey[$index] = $key->total_survey;
+          }
+
+          $statistic = array(
+            'schedule'    => array(
+              'count'   => $jml_schedule,
+              'total'   => $total_schedule
+            ),
+            'instruction' => array(
+              'count'   => $jml_instruction,
+              'total'   => $total_instruction
+            ),
+            'survey'      => array(
+              'count'   => $jml_survey,
+              'total'   => $total_survey
+            )
+          );
+
+          json_output(200, array('status' => 200, 'description' => 'Berhasil', 'data' => $statistic));
         }
       }
     }
