@@ -43,10 +43,9 @@ class Client extends CI_Controller {
 
           $otorisasi        = $auth->row();
 
-          $id_client  		  = $this->input->get('id_client');
-    			$nama_perusahaan	= $this->input->get('nama_perusahaan');
+          $where = array('id_client' => $this->input->get('id_client'));
 
-          $show  = $this->ClientModel->show($id_client, $nama_perusahaan);
+          $show  = $this->ClientModel->show($where);
           $client  = array();
 
           foreach($show->result() as $key){

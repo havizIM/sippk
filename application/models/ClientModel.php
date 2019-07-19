@@ -4,16 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ClientModel extends CI_Model {
 
-    function show($id_client = null, $nama_perusahaan = null)
+    function show($where)
     {
       $this->db->select('*')->from('client');
 
-      if($id_client != null){
-        $this->db->where('id_client', $id_client);
-      }
-
-      if($nama_perusahaan != null){
-        $this->db->like('nama_perusahaan', $nama_perusahaan);
+      if(!empty($where)){
+        foreach($where as $key => $value){
+            if($value != null){
+                $this->db->where($key, $value);
+            }
+        }
       }
 
       $this->db->order_by('tgl_registrasi', 'desc');

@@ -45,10 +45,13 @@ class User extends CI_Controller {
           if($otorisasi->level != 'Helpdesk'){
             json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
           } else {
-            $id_user  		= $this->input->get('id_user');
-      			$nama_user	  = $this->input->get('nama_user');
+            
+            $where = array(
+              'id_user'   => $this->input->get('id_user'),
+              'level !=' => 'Helpdesk'
+            );
 
-            $show  = $this->UserModel->show($id_user, $nama_user);
+            $show  = $this->UserModel->show($where, FALSE);
             $user  = array();
 
             foreach($show->result() as $key){
@@ -61,6 +64,7 @@ class User extends CI_Controller {
               $json['level']          = $key->level;
               $json['tgl_registrasi'] = $key->tgl_registrasi;
               $json['foto']           = $key->foto;
+              $json['phone']          = $key->phone;
               $json['status']         = $key->status;
 
               $user[] = $json;
@@ -97,9 +101,10 @@ class User extends CI_Controller {
             $id_user    = $this->KodeModel->buatKode('user', 'USR', 'id_user', 8);
             $nama_user  = $this->input->post('nama_user');
             $username   = $this->input->post('username');
+            $phone   = $this->input->post('phone');
             $level      = $this->input->post('level');
 
-            if($nama_user == null || $username == null || $level == null){
+            if($nama_user == null || $username == null || $level == null || $phone == null){
               json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
             } else {
 
@@ -110,6 +115,7 @@ class User extends CI_Controller {
                 'password'  => substr(str_shuffle("01234567890abcdefghijklmnopqestuvwxyz"), 0, 5),
                 'level'     => $level,
                 'foto'      => 'user.jpg',
+                'phone'     => $phone,
                 'status'    => 'Aktif',
                 'token'     => sha1($username)
               );
@@ -160,17 +166,19 @@ class User extends CI_Controller {
             $id_user    = $this->input->get('id_user');
             $nama_user  = $this->input->post('nama_user');
             $username   = $this->input->post('username');
+            $phone      = $this->input->post('phone');
             $status     = $this->input->post('status');
 
             if($id_user == null){
               json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Tidak ada ID User yang dipilih'));
             } else {
-              if($nama_user == null || $username == null || $status == null){
+              if($nama_user == null || $username == null || $status == null || $phone == null){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
               } else {
                 $data = array(
                   'nama_user' => $nama_user,
                   'username'  => $username,
+                  'phone'     => $phone,
                   'status'    => $status
                 );
 

@@ -16,6 +16,10 @@
      <!-- Custom CSS -->
     <link href="<?= base_url() ?>assets/internal/css/style.css" rel="stylesheet">
      <link href="<?= base_url() ?>assets/plugins/css-chart/css-chart.css" rel="stylesheet">
+
+     <!-- Calendar -->
+     <link href="<?= base_url() ?>assets/plugins/calendar/dist/fullcalendar.css" rel="stylesheet" />
+
     <!-- You can change the theme colors from here -->
     <link href="<?= base_url() ?>assets/internal/css/colors/default-dark.css" id="theme" rel="stylesheet">
     <link href="<?= base_url() ?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
@@ -65,6 +69,20 @@
         .card-no-border .left-sidebar {
           background-image: url("<?= base_url() ?>assets/images/background/sidebar.png");
           background-size: cover;
+        }
+
+        @media print {
+            tr.t-head {
+                background-color: navy !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact !important; 
+            }
+
+            tr.t-foot {
+                background-color: grey;
+                color: white;
+                -webkit-print-color-adjust: exact; 
+            }
         }
     </style>
 
@@ -172,10 +190,17 @@
                             <a href="#/schedule" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Schedule</span></a>
                         </li>
                          <li>
-                            <a href="#/instruction" aria-expanded="false"><i class="fa fa-file-text"></i><span class="hide-menu">Istruction</span></a>
+                            <a href="#/instruction" aria-expanded="false"><i class="fa fa-file-text"></i><span class="hide-menu">Instruction</span></a>
                         </li>
                          <li>
                             <a href="#/survey" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Survey</span></a>
+                        </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file-chart"></i><span class="hide-menu">Report</span></a>
+                            <ul aria-expanded="false" class="collapse" style="height: 10px;">
+                                <li><a href="#/schedule_report">Schedule Report</a></li>
+                                <li><a href="#/sales_report">Sales Report</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -268,6 +293,12 @@
     <!-- ============================================================== -->
     <script src="<?= base_url() ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
     <script src="<?= base_url() ?>assets/plugins/chart.js/chart.min.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/wizard/jquery.validate.min.js"></script>
+    <script src="<?= base_url() ?>assets/eksternal/js/jquery.PrintArea.js" type="text/JavaScript"></script>
+
+    <script src="<?= base_url() ?>assets/plugins/moment/moment.js"></script>
+    <script src='<?= base_url() ?>assets/plugins/calendar/dist/fullcalendar.min.js'></script>
+    <script src="<?= base_url() ?>assets/plugins/calendar/dist/jquery.fullcalendar.js"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>

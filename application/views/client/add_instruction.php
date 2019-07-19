@@ -105,8 +105,26 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-md btn-success" id="submit_add"> <i class="fa fa-check"></i> Submit</button>
-                        <a href="#/instruction" class="btn btn-md btn-inverse">Cancel</a>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="">Signature</label>
+                                <div id="signArea" >
+                                    <canvas class="mysignature" id="mysignature" width="600" height="150" style="border: 1px solid #ddd;"></canvas>
+                                </div>
+                                <input type="hidden" name="signature" id="signature">
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <div id="set_sign">
+                                    <button type="button" id="clear_sign" class="btn btn-md btn-warning">Clear</button>
+                                    <button type="button" id="save_sign" class="btn btn-md btn-success">Sign</button>
+                                </div>
+                                <div id="set_submit" style="display: none">
+                                    <button type="button" id="hide_set_sign" class="btn btn-md btn-danger">Cancel</button>
+                                    <button type="submit" class="btn btn-md btn-success" id="submit_add"> <i class="fa fa-check"></i> Submit</button>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -164,6 +182,34 @@
                 }
             })
         }
+
+        var setSignature = function(){
+
+            var canvas = document.getElementById("mysignature");
+            var signaturePad = new SignaturePad(canvas);
+
+            $("#save_sign").on('click', function(){
+                if(signaturePad.isEmpty()){
+                    makeNotif('error', 'Failed', 'Please sign SI', 'bottom-right')
+                } else {
+                    var data = signaturePad.toDataURL('image/png');
+                    var img_data = data.replace(/^data:image\/(png|jpg);base64,/, "");
+                    $('#signature').val(img_data);
+
+                    $('#set_sign').hide();
+                    $('#set_submit').show();
+                }
+            })
+
+            $("#hide_set_sign").on('click', function(){
+                $('#set_sign').show();
+                $('#set_submit').hide();
+            })
+
+            $("#clear_sign").on('click', function(){
+                signaturePad.clear();
+            })
+        }
         
         var validateForm = function(){
             $(DOM.form).validate({
@@ -208,34 +254,35 @@
                 },
                 submitHandler: function(form){
                     $.ajax({
-                        url: `<?= base_url('ext/instruction/add/') ?>${auth.token}`,
-                        type: 'POST',
-                        dataType: 'JSON',
-                        data: $(form).serialize(),
-                        beforeSend: function(){
-                            $(DOM.submit).addClass('disabled').html(`<i class="fa fa-spinner fa-spin"></i>`)
-                        },
-                        success: function(response){
-                            if(response.status === 200){
-                            makeNotif('success', 'Success', response.message, 'bottom-right')
-                            location.hash = '#/instruction';
-                            } else {
-                            makeNotif('error', 'Failed', response.message, 'bottom-right')
-                            $(DOM.submit).removeClass('disabled').html(`<i class="fa fa-check" ></i> Submit`)
-                            }
+                            url: `<?= base_url('ext/instruction/add/') ?>${auth.token}`,
+                            type: 'POST',
+                            dataType: 'JSON',
+                            data: $(form).serialize(),
+                            beforeSend: function(){
+                                $(DOM.submit).addClass('disabled').html(`<i class="fa fa-spinner fa-spin"></i>`)
+                            },
+                            success: function(response){
+                                if(response.status === 200){
+                                makeNotif('success', 'Success', response.message, 'bottom-right')
+                                location.hash = '#/instruction';
+                                } else {
+                                makeNotif('error', 'Failed', response.message, 'bottom-right')
+                                $(DOM.submit).removeClass('disabled').html(`<i class="fa fa-check" ></in> Submit`)
+                                }
 
-                        },
-                        error: function(err){
-                            makeNotif('error', 'Failed', 'Tidak dapat mengakases server', 'bottom-right')
-                            $(DOM.submit).removeClass('disabled').html(`<i class="fa fa-check" ></i> Submit`)
-                        }
-                })
+                            },
+                            error: function(err){
+                                makeNotif('error', 'Failed', 'Tidak dapat mengakases server', 'bottom-right')
+                                $(DOM.submit).removeClass('disabled').html(`<i class="fa fa-check" ></i> Submit`)
+                            }
+                    })
                 }
             })
         }
 
         return {
             init: function(){
+                setSignature();
                 validateForm();
                 getSchedule();
             }

@@ -45,4 +45,14 @@ class Manager extends CI_Controller {
 		$this->load->view('manager/schedule');
 	}
 
+	public function schedule_report()
+	{	
+		$this->load->view('manager/schedule_report');
+	}
+
+	public function sales_report()
+	{	
+		$this->load->view('manager/sales_report');
+	}
+
 }

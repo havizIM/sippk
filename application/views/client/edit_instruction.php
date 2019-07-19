@@ -114,8 +114,26 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-md btn-success" id="submit_edit"> <i class="fa fa-check"></i> Submit</button>
-                        <a href="#/instruction" class="btn btn-md btn-inverse">Cancel</a>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="">Signature</label>
+                                <div id="signArea" >
+                                    <canvas class="mysignature" id="mysignature" width="600" height="150" style="border: 1px solid #ddd;"></canvas>
+                                </div>
+                                <input type="hidden" name="signature" id="signature">
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <div id="set_sign">
+                                    <button type="button" id="clear_sign" class="btn btn-md btn-warning">Clear</button>
+                                    <button type="button" id="save_sign" class="btn btn-md btn-success">Sign</button>
+                                </div>
+                                <div id="set_submit" style="display: none">
+                                    <button type="button" id="hide_set_sign" class="btn btn-md btn-danger">Cancel</button>
+                                    <button type="submit" class="btn btn-md btn-success" id="submit_edit"> <i class="fa fa-check"></i> Submit</button>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -147,7 +165,6 @@
                 $(DOM.selectbox).append(HTML);
             },
             setValue: function(data){
-                console.log(data);
                 if(data.length !== 0){
                     $.each(data, function(k,v){
                         $('#no_si').val(v.no_si);
@@ -184,6 +201,34 @@
                 error: function(err){
 
                 }
+            })
+        }
+
+        var setSignature = function(){
+
+            var canvas = document.getElementById("mysignature");
+            var signaturePad = new SignaturePad(canvas);
+
+            $("#save_sign").on('click', function(){
+                if(signaturePad.isEmpty()){
+                    makeNotif('error', 'Failed', 'Please sign SI', 'bottom-right')
+                } else {
+                    var data = signaturePad.toDataURL('image/png');
+                    var img_data = data.replace(/^data:image\/(png|jpg);base64,/, "");
+                    $('#signature').val(img_data);
+
+                    $('#set_sign').hide();
+                    $('#set_submit').show();
+                }
+            })
+
+            $("#hide_set_sign").on('click', function(){
+                $('#set_sign').show();
+                $('#set_submit').hide();
+            })
+
+            $("#clear_sign").on('click', function(){
+                signaturePad.clear();
             })
         }
 
@@ -275,6 +320,7 @@
 
         return {
             init: function(){
+                setSignature();
                 validateForm();
                 getSchedule();
             }

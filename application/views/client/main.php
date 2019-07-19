@@ -27,6 +27,9 @@
     <!-- You can change the theme colors from here -->
     <link href="<?= base_url() ?>assets/eksternal/css/colors/blue.css" id="theme" rel="stylesheet">
 
+     <!-- Calendar -->
+     <link href="<?= base_url() ?>assets/plugins/calendar/dist/fullcalendar.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css"/>
@@ -79,6 +82,11 @@
         color: #fff;
         text-shadow: 1px 2px 2px #000;
         opacity: .8;
+    }
+
+    #signArea{
+        width:100%;
+        height: 150px;
     }
 </style>
 </head>
@@ -252,6 +260,8 @@
             </nav>
         </header>
 
+        
+
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
@@ -301,48 +311,8 @@
                     <div class="slimscrollright">
                         <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
                         <div class="r-panel-body">
-                            <ul id="themecolors" class="m-t-20">
-                                <li><b>With Light sidebar</b></li>
-                                <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
-                                <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
-                                <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
-                                <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
-                                <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
-                                <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
-                                <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
-                                <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
-                                <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
-                                <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
-                                <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
-                                <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
-                                <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
-                            </ul>
-                            <ul class="m-t-20 chatonline">
-                                <li><b>Chat option</b></li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?= base_url() ?>assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?= base_url() ?>assets/images/users/2.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?= base_url() ?>assets/images/users/3.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?= base_url() ?>assets/images/users/4.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?= base_url() ?>assets/images/users/5.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?= base_url() ?>assets/images/users/6.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?= base_url() ?>assets/images/users/7.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?= base_url() ?>assets/images/users/8.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
-                                </li>
+                            <ul class="m-t-20 chatonline" id="chat_list">
+                                
                             </ul>
                         </div>
                     </div>
@@ -447,12 +417,17 @@
     
     <script src="<?= base_url() ?>assets/plugins/wizard/jquery.validate.min.js"></script>
 
+    <script src="<?= base_url() ?>assets/plugins/moment/moment.js"></script>
+    <script src='<?= base_url() ?>assets/plugins/calendar/dist/fullcalendar.min.js'></script>
+    <script src="<?= base_url() ?>assets/plugins/calendar/dist/jquery.fullcalendar.js"></script>
+
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
-    <script src="<?= base_url() ?>assets/eksternal/js/html2canvas.min.js" type="text/JavaScript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js" integrity="sha256-5ZC+204OMIMsO0Z7If/CTSNRdqSh1G+2XmfZCjbQCP8=" crossorigin="anonymous"></script>
+
     <script>
 
 
@@ -491,49 +466,6 @@
             $(window).on('hashchange', function(){
                 LINK = location.hash.substr(2);
                 loadContent(LINK);
-            });
-        }
-
-        var getProfile = function(){
-            $.ajax({
-                url: `<?= base_url().'ext/auth/profile_client/' ?>${auth.token}`,
-                type: 'GET',
-                dataType: 'JSON',
-                success: function(response){
-                    $.each(response.data, function(k, v){
-                        //ACCOUNT\\
-                        // $('#telepon').text(v.telepon);
-                        // $('#id_client').text(v.id_client);
-                        // $('#username').text(v.username);
-                        // $('#tgl_registrasi').text(v.tgl_registrasi);
-                        // $('#expired_date').text(v.expired_date);
-                        // $('#status').text(v.status);
-                        
-                        //COMPANY\\
-                        // $('#nama_perusahaan').text(v.nama_perusahaan);
-                        // $('#penanggung_jawab').text(v.penanggung_jawab);
-                        // $('#npwp').text(v.npwp);
-                        // $('#website').attr('href', `${v.website}`);
-                        // $('#text_website').text(v.website);
-                        // $('#mou').attr('href', `<?= base_url().'doc/mou/' ?>${v.mou}`);
-                        // $('#logo_perusahaan_img').attr('src', `<?= base_url().'doc/logo_perusahaan/' ?>${v.logo_perusahaan}`);
-                        // $('#logo_perusahaan').attr('href', `<?= base_url().'doc/logo_perusahaan/' ?>${v.logo_perusahaan}`);
-                        // $('#alamat_perusahaan').text(v.alamat_perusahaan);
-                        // $('#kode_pos').text(v.kode_pos);
-                        // $('#telepon').text(v.telepon);
-                        // $('#email_perusahaan').text(v.email_perusahaan);
-                        // $('#fax').text(v.fax);
-                        
-                        //PIC\\
-                        // $('#nama_pic').text(v.nama_pic);
-                        // $('#telepon_pic').text(v.telepon_pic);
-                        // $('#email_pic').text(v.email_pic);
-                    });
-                },
-
-                error: function(){
-                makeNotif('error', 'Tidak dapat mengakses server', 'bottomRight')
-                },
             });
         }
 
@@ -628,14 +560,43 @@
             });
         }
 
+        var getAdmin = () => {
+            $.ajax({
+                url: `<?= base_url('ext/admin/show/') ?>${auth.token}`,
+                type: 'GET',
+                dataType: 'JSON',
+                success: function(response){
+                    var html = '<li><b>Chat via WhatsApp</b></li>';
+                    console.log(response.data)
+                    $.each(response.data, function(k, v){
+                        html += `
+                            <li>
+                                <a href="https://api.whatsapp.com/send?phone=${v.phone}" target="_blank">
+                                    <img src="<?= base_url() ?>doc/user/${v.foto}" alt="user-img" class="img-circle">
+                                    <span>${v.nama_user}
+                                        <small class="text-${v.level === 'Admin' ? 'success' : 'danger'}">${v.level}</small>
+                                    </span>
+                                </a>
+                            </li>
+                        `
+                    })
+
+                    $('#chat_list').html(html)
+                },
+                error: function(){
+                    
+                }
+            })
+        }
+
         return {
             init: function(){
                 hashLoad();
-                getProfile();
                 triggerModal();
                 showPass();
                 submitForm();
                 logoutClient();
+                getAdmin()
             }
         }
         

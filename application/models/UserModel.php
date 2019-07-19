@@ -4,19 +4,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class UserModel extends CI_Model {
 
-    function show($id_user = null, $nama_user = null)
+    function show($where, $where_or)
     {
       $this->db->select('*')->from('user');
 
-      if($id_user != null){
-        $this->db->where('id_user', $id_user);
+      if(!empty($where)){
+        foreach($where as $key => $value){
+            if($value != null){
+                $this->db->where($key, $value);
+            }
+        }
       }
 
-      if($nama_user != null){
-        $this->db->like('nama_user', $nama_user);
+      if(!empty($where_or)){
+        $this->db->where('status', $where_or['status']);
+        $this->db->where('(level = "'.$where_or['helpdesk'].'" OR level = "'.$where_or['admin'].'")');
       }
 
-      $this->db->where('level !=', 'Helpdesk');
       $this->db->order_by('tgl_registrasi', 'desc');
       return $this->db->get();
     }

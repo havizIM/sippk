@@ -68,6 +68,7 @@ class Instruction extends CI_Controller {
                 $json['doc_required']           = $key->doc_required;
                 $json['tug_boat']               = $key->tug_boat;
                 $json['barge_name']             = $key->barge_name;
+                $json['signature']              = $key->signature;
                 $json['create_at']              = $key->create_at;
 
                 $instruction[] = $json;
@@ -157,8 +158,9 @@ class Instruction extends CI_Controller {
           $doc_required         = $this->input->post('doc_required');
           $tug_boat             = $this->input->post('tug_boat');
           $barge_name           = $this->input->post('barge_name');
+          $signature            = $this->upload_file(base64_decode($this->input->post('signature')), $no_si);
 
-          if($id_schedule == null || $owner_barge == null || $owner_barge_address == null || $consignee == null || $consignee_address == null || $commodity == null || $qty == null || $port_loading == null || $port_discharge == null || $doc_required == null || $tug_boat == null || $barge_name == null){
+          if($id_schedule == null || $owner_barge == null || $owner_barge_address == null || $consignee == null || $consignee_address == null || $commodity == null || $qty == null || $port_loading == null || $port_discharge == null || $doc_required == null || $tug_boat == null || $barge_name == null || $signature == null){
             json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
           } else {
 
@@ -175,7 +177,8 @@ class Instruction extends CI_Controller {
                 'port_discharge'      => $port_discharge,
                 'doc_required'        => $doc_required,
                 'tug_boat'            => $tug_boat,
-                'barge_name'          => $barge_name
+                'barge_name'          => $barge_name,
+                'signature'           => $signature
             );
 
             $log = array(
@@ -194,6 +197,15 @@ class Instruction extends CI_Controller {
         }
       }
     }
+  }
+
+  function upload_file($signature, $id)
+  {
+      $filename = $id.'.png';
+      $path     = './doc/signature/'.$filename;
+      file_put_contents($path, $signature);
+
+      return $filename;
   }
 
   function edit($token = null){
@@ -227,8 +239,9 @@ class Instruction extends CI_Controller {
           $doc_required         = $this->input->post('doc_required');
           $tug_boat             = $this->input->post('tug_boat');
           $barge_name           = $this->input->post('barge_name');
+          $signature            = $this->upload_file(base64_decode($this->input->post('signature')), $no_si);
 
-          if($no_si == null || $id_schedule == null || $owner_barge == null || $owner_barge_address == null || $consignee == null || $consignee_address == null || $commodity == null || $qty == null || $port_loading == null || $port_discharge == null || $doc_required == null || $tug_boat == null || $barge_name == null){
+          if($no_si == null || $id_schedule == null || $owner_barge == null || $owner_barge_address == null || $consignee == null || $consignee_address == null || $commodity == null || $qty == null || $port_loading == null || $port_discharge == null || $doc_required == null || $tug_boat == null || $barge_name == null || $signature == null){
             json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
           } else {
 
@@ -244,7 +257,8 @@ class Instruction extends CI_Controller {
                 'port_discharge'      => $port_discharge,
                 'doc_required'        => $doc_required,
                 'tug_boat'            => $tug_boat,
-                'barge_name'          => $barge_name
+                'barge_name'          => $barge_name,
+                'signature'           => $signature
             );
 
             $log = array(
@@ -262,6 +276,13 @@ class Instruction extends CI_Controller {
           }
         }
       }
+    }
+  }
+
+  function delete_file($id){
+    $files = glob('doc/signature/'.$id.'.*');
+    foreach ($files as $key) {
+      unlink($key);
     }
   }
 
@@ -295,6 +316,7 @@ class Instruction extends CI_Controller {
               json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Gagal menghapus instruction'));
             } else {
               $this->pusher->trigger('sippk', 'instruction', $log);
+              $this->delete_file($no_si);
               json_output(200, array('status' => 200, 'description' => 'Berhasil', 'message' => 'Berhasil menghapus instruction'));
             }
           }

@@ -93,6 +93,45 @@ class ScheduleModel extends CI_Model {
         return true;
       }
     }
+
+    function schedule($where, $where_or)
+    {
+      $this->db->select('b.*, a.id_schedule, a.plan_date, a.plan_tonage, a.confirmed_date, a.status as status_schedule, a.created_at')
+               ->from('schedule a')
+               ->join('client b', 'a.id_client = b.id_client');
+
+      if(!empty($where)){
+        foreach($where as $key => $value){
+            if($value != null){
+                $this->db->where($key, $value);
+            }
+        }
+      }
+
+      if(!empty($where_or)){
+        $this->db->where('(a.status = "'.$where_or['confirmed'].'" OR a.status = "'.$where_or['complete'].'")');
+      }
+
+      $this->db->order_by('a.created_at', 'desc');
+      return $this->db->get();
+    }
+
+    function sales($where)
+    {
+      $this->db->select('a.*')
+               ->select('(SELECT SUM(b.plan_tonage) FROM schedule b WHERE b.id_client = a.id_client AND MONTH(b.confirmed_date) = "'.$where['bulan'].'" AND YEAR(b.confirmed_date) = "'.$where['tahun'].'" AND (b.status = "Complete" OR b.status = "Confirmed")) as total_plan')
+               ->select('(SELECT COUNT(b.id_schedule) FROM schedule b WHERE b.id_client = a.id_client AND MONTH(b.confirmed_date) = "'.$where['bulan'].'" AND YEAR(b.confirmed_date) = "'.$where['tahun'].'" AND (b.status = "Complete" OR b.status = "Confirmed")) as count_schedule')
+               ->select('(SELECT SUM(b.qty) FROM instruction b LEFT JOIN schedule c ON c.id_schedule = b.id_schedule WHERE c.id_client = a.id_client AND MONTH(c.confirmed_date) = "'.$where['bulan'].'" AND YEAR(c.confirmed_date) = "'.$where['tahun'].'" AND (c.status = "Complete" OR c.status = "Confirmed")) as total_revised')
+               ->select('(SELECT SUM(b.total_loaded) FROM survey b LEFT JOIN instruction c ON c.no_si = b.no_si LEFT JOIN schedule d ON d.id_schedule = c.id_schedule WHERE d.id_client = a.id_client AND MONTH(d.confirmed_date) = "'.$where['bulan'].'" AND YEAR(d.confirmed_date) = "'.$where['tahun'].'" AND (d.status = "Complete" OR d.status = "Confirmed")) as actual_total')
+               ->select('(SELECT COUNT(b.id_survey) FROM survey b LEFT JOIN instruction c ON c.no_si = b.no_si LEFT JOIN schedule d ON d.id_schedule = c.id_schedule WHERE d.id_client = a.id_client AND MONTH(d.confirmed_date) = "'.$where['bulan'].'" AND YEAR(d.confirmed_date) = "'.$where['tahun'].'" AND (d.status = "Complete" OR d.status = "Confirmed")) as count_survey')
+              
+
+               ->from('client a');
+
+      $this->db->group_by('a.username');
+      // $this->db->order_by('a.created_at', 'desc');
+      return $this->db->get();
+    }
 }
 
 ?>

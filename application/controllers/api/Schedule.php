@@ -21,7 +21,8 @@ class Schedule extends CI_Controller {
     );
 
 
-	$this->load->model('ScheduleModel');
+    $this->load->model('ScheduleModel');
+    $this->load->model('ClientModel');
   }
 
   function show($token = null){
@@ -285,6 +286,128 @@ class Schedule extends CI_Controller {
       }
     }
   }
+
+  function report_schedule($token = null){
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+      json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        // $param  = array('token' => $token);
+        $auth   = $this->AuthModel->cekAuth($token);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+
+            $otorisasi      = $auth->row();
+
+            $where_cl       = array('status' => 'Aktif');
+            $client         = $this->ClientModel->show($where_cl);
+            $laporan        = array();
+
+            foreach($client->result() as $key){
+                $json         = array();
+                $total_tonage = 0;
+
+                $json['nama_perusahaan'] = $key->nama_perusahaan;
+                $json['username']        = $key->username;
+                $json['schedule']        = array();
+
+
+                $where_sc = array(
+                    'a.id_client'              => $key->id_client,
+                    'MONTH(a.confirmed_date)'  => $this->input->get('bulan'),
+                    'YEAR(a.confirmed_date)'    => $this->input->get('tahun')
+                    
+                );
+
+                $where_or = array(
+                  'confirmed'            => 'Confirmed',
+                  'complete'             => 'Complete'
+                );
+
+                $schedule  = $this->ScheduleModel->schedule($where_sc, $where_or);
+                $no        = 1;
+
+                foreach($schedule->result() as $key2){
+                    $json_s = array();
+                    $total_tonage += $key2->plan_tonage;
+
+                    $json_s['barging']        = $no++;
+                    $json_s['plan_date']      = $key2->plan_date;
+                    $json_s['confirmed_date'] = $key2->confirmed_date;
+                    $json_s['plan_tonage']    = $key2->plan_tonage;
+                    $json_s['status_schedule']    = $key2->status_schedule;
+
+                    $json['schedule'][]       = $json_s;
+                }
+
+                $json['total_barging']   = $schedule->num_rows();
+                $json['total_tonage']    = $total_tonage;
+
+                $laporan[] = $json;
+            }
+
+            json_output(200, array('status' => 200, 'description' => 'Berhasil', 'data' => $laporan));
+        }
+      }
+    }
+  }
+
+  function report_sales($token = null){
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if ($method != 'GET') {
+      json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Metode request salah'));
+		} else {
+
+      if($token == null){
+        json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Request tidak terotorisasi'));
+      } else {
+        // $param  = array('token' => $token);
+        $auth   = $this->AuthModel->cekAuth($token);
+
+        if($auth->num_rows() != 1){
+          json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
+        } else {
+
+            $otorisasi      = $auth->row();
+
+            $where = array(
+                    'status' => 'Aktif',
+                    'bulan'  => $this->input->get('bulan'),
+                    'tahun'  => $this->input->get('tahun')
+            );
+
+            $sales          = $this->ScheduleModel->sales($where);
+            $laporan        = array();
+
+            foreach($sales->result() as $key){
+                $json         = array();
+
+                $json['nama_perusahaan']  = $key->nama_perusahaan;
+                $json['username']         = $key->username;
+                $json['total_plan']       = $key->total_plan;
+                $json['total_revised']    = $key->total_revised;
+                $json['count_schedule']   = $key->count_schedule;
+                $json['actual_total']     = $key->actual_total;
+                $json['count_survey']     = $key->count_survey;
+
+                $laporan[] = $json;
+            }
+
+            json_output(200, array('status' => 200, 'description' => 'Berhasil', 'data' => $laporan));
+        }
+      }
+    }
+  }
+
+  
 
 }
 
