@@ -249,7 +249,7 @@
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a id="change_pass"><i class="ti-settings"></i> Account Setting</a></li>
+                                    <li style="cursor:pointer;"><a id="change_pass"><i class="ti-settings"></i> Account Setting</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a id="logout_client"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>

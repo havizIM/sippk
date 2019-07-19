@@ -67,6 +67,25 @@
           background-image: url("<?= base_url() ?>assets/images/background/sidebar.png");
           background-size: cover;
         }
+
+        
+        .modal-header.stlye {
+            background: #1e88e5;
+            /* color: #fff; */
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+        
+        .modal-content.bradius{
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .close.style2 {
+            color: #fff;
+            text-shadow: 1px 2px 2px #000;
+            opacity: .8;
+        }
     </style>
 
     <script type="text/javascript">
@@ -194,39 +213,49 @@
 
             </div>
 
-            <div class="modal fade bs-example-modal-sm" id="modal_pass" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                      <form id="form_pass" class="form-material">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="mySmallModalLabel">Change Password</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="form-group">
-                            <label for="">Old Password</label>
-                            <input type="password" name="password_lama" id="password_lama" class="form-control form-control-line">
-                          </div>
-                          <div class="form-group">
-                            <label for="">New Password</label>
-                            <input type="password" name="password_baru" id="password_baru" class="form-control form-control-line">
-                          </div>
-                          <div class="form-group">
-                            <label for="">Retype Password</label>
-                            <input type="password" name="password_retype" id="password_retype" class="form-control form-control-line">
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" name="button">Cancel</button>
-                          <button type="submit" class="btn btn-sm btn-success" id="submit_pass" name="button">Save Change</button>
-                        </div>
-                      </form>
-
+        <!-- sample modal content -->
+        <div class="modal fade" id="modal_pass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content bradius">
+                    <div class="modal-header stlye">
+                        <button type="button" class="close style2" data-dismiss="modal" aria-hidden="true" style="cursor:pointer;">×</button>
+                        <h4 class="modal-title text-white">Change Password</h4>
                     </div>
-                    <!-- /.modal-content -->
+                    <form id="form_pass">
+                        <div class="modal-body">
+                            <div class="form-group">
+                              <label for="">Old Password</label>
+                              <input type="password" name="password_lama" id="password_lama" class="form-control form-control-line">
+                            </div>
+                            <div class="form-group">
+                              <label for="">New Password</label>
+                              <input type="password" name="password_baru" id="password_baru" class="form-control form-control-line">
+                            </div>
+                            <div class="form-group">
+                              <label for="">Retype Password</label>
+                              <input type="password" name="password_retype" id="password_retype" class="form-control form-control-line">
+                            </div>
+                            <div class="form-group">
+                            <div>
+                                <div>
+                                    <div class="checkbox checkbox-primary p-t-0">
+                                        <input id="checkbox-signup" class="show_pass" type="checkbox">
+                                        <label for="checkbox-signup"> Show Password </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                            <button type="submit" id="submit_pass" class="btn btn-danger waves-effect waves-light">Save changes</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- /.modal-dialog -->
             </div>
+        </div>
+        <!-- /.modal -->
+    </div>
 
 
 
@@ -389,8 +418,19 @@
               }
             })
           }
-
         });
+
+        $('.show_pass').click(function(){
+              if($(this).is(':checked')){
+                  $('#password_baru').attr('type','text');
+                  $('#password_lama').attr('type','text');
+                  $('#password_retype').attr('type','text');
+              }else{
+                  $('#password_baru').attr('type','password');
+                  $('#password_lama').attr('type','password');
+                  $('#password_retype').attr('type','password');
+              };
+          });
 
          $('.sidebartoggler').on('click', function(){
           $('.dark-logo').toggle('show');
