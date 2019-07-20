@@ -41,10 +41,10 @@ class Notif extends CI_Controller {
           json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Token tidak dikenali'));
         } else {
             $today  = date('Y-m-d');
-            $start  = date('Y-m-d', mktime(0, 0, 0, date("m"), 25, date("Y")));
-            $end    = date('Y-m-d', mktime(0, 0, 0, date("m") + 1, 1, date("Y")));
+            $start  = date('Y-m-d', mktime(0, 0, 0, date("m"), 20, date("Y")));
+            $end    = date('Y-m-d', mktime(0, 0, 0, date("m"), 25, date("Y")));
 
-            if(($today > $start) && ($today < $end)){
+            if(($today >= $start) && ($today <= $end)){
                 $notif = true;
             } else {
                 $notif = false;

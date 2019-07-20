@@ -353,7 +353,8 @@ class Client extends CI_Controller {
               json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'ID Client tidak ditemukan'));
             } else {
 
-              $client = $this->ClientModel->show($id_client, null);
+              $where_cl = array('id_client' => $id_client);
+              $client = $this->ClientModel->show($where_cl);
 
               if($client->num_rows() != 1){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'ID Client tidak valid'));
