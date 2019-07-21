@@ -129,20 +129,26 @@ var renderUI = (function(){
             var actual_barge = 0;
 
             $.each(data, function(k,v){
-                plan_tonnage += parseInt(v.total_plan);
-                revised_tonnage += parseInt(v.total_revised);
-                total_barge += parseInt(v.count_schedule);
-                actual_tonnage += parseInt(v.actual_total);
-                actual_barge += parseInt(v.count_survey);
+                a1 = isNaN(parseInt(v.total_plan)) ? 0 : parseInt(v.total_plan);
+                a2 = isNaN(parseInt(v.total_revised)) ? 0 : parseInt(v.total_revised);
+                a3 = isNaN(parseInt(v.count_schedule)) ? 0 : parseInt(v.count_schedule);
+                a4 = isNaN(parseInt(v.actual_total)) ? 0 : parseInt(v.actual_total);
+                a5 = isNaN(parseInt(v.count_survey)) ? 0 : parseInt(v.count_survey);
+
+                plan_tonnage += a1;
+                revised_tonnage += a2;
+                total_barge += a3;
+                actual_tonnage += a4;
+                actual_barge += a5;
 
                     html += `
                         <tr>
                             <td>${v.username}</td>
-                            <td>${parseInt(v.total_plan).toLocaleString(['ban', 'id'])}</td>
-                            <td>${parseInt(v.total_revised).toLocaleString(['ban', 'id'])}</td>
-                            <td>${parseInt(v.count_schedule).toLocaleString(['ban', 'id'])}</td>
-                            <td>${parseInt(v.actual_total).toLocaleString(['ban', 'id'])}</td>
-                            <td>${parseInt(v.count_survey).toLocaleString(['ban', 'id'])} Complete Barging</td>
+                            <td>${parseInt(a1).toLocaleString(['ban', 'id'])}</td>
+                            <td>${parseInt(a2).toLocaleString(['ban', 'id'])}</td>
+                            <td>${parseInt(a3).toLocaleString(['ban', 'id'])}</td>
+                            <td>${parseInt(a4).toLocaleString(['ban', 'id'])}</td>
+                            <td>${parseInt(a5).toLocaleString(['ban', 'id'])} Complete Barging</td>
                         </tr>
                     `;
             })

@@ -119,32 +119,33 @@ var renderUI = (function(){
                 `;
 
             $.each(data, function(k,v){
-                    html += `
-                        <tr>
-                            <td rowspan="${v.schedule.length}">${v.username}</td>
-                            <td>${v.schedule[0].barging}</td>
-                            <td>${parseInt(v.schedule[0].plan_tonage).toLocaleString(['ban', 'id'])}</td>
-                            <td>${v.schedule[0].confirmed_date}</td>
-                        </tr>
-                    `;
-
-                    for(var i = 1 ; i < v.schedule.length; i++){
+                    if(v.schedule.length !== 0){
                         html += `
                             <tr>
-                                <td>${v.schedule[i].barging}</td>
-                                <td>${parseInt(v.schedule[i].plan_tonage).toLocaleString(['ban', 'id'])}</td>
-                                <td>${v.schedule[i].confirmed_date}</td>
+                                <td rowspan="${v.schedule.length}">${v.username}</td>
+                                <td>${v.schedule[0].barging}</td>
+                                <td>${parseInt(v.schedule[0].plan_tonage).toLocaleString(['ban', 'id'])}</td>
+                                <td>${v.schedule[0].confirmed_date}</td>
+                            </tr>
+                        `;
+
+                        for(var i = 1 ; i < v.schedule.length; i++){
+                            html += `
+                                <tr>
+                                    <td>${v.schedule[i].barging}</td>
+                                    <td>${parseInt(v.schedule[i].plan_tonage).toLocaleString(['ban', 'id'])}</td>
+                                    <td>${v.schedule[i].confirmed_date}</td>
+                                </tr>
+                            `;
+                        }
+
+                        html += `
+                            <tr style="background-color: grey; color: white;">
+                                <th colspan="2" class="text-center">Total Tonnage</th>
+                                <td colspan="2" class="text-center"><strong>${parseInt(v.total_tonage).toLocaleString(['ban', 'id'])}</strong></td>
                             </tr>
                         `;
                     }
-
-                    html += `
-                        <tr style="background-color: grey; color: white;">
-                            <th colspan="2" class="text-center">Total Tonnage</th>
-                            <td colspan="2" class="text-center"><strong>${parseInt(v.total_tonage).toLocaleString(['ban', 'id'])}</strong></td>
-                        </tr>
-                    `;
-                    
             })
 
 
