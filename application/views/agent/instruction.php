@@ -59,7 +59,10 @@
                 },
                 {"data": 'schedule.confirmed_date'},
                 {"data": 'commodity'},
-                {"data": 'qty'},
+                {"data": null, 'render': function(data, type, row){
+                        return `${row.qty} MT`
+                    }
+                },
                 {"data": 'tug_boat'},
                 {"data": 'barge_name'},
                 

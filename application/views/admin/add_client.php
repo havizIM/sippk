@@ -63,7 +63,7 @@
                             <div class="form-control-feedback" id="invalid_npwp"></div>
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label" for="mou">MOU <small><i>.doc / .docx / .pdf</i></small></label>
+                            <label class="form-control-label" for="mou">MOU <small><i>.doc / .docx / .pdf </i></small></label>
                             <input type="file" class="form-control" name="mou" id="mou">
                             <div class="form-control-feedback" id="invalid_mou"></div>
                         </div>
@@ -140,6 +140,24 @@
         var form = $(".validation-wizard");
 
         var setupValidate = function(){
+            $.validator.addMethod('filesize', function (value, element, arg) {
+                if(element.files[0].size<=arg){
+                    return true;
+                }else{
+                    return false;
+                }
+            });
+
+            $.validator.addMethod('pdf', function (value, element, arg) {
+                param = typeof param === "string" ? param.replace(/,/g, '|') : "pdf";
+                return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
+            });
+
+            $.validator.addMethod('image', function (value, element, arg) {
+                param = typeof param === "string" ? param.replace(/,/g, '|') : "png|jpe?g";
+                return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
+            });
+
             form.validate({
                 rules: {
                     nama_perusahaan: "required",
@@ -149,9 +167,16 @@
                     telepon: "required",
                     fax: "required",
                     npwp: "required",
-                    mou: "required",
-                    logo_perusahaan: "required",
-                    website: "required",
+                    mou: {
+                        required: true,
+                        pdf:"pdf",
+                        filesize: 200000
+                    },
+                    logo_perusahaan: {
+                        required: true,
+                        image:"jpg|png",
+                        filesize: 200000
+                    },
                     nama_pic: "required",
                     email_pic: "required",
                     telepon_pic: "required",
@@ -167,9 +192,16 @@
                     telepon: "Masukkan telepon perusahaan",
                     fax: "Masukkan fax perusahaan",
                     npwp: "Masukkan npwp perusahaan",
-                    mou: "Upload dokumen MOU",
-                    logo_perusahaan: "Upload logo perusahaan",
-                    website: "Masukkan website perusahaan",
+                    mou: {
+                        required: "Pilih file MOU",
+                        pdf: "Format hanya PDF",
+                        filesize: "Ukuran maksimal 2 MB"
+                    },
+                    logo_perusahaan: {
+                        required: "Pilih file MOU",
+                        image: "Format file hanya .png atau .jpg",
+                        filesize: "Ukuran maksimal 2 MB"
+                    },
                     nama_pic: "Masukkan nama pic perusahaan",
                     email_pic: "Masukkan email pic perusahaan",
                     telepon_pic: "Masukkan telepon pic perusahaan",

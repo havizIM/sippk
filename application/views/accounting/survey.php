@@ -68,8 +68,14 @@
         },
         {"data": 'instruction.no_si'},
         {"data": 'instruction.commodity'},
-        {"data": 'instruction.qty'},
-        {"data": 'total_loaded'},
+        {"data": null, 'render': function(data, type, row){
+                return `${row.instruction.qty} MT`;
+            }
+        },
+        {"data": null, 'render': function(data, type, row){
+                return `${row.total_loaded} MT`;
+            }
+        },
 
       ],
       order: [[0, 'desc']]

@@ -26,6 +26,7 @@
                       <th>ID</th>
                       <th>Nama</th>
                       <th>Username</th>
+                      <th>Phone</th>
                       <th>Password</th>
                       <th>Level</th>
                       <th>Register Date</th>
@@ -58,6 +59,10 @@
               <div class="form-group">
                 <label for="">Nama Lengkap</label>
                 <input type="text" name="nama_user" id="add_nama_user" class="form-control form-control-line">
+              </div>
+              <div class="form-group">
+                <label for="">Telepon</label>
+                <input type="text" name="phone" id="add_phone" class="form-control form-control-line" placeholder="Contoh: 6281355754092">
               </div>
               <div class="form-group">
                 <label for="">Level</label>
@@ -100,6 +105,10 @@
                 <input type="text" name="nama_user" id="edit_nama_user" class="form-control form-control-line">
               </div>
               <div class="form-group">
+                <label for="">Telepon</label>
+                <input type="text" name="phone" id="edit_phone" class="form-control form-control-line" placeholder="Contoh: 6281355754092">
+              </div>
+              <div class="form-group">
                 <label for="">Status</label>
                 <select class="form-control form-control-line" name="status" id="edit_status">
                   <option value="">-- Choose Status --</option>
@@ -137,8 +146,9 @@
       ajax: '<?= base_url('api/user/show/'); ?>'+auth.token,
       columns: [
         {"data": 'id_user'},
-        {"data": 'username'},
         {"data": 'nama_user'},
+        {"data": 'username'},
+        {"data": 'phone'},
         {"data": 'password'},
         {"data": 'level'},
         {"data": 'tgl_registrasi'},
@@ -164,8 +174,9 @@
       var username = $('#add_username').val();
       var nama_user = $('#add_nama_user').val();
       var level = $('#add_level').val();
+      var phone = $('#add_phone').val();
 
-      if(username === '' || nama_user === '' || level === ''){
+      if(username === '' || nama_user === '' || level === '' || phone === ''){
         makeNotif('warning', 'Warning', 'Silahkan lengkapi form', 'bottom-left');
       } else {
         $.ajax({
@@ -243,6 +254,7 @@
             $('#edit_nama_user').val(v.nama_user);
             $('#edit_status').val(v.status);
             $('#edit_username').val(v.username);
+            $('#edit_phone').val(v.phone);
           });
 
           $('#modal_edit').modal('show');
@@ -260,8 +272,9 @@
       var nama_user = $('#edit_nama_user').val();
       var username  = $('#edit_username').val();
       var status    = $('#edit_status').val();
+      var phone     = $('#edit_phone').val();
 
-      if(id_user === '' || nama_user === '' || username === '' || status === ''){
+      if(id_user === '' || nama_user === '' || username === '' || status === '' || phone === ''){
         makeNotif('warning', 'Warning', 'Silahkan lengkapi form', 'bottom-left');
       } else {
         $.ajax({

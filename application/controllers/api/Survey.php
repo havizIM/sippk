@@ -136,11 +136,14 @@ class Survey extends CI_Controller {
         } else {
 
             $otorisasi  = $auth->row();
-            $id_survey            = $this->KodeModel->buatKode('survey', 'SRY-', 'id_survey', 7);
+
             $no_si                = $this->input->post('no_si');
             $total_loaded         = $this->input->post('total_loaded');
             $actual_date          = $this->input->post('actual_date');
             $actual_time          = $this->input->post('actual_time');
+
+            $mycode               = 'SRV-'.date('m').date('y').'-';
+            $id_survey            = $this->KodeModel->buatKode('survey', $mycode, 'id_survey', 3);
 
             if($no_si == null || $total_loaded == null || $actual_date == null || $actual_time == null){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));

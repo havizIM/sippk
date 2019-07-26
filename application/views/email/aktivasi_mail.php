@@ -354,14 +354,14 @@
                               <td> <?= $email_perusahaan ?></td>
                             </tr>
                             <tr>
+                              <td>Username</td>
+                              <td>:</td>
+                              <td> <?= $username ?></td>
+                            </tr>
+                            <tr>
                               <td>Password</td>
                               <td>:</td>
                               <td> <?= $password ?></td>
-                            </tr>
-                            <tr>
-                              <td>Token</td>
-                              <td>:</td>
-                              <td> <?= $username ?></td>
                             </tr>
                           </tbody>
                         </table><br>
@@ -373,7 +373,7 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
                                     <tr>
-                                      <td> <a href="<?= base_url('auth/login_admin') ?>" target="_blank">Login</a> </td>
+                                      <td> <a href="<?= base_url('') ?>" target="_blank">Login</a> </td>
                                     </tr>
                                   </tbody>
                                 </table>

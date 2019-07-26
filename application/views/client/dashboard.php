@@ -299,7 +299,7 @@
 
                     $(DOM.survey).text(parseInt(data.length).toLocaleString(['ban', 'id']))
                     $(DOM.perusahaan).text(auth.nama_perusahaan)
-                    $(DOM.loaded).text(parseInt(loaded).toLocaleString(['ban', 'id'])+' T')
+                    $(DOM.loaded).text(parseInt(loaded).toLocaleString(['ban', 'id'])+' MT')
                 },
                 error: function(err){
                     $(DOM.survey).html('<i style="color: red;">Error Access</i>')

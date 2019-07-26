@@ -346,6 +346,16 @@
                           Berikut adalah akun yang mewakili <?= $nama_perusahaan ?> untuk mengakses Sistem Informasi Penjadwalan Pemuatan Kapal. Segera lakukan ganti password setelah login agar keamanan aplikasi tetap terjaga.
                         </p>
 
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td style="width: 20%">New Password</td>
+                              <td style="width: 20%">:</td>
+                              <td><p style="color: green; font-weight: 10px;"><?= $password ?></p></td>
+                            </tr>
+                          </tbody>
+                        </table><br>
+
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                           <tbody>
                             <tr>
@@ -353,7 +363,7 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
                                     <tr>
-                                      <td> <a href="<?= base_url('auth/login_admin') ?>" target="_blank"><?= $password ?></a> </td>
+                                      <td> <a href="<?= base_url('') ?>" target="_blank">Log In</a> </td>
                                     </tr>
                                   </tbody>
                                 </table>

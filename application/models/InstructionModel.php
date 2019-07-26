@@ -97,12 +97,14 @@ class InstructionModel extends CI_Model {
 
     function statistic($tahun)
     {
-      $this->db->select("YEAR(create_at) as tahun, MONTH(create_at) as bulan, COUNT('no_si') as jml_instruction, SUM(qty) as total_instruction");
+      $this->db->select("YEAR(b.plan_date) as tahun, MONTH(b.plan_date) as bulan, COUNT(a.no_si) as jml_instruction, SUM(a.qty) as total_instruction");
 
-      $this->db->from("instruction");
-      $this->db->where("YEAR(create_at)", $tahun);
+      $this->db->from("instruction a");
+      $this->db->join("schedule b", "b.id_schedule = a.id_schedule");
 
-      $this->db->group_by("MONTH(create_at)");
+      $this->db->where("YEAR(b.plan_date)", $tahun);
+
+      $this->db->group_by("MONTH(b.plan_date)");
       return $this->db->get();
     }
 

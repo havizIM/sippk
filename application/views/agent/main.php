@@ -114,7 +114,7 @@
         <header class="topbar" style="background:linear-gradient(-135deg,#00ff78,#2bffa0, #078dff,#0069ff)!important;">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="#/dashboard">
                         <!-- Logo icon -->
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -258,7 +258,7 @@
 
 
             <footer class="footer">
-                © 2017 Material Pro Admin by wrappixel.com
+                Made with <i class="fa fa-heart" style="color: pink"></i> by Hana Ayumi Anggitarani
             </footer>
         </div>
         <!-- ============================================================== -->
@@ -369,7 +369,7 @@
                     success: function(response){
                       if(response.status === 200){
                         localStorage.clear();
-                        window.location.replace(`<?= base_url('auth') ?>`);
+                        window.location.replace(`<?= base_url('internal') ?>`);
                       } else {
                         makeNotif('error', 'Failed', response.message, 'bottom-right')
                       }

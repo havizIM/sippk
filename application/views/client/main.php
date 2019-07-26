@@ -112,7 +112,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="#/dashboard">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
@@ -553,7 +553,7 @@
                             success: function(response){
                             if(response.status === 200){
                                 localStorage.clear();
-                                window.location.replace(`<?= base_url('auth/ext_login') ?>`);
+                                window.location.replace(`<?= base_url('') ?>`);
                             } else {
                                 makeNotif('error', 'Failed', response.message, 'bottom-right')
                             }

@@ -102,7 +102,6 @@ class Client extends CI_Controller {
           if($otorisasi->level != 'Admin'){
             json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Hak akses tidak disetujui'));
           } else {
-            $id_client            = $this->KodeModel->buatKode('client', 'CL-', 'id_client', 5);
             $nama_perusahaan      = $this->input->post('nama_perusahaan');
             $penanggung_jawab     = $this->input->post('penanggung_jawab');
             $alamat_perusahaan    = $this->input->post('alamat_perusahaan');
@@ -118,8 +117,11 @@ class Client extends CI_Controller {
             $username             = $this->input->post('username');
             $expired_date         = $this->input->post('expired_date');
 
+            $mycode               = $username.'CL';
+            $id_client            = $this->KodeModel->buatKode('client', $mycode, 'id_client', 3);
 
-            if($nama_perusahaan == null || $nama_perusahaan == null || $penanggung_jawab == null || $alamat_perusahaan == null || $kode_pos == null || $telepon == null || $fax == null || $npwp == null || $website == null || $nama_pic == null || $email_pic == null || $telepon_pic == null || $email_perusahaan == null || $username == null || $expired_date == null){
+
+            if($nama_perusahaan == null || $nama_perusahaan == null || $penanggung_jawab == null || $alamat_perusahaan == null || $kode_pos == null || $telepon == null || $fax == null || $npwp == null || $nama_pic == null || $email_pic == null || $telepon_pic == null || $email_perusahaan == null || $username == null || $expired_date == null){
               json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
             } else {
 
@@ -216,7 +218,7 @@ class Client extends CI_Controller {
             if($id_client == null){
               json_output(401, array('status' => 401, 'description' => 'Gagal', 'message' => 'Tidak ada ID Client yang dipilih'));
             } else {
-              if($nama_perusahaan == null || $nama_perusahaan == null || $penanggung_jawab == null || $alamat_perusahaan == null || $kode_pos == null || $telepon == null || $fax == null || $npwp == null || $website == null || $nama_pic == null || $email_pic == null || $telepon_pic == null || $email_perusahaan == null || $username == null || $expired_date == null){
+              if($nama_perusahaan == null || $nama_perusahaan == null || $penanggung_jawab == null || $alamat_perusahaan == null || $kode_pos == null || $telepon == null || $fax == null || $npwp == null || $nama_pic == null || $email_pic == null || $telepon_pic == null || $email_perusahaan == null || $username == null || $expired_date == null){
                 json_output(400, array('status' => 400, 'description' => 'Gagal', 'message' => 'Data yang dikirim tidak lengkap'));
               } else {
 

@@ -80,7 +80,7 @@
                                     </tr>
                                     <tr>
                                         <td>QUANTITY</td>
-                                        <td>${data.qty}</td>
+                                        <td>${data.qty} MT</td>
                                     </tr>
                                     <tr>
                                         <td>PORT LOADING</td>
