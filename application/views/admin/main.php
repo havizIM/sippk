@@ -150,12 +150,12 @@
 
                     <ul class="navbar-nav my-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img alt="user" class="profile-pic foto_user" onerror="this.onerror=null;this.src='<?= base_url() ?>doc/user/default_user.png ?>';" /></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img alt="user" class="profile-pic foto_user" onerror="this.onerror=null;this.src='<?= base_url('doc/user/default_user.png') ?> ?>';" /></a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img class="foto_user" alt="user" onerror="this.onerror=null;this.src='<?= base_url() ?>doc/user/default_user.png ?>';"></div>
+                                            <div class="u-img"><img class="foto_user" alt="user" onerror="this.onerror=null;this.src='<?= base_url('doc/user/default_user.png') ?> ?>';"></div>
                                             <div class="u-text">
                                                 <h4 id="session_nama"></h4>
                                                 <p class="text-muted" id="session_level"></p><a class="btn btn-rounded btn-danger btn-sm"><i class="fa fa-image"></i> Change Picture</a></div>
@@ -180,9 +180,9 @@
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- User profile -->
-                <div class="user-profile" style=" background-image:url('<?= base_url() ?>assets/images/background/user-info.jpg')">
+                <div class="user-profile" style="background-image:url('<?= base_url() ?>assets/images/background/user-info.jpg')">
                     <!-- User profile image -->
-                    <div class="profile-img"> <img class="foto_user" alt="user" onerror="this.onerror=null;this.src='<?= base_url() ?>doc/user/default_user.png ?>';"/> </div>
+                    <div class="profile-img"> <img class="foto_user" alt="user" onerror="this.onerror=null;this.src='<?= base_url('doc/user/default_user.png') ?> ?>';"/> </div>
                     <!-- User profile text-->
                     <div class="profile-text"> <a class="dropdown link u-dropdown" id="session_nav"></a></div>
                 </div>

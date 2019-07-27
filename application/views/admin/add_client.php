@@ -169,12 +169,10 @@
                     npwp: "required",
                     mou: {
                         required: true,
-                        pdf:"pdf",
                         filesize: 200000
                     },
                     logo_perusahaan: {
                         required: true,
-                        image:"jpg|png",
                         filesize: 200000
                     },
                     nama_pic: "required",
@@ -194,12 +192,10 @@
                     npwp: "Masukkan npwp perusahaan",
                     mou: {
                         required: "Pilih file MOU",
-                        pdf: "Format hanya PDF",
                         filesize: "Ukuran maksimal 2 MB"
                     },
                     logo_perusahaan: {
-                        required: "Pilih file MOU",
-                        image: "Format file hanya .png atau .jpg",
+                        required: "Pilih Logo Perusahaan",
                         filesize: "Ukuran maksimal 2 MB"
                     },
                     nama_pic: "Masukkan nama pic perusahaan",

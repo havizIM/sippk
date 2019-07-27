@@ -114,7 +114,7 @@ class User extends CI_Controller {
                 'username'  => $username,
                 'password'  => substr(str_shuffle("01234567890abcdefghijklmnopqestuvwxyz"), 0, 5),
                 'level'     => $level,
-                'foto'      => 'user.jpg',
+                'foto'      => 'default_user.png',
                 'phone'     => $phone,
                 'status'    => 'Aktif',
                 'token'     => sha1($username)
