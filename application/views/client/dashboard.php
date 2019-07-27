@@ -291,14 +291,29 @@
                 dataType: 'JSON',
                 success: function(res){
                     var { data } = res
+
+                    $(DOM.survey).text(parseInt(data.length).toLocaleString(['ban', 'id']))
+                    $(DOM.perusahaan).text(auth.nama_perusahaan)
+                },
+                error: function(err){
+                    $(DOM.survey).html('<i style="color: red;">Error Access</i>')
+                }
+            })
+        }
+
+        var getTotal = () => {
+            $.ajax({
+                url : `<?= base_url('ext/survey/get_survey/'); ?>${auth.token}`,
+                type: 'GET',
+                dataType: 'JSON',
+                success: function(res){
+                    var { data } = res
                     var loaded = 0;
                     
                     $.each(data, (k, v) => {
                         loaded += parseInt(v.total_loaded)
                     });
 
-                    $(DOM.survey).text(parseInt(data.length).toLocaleString(['ban', 'id']))
-                    $(DOM.perusahaan).text(auth.nama_perusahaan)
                     $(DOM.loaded).text(parseInt(loaded).toLocaleString(['ban', 'id'])+' MT')
                 },
                 error: function(err){
@@ -318,6 +333,7 @@
                 getPlan();
                 getInstruction();
                 getSurvey();
+                getTotal();
             }
         }
     })();

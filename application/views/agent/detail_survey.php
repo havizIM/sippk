@@ -163,7 +163,7 @@
                                 <h4 class="m-b-0 text-white">Document</h4>
                             </div>
                             <div class="card-body">
-                                 <embed src="<?= base_url() ?>doc/document/${data.document}" style="width: 100%; height: 500px;">       
+                                 <iframe src="<?= base_url() ?>doc/document/${data.document}" style="width: 100%; height: 500px;">       
                             </div>
                         </div>
                     </div>`;

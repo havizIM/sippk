@@ -154,7 +154,7 @@
                                 <h4 class="m-b-0 text-white">Document</h4>
                             </div>
                             <div class="card-body">
-                                 <embed src="<?= base_url() ?>doc/document/${data.document}" style="width: 100%; height: 500px;">       
+                                 <iframe src="<?= base_url() ?>doc/document/${data.document}" style="width: 100%; height: 500px;">       
                             </div>
                         </div>
                     </div> `;
@@ -220,7 +220,7 @@
                                 swal.close();
                                 if(response.status === 200){
                                     makeNotif('success', 'Success', response.message, 'bottom-right')
-                                    TABLE.ajax.reload();
+                                    dataProfile();
                                 } else {
                                     makeNotif('error', 'Failed', response.message, 'bottom-right')
                                 }
