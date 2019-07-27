@@ -99,9 +99,9 @@ var renderUI = (function(){
                                 <center><img src="<?= base_url('assets/logo/logo.png') ?>" style="height: 70px"></center>
                             </td>
                             <td style="padding-top: 5px">
-                                <h4>PT. Servero Lintas Raya</h4>
-                                <h5>Jl. BSD City Blok A7 Tangerang</h5>
-                                <h6>Telp. 021-13673916 Fax. 021-12671301</h6>
+                                <h4>PT. Servo Lintas Raya</h4>
+                                <h5>Graha Anabatic, Jl. Scientia Boulevard Kav. U2, Summarecon Serpong, Curug Sangereng, Kec. Klp. Dua, Tangerang, Banten 15811</h5>
+                                <h6>Telp. 021-80636888 Fax. 021-80636888</h6>
                             </td>
                         </tr>
                     </table>
