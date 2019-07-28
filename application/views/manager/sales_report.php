@@ -141,6 +141,7 @@ var renderUI = (function(){
                 actual_tonnage += a4;
                 actual_barge += a5;
 
+                if(a1 !== 0){
                     html += `
                         <tr>
                             <td>${v.username}</td>
@@ -151,6 +152,9 @@ var renderUI = (function(){
                             <td>${parseInt(a5).toLocaleString(['ban', 'id'])} Complete Barging</td>
                         </tr>
                     `;
+                }
+
+                    
             })
 
                     html += `

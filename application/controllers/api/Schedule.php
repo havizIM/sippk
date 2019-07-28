@@ -391,8 +391,7 @@ class Schedule extends CI_Controller {
 
             foreach($sales->result() as $key){
                 $json         = array();
-
-                if($key->total_plan !== 0){
+                
                   $json['nama_perusahaan']  = $key->nama_perusahaan;
                   $json['username']         = $key->username;
                   $json['total_plan']       = $key->total_plan;
@@ -400,7 +399,6 @@ class Schedule extends CI_Controller {
                   $json['count_schedule']   = $key->count_schedule;
                   $json['actual_total']     = $key->actual_total;
                   $json['count_survey']     = $key->count_survey;
-                }
 
                 $laporan[] = $json;
             }
