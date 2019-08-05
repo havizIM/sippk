@@ -170,7 +170,7 @@
           volume: 1,
           playbackRate: 1,
           muted: true,
-          loop: false,
+          loop: true,
           autoplay: true,
         });
 
