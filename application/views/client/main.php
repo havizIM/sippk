@@ -572,7 +572,7 @@
                         html += `
                             <li>
                                 <a href="https://api.whatsapp.com/send?phone=${v.phone}" target="_blank">
-                                    <img src="<?= base_url() ?>doc/user/${v.foto} ?>" onerror="this.onerror=null;this.src='<?= base_url() ?>doc/user/default_user.png ?>';" alt="user-img" class="img-circle">
+                                    <img src="<?= base_url() ?>doc/user/${v.foto} ?>" onerror="this.onerror=null;this.src='<?= base_url('doc/user/default_user.png') ?>';" alt="user-img" class="img-circle">
                                     <span>${v.nama_user}
                                         <small class="text-${v.level === 'Admin' ? 'success' : 'danger'}">${v.level}</small>
                                     </span>
