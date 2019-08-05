@@ -44,7 +44,6 @@
         width: 100%;
         padding: 10% 0;
         position: fixed;
-        background-image:url(<?= base_url() ?>assets/logo/wp1.jpg);
         opacity: 0.9;
       }
 
@@ -66,7 +65,7 @@
     <!-- ============================================================== -->
   <section id="wrapper" class="login-register login-sidebar"  style="background:#000000">
   <div class="bg-login"></div> 
-  <div class="login-box card transparent">
+  <div class="login-box card" style="background-color: rgba(255, 255, 255, 0.6)">
     <div class="card-body">
       <form class="form-horizontal form-material" id="form_login">
         <a href="javascript:void(0)" class="text-center db"><img src="<?= base_url() ?>assets/logo/logo.png" alt="Home" /><br/><h4>PT. Servo Lintas Raya</h4></a>
@@ -96,7 +95,7 @@
           </div>
         </div>
         <div class="form-group m-b-0">
-          <div class="col-sm-12 text-center" style="font-size: 20px;">
+          <div class="col-sm-12 text-center text-info" style="font-size: 20px;">
             Sistem Informasi Penjadwalan Pemuatan Kapal
           </div>
         </div>
@@ -148,6 +147,7 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?= base_url() ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vide/0.5.1/jquery.vide.js"></script>
     <script type="text/javascript">
 
       $(document).ready(function() {
@@ -162,6 +162,17 @@
             stack: 1
           });
         }
+
+        $('.bg-login').vide({
+          mp4: `<?= base_url('assets/titan_video.mp4') ?>`,
+          poster: `<?= base_url('assets/logo/wp1.jpg') ?>`
+        }, {
+          volume: 1,
+          playbackRate: 1,
+          muted: true,
+          loop: false,
+          autoplay: true,
+        });
 
         $('#form_login').on('submit',function(e){
           e.preventDefault();

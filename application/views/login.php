@@ -140,6 +140,7 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?= base_url() ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vide/0.5.1/jquery.vide.min.js" integrity="sha256-vjlQ2rQnkbtQ1goJyAhpuoyG99q3Tv8juRo2XQxxCDE=" crossorigin="anonymous"></script> -->
 </body>
 
 </html>
