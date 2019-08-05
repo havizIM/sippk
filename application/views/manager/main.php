@@ -165,8 +165,9 @@
                                         <div class="dw-user-box">
                                             <div class="u-img"><img class="foto_user" alt="user" onerror="this.onerror=null;this.src='<?= base_url('doc/user/default_user.png') ?> ?>';"></div>
                                             <div class="u-text">
-                                                <h4 id="session_nama"></h4>
-                                                <p class="text-muted" id="session_level"></p><a class="btn btn-rounded btn-danger btn-sm"><i class="fa fa-image"></i> Change Picture</a></div>
+                                                <p id="session_nama"></p>
+                                                <p class="text-muted" id="session_level"></p>
+                                                <!-- <a class="btn btn-rounded btn-danger btn-sm"><i class="fa fa-image"></i> Change Picture</a></div> -->
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
@@ -401,7 +402,7 @@
                     dataType: 'JSON',
                     success: function(response){
                       if(response.status === 200){
-                        localStorage.clear();
+                        localStorage.removeItem('sippk');
                         window.location.replace(`<?= base_url('internal') ?>`);
                       } else {
                         makeNotif('error', 'Failed', response.message, 'bottom-right')
