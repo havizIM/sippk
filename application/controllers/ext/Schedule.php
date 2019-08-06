@@ -95,7 +95,7 @@ class Schedule extends CI_Controller {
                 $data       = array();
                 foreach($post['plan_date'] as $key => $val){
                   $data[] = array(
-                    'id_schedule'       => 'SCH-'.date('m').date('y').'-'.rand(),
+                    'id_schedule'       => 'SCH-'.date('mY').'-'.rand(),
                     'id_client'         => $otorisasi->id_client,
                     'plan_date'         => $post['plan_date'][$key],
                     'plan_tonage'       => $post['plan_tonage'][$key],

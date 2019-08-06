@@ -144,8 +144,8 @@ class Instruction extends CI_Controller {
         } else {
           $otorisasi = $auth->row();
 
-          $head                 = 'SI'.'-'.date('my').'-'.$otorisasi->username.'-';
-          $no_si                = $this->KodeModel->buatKode('instruction', $head, 'no_si', 3);
+          $head                 = 'SI'.'-'.date('mY').'-'.$otorisasi->username.'-';
+          $no_si                = $this->KodeModel->buatKode('instruction', $head, 'no_si', 4);
           $id_schedule          = $this->input->post('id_schedule');
           $owner_barge          = $this->input->post('owner_barge');
           $owner_barge_address  = $this->input->post('owner_barge_address');
