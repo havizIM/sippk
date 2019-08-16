@@ -128,27 +128,18 @@
             $(DOM.form).validate({
                 rules: {
                     no_si: "required",
-                    no_si: "required",
                     actual_date: "required",
                     actual_time: "required",
                     total_loaded: "required",
-                    document: "required",
+                    document: "required"
                    
                 },
                 messages: {
                     no_si: "This field is required",
-                    owner_barge: "This field is required",
-                    owner_barge_address: "This field is required",
-                    consignee: "This field is required",
-                    consignee_address: "This field is required",
-                    commodity: "This field is required",
-                    document: "This field is required",
-                    qty: "This field is required",
-                    port_loading: "This field is required",
-                    port_discharge: "This field is required",
-                    doc_required: "This field is required",
-                    tug_boat: "This field is required",
-                    barge_name: "This field is required"
+                    actual_date: "This field is required",
+                    actual_time: "This field is required",
+                    total_loaded: "This field is required",
+                    document: "This field is required"
                 },
                 errorClass: 'form-control-danger',
                 validClass: 'form-control-success',

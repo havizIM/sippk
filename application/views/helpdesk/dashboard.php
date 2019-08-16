@@ -13,6 +13,7 @@
 <div class="row">
 <!-- Column -->
   <div class="col-lg-6 col-md-6">
+    <a href="#/user">
       <div class="card">
           <div class="card-body">
               <div class="d-flex flex-row">
@@ -23,11 +24,13 @@
               </div>
           </div>
       </div>
+    </a>
   </div>
   <!-- Column -->
   <!-- Column -->
   <div class="col-lg-6 col-md-6">
-      <div class="card">
+      <a href="#/log">
+        <div class="card">
           <div class="card-body">
               <div class="d-flex flex-row">
                   <div class="round round-lg align-self-center round-warning"><i class="mdi mdi-recycle"></i></div>
@@ -36,7 +39,8 @@
                       <h5 class="text-muted m-b-0">Total Log</h5></div>
               </div>
           </div>
-      </div>
+        </div>
+      </a>
   </div>
 </div>
 
